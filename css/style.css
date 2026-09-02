@@ -14,11 +14,11 @@
 
   /* Whole-site typeface, per client decision — applied everywhere, including
      logistics text. Sized up from a typical 16px body baseline (20px) since
-     Reenie Beanie's thin, condensed letterforms read smaller than a sans at
-     the same pixel size; this keeps addresses/times/phone numbers legible. */
-  --font-display: 'Reenie Beanie', cursive;
-  --font-body: 'Reenie Beanie', cursive;
-  --font-script: 'Reenie Beanie', cursive;
+     handwriting-style fonts read smaller than a sans at the same pixel
+     size; this keeps addresses/times/phone numbers legible. */
+  --font-display: 'Edu AU VIC WA NT Hand', cursive;
+  --font-body: 'Edu AU VIC WA NT Hand', cursive;
+  --font-script: 'Edu AU VIC WA NT Hand', cursive;
 
   --nav-height: 64px;
   --section-pad-y: clamp(64px, 10vh, 120px);

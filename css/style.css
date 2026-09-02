@@ -12,13 +12,13 @@
 
   --color-white: #FFFFFF;
 
-  /* Whole-site typeface, per client decision — applied everywhere, including
-     logistics text. Sized up from a typical 16px body baseline (20px) since
-     handwriting-style fonts read smaller than a sans at the same pixel
-     size; this keeps addresses/times/phone numbers legible. */
-  --font-display: 'Hubballi', cursive;
+  /* Two-font system, per client decision: Reenie Beanie for titles/headings,
+     Hubballi (more readable at small sizes) for body/logistics text. Body
+     sized up from a typical 16px baseline (20px) since handwriting-style
+     fonts read smaller than a sans at the same pixel size. */
+  --font-display: 'Reenie Beanie', cursive;
   --font-body: 'Hubballi', cursive;
-  --font-script: 'Hubballi', cursive;
+  --font-script: 'Reenie Beanie', cursive;
 
   --nav-height: 64px;
   --section-pad-y: clamp(64px, 10vh, 120px);

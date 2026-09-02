@@ -290,13 +290,16 @@ h1, h2, h3 {
 /*
   No cropping, no forced aspect ratio — client was explicit ("no
   deformes la imagen", "tal cual como la encuentras en la carpeta"):
-  natural height, whole image always visible. Contained and centered,
-  not full-bleed — full-width read as too big/got cropped by the
-  viewport on her screen.
+  natural height, whole image always visible. Contained and centered.
+  max-width 1000px (~ the source image's native width) means mobile
+  is unaffected (viewport is already narrower than that — this is the
+  size the client said looked "perfecto" on her phone) while desktop
+  scales up to use the available space instead of sitting tiny in the
+  middle of the screen.
 */
 .cover__art {
   width: 100%;
-  max-width: 480px;
+  max-width: 1000px;
 }
 
 .cover__art img {

@@ -16,9 +16,9 @@
      logistics text. Sized up from a typical 16px body baseline (20px) since
      handwriting-style fonts read smaller than a sans at the same pixel
      size; this keeps addresses/times/phone numbers legible. */
-  --font-display: 'Edu AU VIC WA NT Hand', cursive;
-  --font-body: 'Edu AU VIC WA NT Hand', cursive;
-  --font-script: 'Edu AU VIC WA NT Hand', cursive;
+  --font-display: 'Hubballi', cursive;
+  --font-body: 'Hubballi', cursive;
+  --font-script: 'Hubballi', cursive;
 
   --nav-height: 64px;
   --section-pad-y: clamp(64px, 10vh, 120px);

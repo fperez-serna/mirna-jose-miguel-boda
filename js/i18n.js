@@ -1,0 +1,170 @@
+/*
+  Site-wide ES/EN toggle (nav, section labels, RSVP copy, stub notes).
+  Does NOT govern the Letters section — those show Spanish + English
+  transcripts together, always, regardless of this toggle. See index.html
+  §5 comment.
+*/
+
+const translations = {
+  es: {
+    'nav.itinerary': 'Itinerario',
+    'nav.rsvp': 'RSVP',
+    'nav.hotels': 'Hospedaje',
+    'nav.beauty': 'Belleza &amp; Estilo',
+    'nav.gifts': 'Mesa de regalos',
+    'nav.gallery': 'Galería',
+
+    'cover.eyebrow': 'Nos casamos',
+    'cover.date': '16 de enero, 2027',
+    'cover.city': 'Puerto Vallarta, Jalisco',
+
+    'details.eyebrow': 'Detalles',
+    'details.title': 'Ceremonia &amp; Recepción',
+    'details.stub': 'Pendiente: horarios, nombres/direcciones de sedes, código de vestimenta.',
+
+    'itinerary.eyebrow': 'Itinerario',
+    'itinerary.title': 'Día 01 &amp; Día 02',
+    'itinerary.stub': 'Pendiente: agenda de cada día y qué invitados asisten a cuál.',
+
+    'rsvp.eyebrow': 'RSVP',
+    'rsvp.title': 'Confirma tu asistencia',
+    'rsvp.stub': 'Pendiente: fecha límite de confirmación. Formulario con selector de día(s), acompañante, menú y niños se construye en el siguiente paso.',
+
+    'letters.eyebrow': 'Cartas',
+    'letters.title': 'Para los novios',
+    'letters.stub': 'Pendiente: diseño final de cada carta (hecho en Canva por la pareja).',
+
+    'hotels.eyebrow': 'Hospedaje',
+    'hotels.title': 'Dónde quedarse',
+    'hotels.stub': 'Pendiente: hoteles recomendados, bloques de habitaciones, transporte.',
+
+    'beauty.eyebrow': 'Belleza &amp; Estilo',
+    'beauty.title': 'Prepárate con nosotros',
+    'beauty.stub': 'Pendiente: contactos de maquillaje/peinado recomendados.',
+
+    'gifts.eyebrow': 'Regalos',
+    'gifts.title': 'Mesa de regalos',
+    'gifts.stub': 'Pendiente: enlaces de mesa de regalos o nota de regalo en efectivo.',
+
+    'gallery.eyebrow': 'Galería',
+    'gallery.title': 'Nuestros momentos',
+    'gallery.stub': 'Pendiente: set final de fotos de compromiso.',
+
+    'nav.advice': 'Consejo',
+    'advice.title': 'Secretos para un feliz matrimonio y una gran amistad',
+    'advice.prompt': 'Dinos uno o más de tus secretos para un gran matrimonio y llevar una excelente amistad con tu pareja.',
+    'advice.placeholder': 'Escribe aquí...',
+    'advice.signature': 'Firma (tu nombre)',
+    'advice.anon': 'Anónimo',
+    'advice.submit': 'Enviar',
+    'advice.thanks': '¡Gracias por tu consejo!',
+
+    'faq.eyebrow': 'FAQ',
+    'faq.title': 'FAQ',
+    'faq.stub': 'Pendiente: estacionamiento, clima, política de niños, contacto del día del evento.',
+  },
+  en: {
+    'nav.itinerary': 'Itinerary',
+    'nav.rsvp': 'RSVP',
+    'nav.hotels': 'Hotels',
+    'nav.beauty': 'Beauty &amp; Style',
+    'nav.gifts': 'Registry',
+    'nav.gallery': 'Gallery',
+
+    'cover.eyebrow': "We're getting married",
+    'cover.date': 'January 16, 2027',
+    'cover.city': 'Puerto Vallarta, Jalisco',
+
+    'details.eyebrow': 'Details',
+    'details.title': 'Ceremony &amp; Reception',
+    'details.stub': 'Pending: times, venue names/addresses, dress code.',
+
+    'itinerary.eyebrow': 'Itinerary',
+    'itinerary.title': 'Day 01 &amp; Day 02',
+    'itinerary.stub': "Pending: each day's schedule and which guests are invited to which.",
+
+    'rsvp.eyebrow': 'RSVP',
+    'rsvp.title': 'Confirm your attendance',
+    'rsvp.stub': 'Pending: RSVP deadline. Form with day-selector, plus-one, meal choice, and kids field is built in the next step.',
+
+    'letters.eyebrow': 'Letters',
+    'letters.title': 'For the couple',
+    'letters.stub': 'Pending: final design for each letter (made in Canva by the couple).',
+
+    'hotels.eyebrow': 'Hotels',
+    'hotels.title': 'Where to stay',
+    'hotels.stub': 'Pending: recommended hotels, room blocks, transport notes.',
+
+    'beauty.eyebrow': 'Beauty &amp; Style',
+    'beauty.title': 'Get ready with us',
+    'beauty.stub': 'Pending: recommended hair/makeup contacts.',
+
+    'gifts.eyebrow': 'Gifts',
+    'gifts.title': 'Registry',
+    'gifts.stub': 'Pending: registry links or a cash-gift note.',
+
+    'gallery.eyebrow': 'Gallery',
+    'gallery.title': 'Our moments',
+    'gallery.stub': 'Pending: final set of engagement photos.',
+
+    'nav.advice': 'Advice',
+    'advice.title': 'Secrets for a happy marriage and a great friendship',
+    'advice.prompt': 'Tell us one or more of your secrets for a great marriage and a strong friendship with your partner.',
+    'advice.placeholder': 'Write here...',
+    'advice.signature': 'Signature (your name)',
+    'advice.anon': 'Anonymous',
+    'advice.submit': 'Submit',
+    'advice.thanks': 'Thank you for your advice!',
+
+    'faq.eyebrow': 'FAQ',
+    'faq.title': 'Frequently asked questions',
+    'faq.stub': 'Pending: parking, weather, kids policy, day-of contact.',
+  },
+};
+
+const LANG_KEY = 'mjm-lang';
+
+function applyLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    const value = translations[lang][key];
+    if (value !== undefined) el.innerHTML = value;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const value = translations[lang][key];
+    if (value !== undefined) el.setAttribute('placeholder', value);
+  });
+
+  const esLabel = document.querySelector('.lang-toggle__es');
+  const enLabel = document.querySelector('.lang-toggle__en');
+  if (esLabel && enLabel) {
+    esLabel.classList.toggle('is-active', lang === 'es');
+    enLabel.classList.toggle('is-active', lang === 'en');
+  }
+
+  try {
+    localStorage.setItem(LANG_KEY, lang);
+  } catch (e) {
+    /* private browsing or storage disabled — language just won't persist */
+  }
+}
+
+function initLang() {
+  let saved = 'es';
+  try {
+    saved = localStorage.getItem(LANG_KEY) || 'es';
+  } catch (e) {
+    /* ignore */
+  }
+  applyLang(saved);
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    const current = document.documentElement.lang === 'en' ? 'en' : 'es';
+    applyLang(current === 'es' ? 'en' : 'es');
+  });
+}
+
+initLang();

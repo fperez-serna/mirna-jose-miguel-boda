@@ -1,0 +1,484 @@
+/* ==========================================================================
+   Mirna & José Miguel — wedding site
+   Palette and type scale are fixed by the brief. Do not re-derive colors.
+   ========================================================================== */
+
+:root {
+  --color-terracotta: #C2652E;
+  --color-sienna:     #7A3319;
+  --color-sage:       #8A8F6E;
+  --color-bone:       #EFE7DC;
+  --color-ink:        #211E1B;
+
+  --color-white: #FFFFFF;
+
+  /* Whole-site typeface, per client decision — applied everywhere, including
+     logistics text. Sized up from a typical 16px body baseline (20px) since
+     Reenie Beanie's thin, condensed letterforms read smaller than a sans at
+     the same pixel size; this keeps addresses/times/phone numbers legible. */
+  --font-display: 'Reenie Beanie', cursive;
+  --font-body: 'Reenie Beanie', cursive;
+  --font-script: 'Reenie Beanie', cursive;
+
+  --nav-height: 64px;
+  --section-pad-y: clamp(64px, 10vh, 120px);
+  --section-pad-x: clamp(20px, 6vw, 64px);
+
+  --max-content-width: 720px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  margin: 0;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  margin: 0;
+}
+
+a {
+  color: var(--color-terracotta);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-sienna);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+}
+
+.section {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  scroll-margin-top: var(--nav-height);
+}
+
+.section-inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(34px, 6.5vw, 52px);
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.tbd {
+  outline: 2px dashed var(--color-sage);
+  outline-offset: 4px;
+  background: rgba(138, 143, 110, 0.12);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   Header / anchor nav
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--color-bone);
+  border-bottom: 1px solid rgba(33, 30, 27, 0.08);
+}
+
+@media (min-width: 480px) {
+  .site-header {
+    padding: 0 var(--section-pad-x);
+  }
+}
+
+.site-header__mark {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-toggle {
+  position: fixed;
+  top: calc(var(--nav-height) + 10px);
+  right: 16px;
+  z-index: 98;
+  background: var(--color-bone);
+  border: 1px solid rgba(33, 30, 27, 0.2);
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+@media (min-width: 480px) {
+  .lang-toggle {
+    right: var(--section-pad-x);
+  }
+}
+
+.lang-toggle span {
+  opacity: 0.4;
+}
+
+.lang-toggle span.is-active {
+  opacity: 1;
+  color: var(--color-terracotta);
+}
+
+.lang-toggle__sep {
+  opacity: 0.3;
+  margin: 0 2px;
+}
+
+.nav-toggle {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-ink);
+}
+
+.site-nav {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  background: var(--color-bone);
+  transform: translateY(-110%);
+  transition: transform 0.28s ease;
+  overflow-y: auto;
+  z-index: 99;
+}
+
+.site-nav.is-open {
+  transform: translateY(0);
+}
+
+.site-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 24px var(--section-pad-x) 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.site-nav__list a {
+  display: block;
+  padding: 14px 4px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--color-ink);
+  border-bottom: 1px solid rgba(33, 30, 27, 0.08);
+}
+
+.site-nav__list a.is-rsvp {
+  color: var(--color-terracotta);
+}
+
+.site-nav__list a:hover {
+  color: var(--color-sienna);
+}
+
+@media (min-width: 860px) {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    position: static;
+    inset: auto;
+    transform: none;
+    background: none;
+    overflow: visible;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .site-nav__list a {
+    padding: 8px 2px;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-bottom: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+  }
+}
+
+/* ==========================================================================
+   Cover
+   ========================================================================== */
+
+#cover {
+  min-height: calc(100svh - var(--nav-height));
+  display: flex;
+  align-items: flex-end;
+  padding: var(--section-pad-x);
+  padding-bottom: clamp(40px, 8vh, 80px);
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(33,30,27,0) 40%, rgba(33,30,27,0.55) 100%),
+    linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-sienna) 100%);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+#cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--cover-photo, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}
+
+.cover__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.cover__eyebrow {
+  font-family: var(--font-body);
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 18px;
+}
+
+.cover__names {
+  font-size: clamp(48px, 12vw, 84px);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.cover__divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-white);
+  opacity: 0.6;
+  margin: 22px auto;
+}
+
+.cover__meta {
+  font-family: var(--font-body);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.cover__meta .tbd {
+  outline-color: var(--color-white);
+  background: rgba(255,255,255,0.15);
+  color: var(--color-white);
+}
+
+/* ==========================================================================
+   Generic stub sections (placeholder until content lands)
+   ========================================================================== */
+
+.section--stub {
+  border-top: 1px solid rgba(33, 30, 27, 0.08);
+}
+
+.section--stub .section-title {
+  color: var(--color-ink);
+}
+
+.stub-note {
+  font-size: 19px;
+  color: var(--color-sienna);
+}
+
+/* Letters section content is designed entirely in Canva by the couple —
+   see index.html §5 comment. It renders as a plain .section--stub until
+   the finished images are dropped in. */
+
+/* ==========================================================================
+   Advice / "Consejo para el matrimonio" — envelope art (client's Canva
+   illustration) + submission form, side by side on wide screens, stacked
+   on mobile.
+   ========================================================================== */
+
+.advice__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .advice__inner {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 56px;
+  }
+}
+
+.advice__art {
+  flex: 0 0 auto;
+  width: min(380px, 85vw);
+}
+
+.advice__art img {
+  width: 100%;
+  height: auto;
+}
+
+.advice__panel {
+  width: 100%;
+  max-width: 480px;
+}
+
+.advice__panel .section-title {
+  font-size: clamp(24px, 4vw, 32px);
+}
+
+.advice__prompt {
+  font-size: 22px;
+  line-height: 1.4;
+  margin: 12px 0 28px;
+}
+
+.advice__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.advice__textarea,
+.advice__signature {
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--color-ink);
+  resize: vertical;
+}
+
+.advice__textarea:focus,
+.advice__signature:focus {
+  outline: none;
+  border-color: var(--color-terracotta);
+}
+
+.advice__anon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.advice__anon input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-terracotta);
+  cursor: pointer;
+}
+
+.advice__submit {
+  align-self: flex-start;
+  background: var(--color-terracotta);
+  color: var(--color-white);
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.advice__submit:hover {
+  background: var(--color-sienna);
+}
+
+.advice__thanks {
+  font-size: 24px;
+  color: var(--color-sienna);
+}
+
+@media (min-width: 720px) {
+  .advice__form {
+    align-items: flex-start;
+  }
+}

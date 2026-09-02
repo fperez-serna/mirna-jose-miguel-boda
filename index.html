@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mirna &amp; José Miguel</title>
+
+<!--
+  WhatsApp / social preview — §7 of the brief.
+  og:image must be a DEDICATED 1200x630 design (names + date + place legible
+  at thumbnail size), not a crop of the hero. Swap the placeholder below once
+  that image exists, and bump ?v= whenever the image file changes so chat
+  apps don't serve a stale cached preview.
+-->
+<meta property="og:title" content="Mirna & José Miguel — Nos Casamos" />
+<meta property="og:description" content="Acompáñanos a celebrar. 16 de enero, 2027 · Puerto Vallarta, Jalisco" />
+<meta property="og:image" content="assets/og/og-image.jpg?v=1" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a href="#cover" class="site-header__mark">M &amp; JM</a>
+
+  <div class="site-header__right">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Floating below the header, pinned to the right — client's request,
+       not part of the header bar itself. -->
+  <button class="lang-toggle" id="langToggle" aria-label="Switch language / Cambiar idioma">
+    <span class="lang-toggle__es is-active">ES</span><span class="lang-toggle__sep">/</span><span class="lang-toggle__en">EN</span>
+  </button>
+
+  <!--
+    Nav pruned per client request: "Inicio" is now the MB & JM logo (links
+    to #cover); Detalles and Cartas dropped from the menu (sections still
+    exist on the page, just not nav-linked); Consejo shows only an envelope
+    icon, matching the envelope artwork in that section.
+  -->
+  <nav class="site-nav" id="siteNav">
+    <ul class="site-nav__list">
+      <li><a href="#itinerary" data-i18n="nav.itinerary">Itinerario</a></li>
+      <li><a href="#rsvp" class="is-rsvp" data-i18n="nav.rsvp">RSVP</a></li>
+      <li><a href="#hotels" data-i18n="nav.hotels">Hospedaje</a></li>
+      <li><a href="#beauty" data-i18n="nav.beauty">Belleza &amp; Estilo</a></li>
+      <li><a href="#gifts" data-i18n="nav.gifts">Mesa de regalos</a></li>
+      <li><a href="#gallery" data-i18n="nav.gallery">Galería</a></li>
+      <li>
+        <a href="#advice" class="site-nav__icon" aria-label="Secretos para un feliz matrimonio">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+      </li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. COVER ============================================================ -->
+  <section id="cover">
+    <div class="cover__content">
+      <p class="cover__eyebrow" data-i18n="cover.eyebrow">Nos casamos</p>
+      <h1 class="cover__names">Mirna &amp; José Miguel</h1>
+      <div class="cover__divider"></div>
+      <p class="cover__meta">
+        <span data-i18n="cover.date">16 de enero, 2027</span> · <span data-i18n="cover.city">Puerto Vallarta, Jalisco</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. DETAILS =========================================================== -->
+  <section id="details" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="details.eyebrow">Detalles</p>
+      <h2 class="section-title" data-i18n="details.title">Ceremonia &amp; Recepción</h2>
+      <p class="stub-note" data-i18n="details.stub">Pendiente: horarios, nombres/direcciones de sedes, código de vestimenta.</p>
+    </div>
+  </section>
+
+  <!-- 3. ITINERARY ========================================================= -->
+  <section id="itinerary" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="itinerary.eyebrow">Itinerario</p>
+      <h2 class="section-title" data-i18n="itinerary.title">Día 01 &amp; Día 02</h2>
+      <p class="stub-note" data-i18n="itinerary.stub">Pendiente: agenda de cada día y qué invitados asisten a cuál.</p>
+    </div>
+  </section>
+
+  <!-- 4. RSVP =============================================================== -->
+  <section id="rsvp" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="rsvp.eyebrow">RSVP</p>
+      <h2 class="section-title" data-i18n="rsvp.title">Confirma tu asistencia</h2>
+      <p class="stub-note" data-i18n="rsvp.stub">Pendiente: fecha límite de confirmación. Formulario con selector de día(s), acompañante, menú y niños se construye en el siguiente paso.</p>
+    </div>
+  </section>
+
+
+  <!--
+    5. LETTERS — the emotional peak of the site, per §6.
+    Client is designing this entirely in Canva (photos + handwritten text +
+    layout, all in one composition per letter) and will hand off finished
+    images — no live-coded version here until then. No translation (each
+    letter stays in its original language, see project memory).
+    TBD: the finished Canva image(s) for each letter.
+  -->
+  <section id="letters" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="letters.eyebrow">Cartas</p>
+      <h2 class="section-title" data-i18n="letters.title">Para los novios</h2>
+      <p class="stub-note" data-i18n="letters.stub">Pendiente: diseño final de cada carta (hecho en Canva por la pareja).</p>
+    </div>
+  </section>
+
+  <!-- 6. HOTELS ============================================================= -->
+  <section id="hotels" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="hotels.eyebrow">Hospedaje</p>
+      <h2 class="section-title" data-i18n="hotels.title">Dónde quedarse</h2>
+      <p class="stub-note" data-i18n="hotels.stub">Pendiente: hoteles recomendados, bloques de habitaciones, transporte.</p>
+    </div>
+  </section>
+
+  <!-- 7. BEAUTY & STYLE ===================================================== -->
+  <section id="beauty" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="beauty.eyebrow">Belleza &amp; Estilo</p>
+      <h2 class="section-title" data-i18n="beauty.title">Prepárate con nosotros</h2>
+      <p class="stub-note" data-i18n="beauty.stub">Pendiente: contactos de maquillaje/peinado recomendados.</p>
+    </div>
+  </section>
+
+  <!-- 8. GIFTS ============================================================== -->
+  <section id="gifts" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="gifts.eyebrow">Regalos</p>
+      <h2 class="section-title" data-i18n="gifts.title">Mesa de regalos</h2>
+      <p class="stub-note" data-i18n="gifts.stub">Pendiente: enlaces de mesa de regalos o nota de regalo en efectivo.</p>
+    </div>
+  </section>
+
+  <!-- 9. GALLERY ============================================================= -->
+  <section id="gallery" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="gallery.eyebrow">Galería</p>
+      <h2 class="section-title" data-i18n="gallery.title">Nuestros momentos</h2>
+      <p class="stub-note" data-i18n="gallery.stub">Pendiente: set final de fotos de compromiso.</p>
+    </div>
+  </section>
+
+  <!--
+    11. ADVICE — new section, added after the original 10-section brief.
+    Placement: after Gallery, before FAQ (client's choice). Art is the
+    client's own Canva envelope illustration (assets/images/secretos-
+    matrimonio.*), cropped to content and converted to WebP (PNG fallback).
+
+    Submission has no live backend yet — a Google Form is the plan (see
+    project memory: an artifact db can't serve signed-out public guests),
+    but its URL isn't ready. For now the form just shows a thank-you state
+    on submit (js/main.js) with no visible "pending" text on the page, per
+    client's request. Swap the submit handler for a real POST to the
+    Google Form's formResponse endpoint once that URL exists.
+  -->
+  <section id="advice" class="section advice">
+    <div class="section-inner advice__inner">
+      <div class="advice__art">
+        <picture>
+          <source srcset="assets/images/secretos-matrimonio.webp" type="image/webp" />
+          <img src="assets/images/secretos-matrimonio.png" alt="Sobre abierto con una casa y la frase: secretos para un feliz matrimonio y una gran amistad" loading="lazy" width="460" height="651" />
+        </picture>
+      </div>
+
+      <div class="advice__panel">
+        <h2 class="section-title" data-i18n="advice.title">Secretos para un feliz matrimonio y una gran amistad</h2>
+        <p class="advice__prompt" data-i18n="advice.prompt">Dinos uno o más de tus secretos para un gran matrimonio y llevar una excelente amistad con tu pareja.</p>
+
+        <form class="advice__form" id="adviceForm">
+          <textarea class="advice__textarea" name="secreto" rows="6" data-i18n-placeholder="advice.placeholder" placeholder="Escribe aquí..." required></textarea>
+          <input class="advice__signature" type="text" name="firma" data-i18n-placeholder="advice.signature" placeholder="Firma (tu nombre)" />
+          <label class="advice__anon">
+            <input type="checkbox" name="anonimo" id="adviceAnon" />
+            <span data-i18n="advice.anon">Anónimo</span>
+          </label>
+          <button type="submit" class="advice__submit" data-i18n="advice.submit">Enviar</button>
+        </form>
+
+        <p class="advice__thanks" id="adviceThanks" hidden data-i18n="advice.thanks">¡Gracias por tu consejo!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ ================================================================= -->
+  <section id="faq" class="section section--stub">
+    <div class="section-inner">
+      <p class="eyebrow" data-i18n="faq.eyebrow">Preguntas</p>
+      <h2 class="section-title" data-i18n="faq.title">Preguntas frecuentes</h2>
+      <p class="stub-note" data-i18n="faq.stub">Pendiente: estacionamiento, clima, política de niños, contacto del día del evento.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

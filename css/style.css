@@ -284,7 +284,10 @@ h1, h2, h3 {
 #cover {
   min-height: calc(100svh - var(--nav-height));
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(20px, 4vh, 40px);
   padding: var(--section-pad-x);
   padding-bottom: clamp(40px, 8vh, 80px);
   position: relative;
@@ -293,6 +296,17 @@ h1, h2, h3 {
     linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-sienna) 100%);
   color: var(--color-white);
   overflow: hidden;
+}
+
+.cover__art {
+  position: relative;
+  z-index: 1;
+  width: min(480px, 90vw);
+}
+
+.cover__art img {
+  width: 100%;
+  height: auto;
 }
 
 #cover::before {

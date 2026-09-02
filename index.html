@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=3" />
+<link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
@@ -107,12 +107,68 @@
     </div>
   </section>
 
-  <!-- 4. RSVP =============================================================== -->
-  <section id="rsvp" class="section section--stub">
-    <div class="section-inner">
+  <!--
+    4. RSVP — search-first flow per client's request: guest types their
+    name, we look them up (js/guests.js — name + party size only, no
+    phone numbers client-side, per client's choice of speed over a
+    private server-side lookup) and show how many the invitation covers
+    before asking anything else. Day-selector + party-size confirm +
+    meal + kids per §8. No submission backend yet — same thank-you-on-
+    submit placeholder pattern as the Advice section; TBD once a
+    Sheet-connected endpoint exists. RSVP deadline still TBD.
+  -->
+  <section id="rsvp" class="section">
+    <div class="section-inner rsvp__inner">
+      <div class="rsvp__banner">
+        <picture>
+          <source srcset="assets/images/guests.webp" type="image/webp" />
+          <img src="assets/images/guests.png" alt="Invitados celebrando" loading="lazy" width="1200" height="322" />
+        </picture>
+      </div>
+
       <p class="eyebrow" data-i18n="rsvp.eyebrow">RSVP</p>
       <h2 class="section-title" data-i18n="rsvp.title">Confirma tu asistencia</h2>
-      <p class="stub-note" data-i18n="rsvp.stub">Pendiente: fecha límite de confirmación. Formulario con selector de día(s), acompañante, menú y niños se construye en el siguiente paso.</p>
+
+      <div class="rsvp__search" id="rsvpSearch">
+        <p class="rsvp__prompt" data-i18n="rsvp.searchPrompt">Escribe tu nombre para buscar tu invitación.</p>
+        <div class="rsvp__search-row">
+          <input type="text" id="rsvpSearchInput" data-i18n-placeholder="rsvp.searchPlaceholder" placeholder="Tu nombre" />
+          <button type="button" id="rsvpSearchBtn" data-i18n="rsvp.searchButton">Buscar mi invitación</button>
+        </div>
+        <div class="rsvp__search-result" id="rsvpSearchResult" hidden></div>
+      </div>
+
+      <form class="rsvp__form" id="rsvpForm" hidden>
+        <fieldset class="rsvp__field">
+          <legend data-i18n="rsvp.daysLabel">¿A qué día(s) asistes?</legend>
+          <label><input type="checkbox" name="dia1" value="1" /> <span data-i18n="rsvp.day1">Día 01</span></label>
+          <label><input type="checkbox" name="dia2" value="2" /> <span data-i18n="rsvp.day2">Día 02</span></label>
+        </fieldset>
+
+        <div class="rsvp__field" id="rsvpPartyField" hidden>
+          <label for="rsvpPartySelect" id="rsvpPartyLabel" data-i18n="rsvp.partyLabel">¿Cuántos de tu invitación asistirán (incluyéndote)?</label>
+          <select id="rsvpPartySelect" name="partySize"></select>
+        </div>
+
+        <div class="rsvp__field">
+          <label for="rsvpMeal" data-i18n="rsvp.mealLabel">Selección de menú</label>
+          <select id="rsvpMeal" name="meal">
+            <option value="regular" data-i18n="rsvp.mealRegular">Regular</option>
+            <option value="vegetarian" data-i18n="rsvp.mealVeg">Vegetariano</option>
+            <option value="vegan" data-i18n="rsvp.mealVegan">Vegano</option>
+          </select>
+        </div>
+
+        <fieldset class="rsvp__field">
+          <legend data-i18n="rsvp.kidsLabel">¿Asisten niños?</legend>
+          <label><input type="radio" name="kids" value="si" /> <span data-i18n="rsvp.yes">Sí</span></label>
+          <label><input type="radio" name="kids" value="no" checked /> <span data-i18n="rsvp.no">No</span></label>
+        </fieldset>
+
+        <button type="submit" class="rsvp__submit" data-i18n="rsvp.submit">Enviar RSVP</button>
+      </form>
+
+      <p class="rsvp__thanks" id="rsvpThanks" hidden data-i18n="rsvp.thanks">¡Gracias por confirmar!</p>
     </div>
   </section>
 
@@ -221,7 +277,9 @@
 
 </main>
 
-<script src="js/i18n.js?v=3"></script>
-<script src="js/main.js?v=3"></script>
+<script src="js/i18n.js?v=4"></script>
+<script src="js/guests.js?v=1"></script>
+<script src="js/rsvp.js?v=1"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>

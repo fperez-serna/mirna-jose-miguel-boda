@@ -72,12 +72,12 @@
   <!-- 1. COVER ============================================================ -->
   <!--
     COVER — client's call: no text over the art (removed "Mirna & José
-    Miguel", eyebrow, date/city — was there before). Image is full-bleed
-    on the site's plain --color-bone background. h1 kept for SEO/screen
-    readers but visually hidden; re-add visible text/date only if she
-    asks — don't restore the old centered-text-over-gradient treatment.
+    Miguel", eyebrow, date/city — was there before). Image is contained
+    and centered, not full-bleed (tried that — read as too big and got
+    cropped by the viewport). h1 kept for SEO/screen readers but visually
+    hidden; re-add visible text/date only if she asks.
   -->
-  <section id="cover">
+  <section id="cover" class="section">
     <h1 class="visually-hidden">Mirna &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
     <div class="cover__art">
       <picture>

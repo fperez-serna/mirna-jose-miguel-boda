@@ -283,16 +283,20 @@ h1, h2, h3 {
 
 #cover {
   background: var(--color-bone);
+  display: flex;
+  justify-content: center;
 }
 
 /*
   No cropping, no forced aspect ratio — client was explicit ("no
   deformes la imagen", "tal cual como la encuentras en la carpeta"):
-  full width, natural height, the whole image always visible. Any
-  extra space is just --color-bone, not letterboxing to fill.
+  natural height, whole image always visible. Contained and centered,
+  not full-bleed — full-width read as too big/got cropped by the
+  viewport on her screen.
 */
 .cover__art {
   width: 100%;
+  max-width: 480px;
 }
 
 .cover__art img {

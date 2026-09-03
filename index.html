@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=9" />
+<link rel="stylesheet" href="css/style.css?v=10" />
 </head>
 <body>
 
@@ -185,21 +185,25 @@
       <p class="eyebrow" data-i18n="hotels.eyebrow">Hospedaje</p>
       <h2 class="section-title" data-i18n="hotels.title">Dónde quedarse</h2>
 
+      <!--
+        Transparent clickable overlays positioned over each numbered row
+        in the image (percentages eyeballed against hoteles.png's own
+        layout — 1 at top to 6 at bottom). If the image is ever
+        re-exported with a different layout, these percentages need
+        re-checking against it.
+      -->
       <div class="hotels__art">
         <picture>
           <source srcset="assets/images/hoteles.webp" type="image/webp" />
           <img src="assets/images/hoteles.png" alt="Ruta de hoteles en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="1431" height="957" />
         </picture>
+        <a class="hotels__hotspot" style="top:0%; height:22.9%;" href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener" aria-label="Hotel Casa Iguana"></a>
+        <a class="hotels__hotspot" style="top:22.9%; height:13.8%;" href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener" aria-label="Barceló Puerto Vallarta All Inclusive"></a>
+        <a class="hotels__hotspot" style="top:36.7%; height:13.8%;" href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener" aria-label="Grand Park Royal All Inclusive"></a>
+        <a class="hotels__hotspot" style="top:50.5%; height:14.6%;" href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener" aria-label="Hilton Vallarta Riviera All-Inclusive Resort"></a>
+        <a class="hotels__hotspot" style="top:65.1%; height:14.2%;" href="https://www.playafiesta.com/" target="_blank" rel="noopener" aria-label="Hotel Playa Fiesta"></a>
+        <a class="hotels__hotspot" style="top:79.3%; height:20.7%;" href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener" aria-label="Hyatt Ziva Puerto Vallarta"></a>
       </div>
-
-      <ol class="hotels__links">
-        <li><a href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener">1. Hotel Casa Iguana</a></li>
-        <li><a href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener">2. Barceló Puerto Vallarta All Inclusive</a></li>
-        <li><a href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener">3. Grand Park Royal All Inclusive</a></li>
-        <li><a href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener">4. Hilton Vallarta Riviera All-Inclusive Resort</a></li>
-        <li><a href="https://www.playafiesta.com/" target="_blank" rel="noopener">5. Hotel Playa Fiesta</a></li>
-        <li><a href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener">6. Hyatt Ziva Puerto Vallarta</a></li>
-      </ol>
     </div>
   </section>
 

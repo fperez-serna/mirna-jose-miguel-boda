@@ -636,9 +636,10 @@ h1, h2, h3 {
    ========================================================================== */
 
 .hotels__art {
+  position: relative;
   width: 100%;
   max-width: 700px;
-  margin: 0 auto 32px;
+  margin: 0 auto;
 }
 
 .hotels__art img {
@@ -647,27 +648,20 @@ h1, h2, h3 {
   display: block;
 }
 
-.hotels__links {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.hotels__links a {
-  display: block;
-  background: var(--color-white);
-  border: 1px solid rgba(33, 30, 27, 0.15);
+/* Invisible click targets over each numbered row of the image — see the
+   index.html comment above them for how the top/height percentages were
+   derived and why they need rechecking if the image changes. */
+.hotels__hotspot {
+  position: absolute;
+  left: 27%;
+  width: 60%;
   border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 15px;
-  color: var(--color-ink);
+  transition: background-color 0.15s ease;
 }
 
-.hotels__links a:hover {
-  border-color: var(--color-terracotta);
-  color: var(--color-terracotta);
+.hotels__hotspot:hover,
+.hotels__hotspot:focus-visible {
+  background-color: rgba(194, 101, 46, 0.12);
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 2px;
 }

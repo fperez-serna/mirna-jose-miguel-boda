@@ -128,19 +128,19 @@ const translations = {
     'nav.gallery': 'Gallery',
 
     'cover.eyebrow': "We're getting married",
-    'cover.date': 'January 16, 2027',
+    'cover.date': 'January 16th, 2027',
     'cover.city': 'Puerto Vallarta, Jalisco',
-    'namesBanner.meta': 'JANUARY 16, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',
+    'namesBanner.meta': 'JANUARY 16TH, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',
 
     'details.eyebrow': 'Details',
     'details.title': 'Ceremony &amp; Reception',
     'details.stub': 'Pending: times, venue names/addresses, dress code.',
     'details.ceremonyTitle': 'Ceremony',
-    'details.ceremonyDatetime': 'January 16, 2027 &middot; 12:00 pm',
+    'details.ceremonyDatetime': 'January 16th, 2027 &middot; 12:00 pm',
     'details.ceremonyVenue': 'Iglesia de Mismaloya<br />Calle 5 de Mayo S/N<br />48294 Puerto Vallarta, Jalisco',
     'details.ceremonyDesc': 'Join us to celebrate the moment our story together truly begins.',
     'details.receptionTitle': 'Reception',
-    'details.receptionDatetime': 'January 16, 2027 &middot; 1:00 pm',
+    'details.receptionDatetime': 'January 16th, 2027 &middot; 1:00 pm',
     'details.receptionVenue': 'Cándida Azucena 88<br />48300 Puerto Vallarta, Jalisco',
     'details.receptionDesc': 'After the ceremony, join us to toast, eat, dance, and celebrate together.',
 

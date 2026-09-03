@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=20" />
+<link rel="stylesheet" href="css/style.css?v=21" />
 </head>
 <body>
 
@@ -259,11 +259,40 @@
   </section>
 
   <!-- 7. DRESSCODE (was "Belleza & Estilo") ================================= -->
-  <section id="dresscode" class="section section--stub">
+  <!--
+    7. DRESSCODE — content from client, Spanish only (matches Letters/FAQ
+    precedent for dense factual copy). Pinterest link is her real
+    moodboard, invite-coded — don't strip the query params.
+  -->
+  <section id="dresscode" class="section">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="dresscode.eyebrow">Dresscode</p>
-      <h2 class="section-title" data-i18n="dresscode.title">Dresscode</h2>
-      <p class="stub-note" data-i18n="dresscode.stub">Pendiente: código de vestimenta para cada día del evento.</p>
+      <h2 class="section-title">Dress Code</h2>
+
+      <div class="dresscode__art">
+        <picture>
+          <source srcset="assets/images/dresscode.webp" type="image/webp" />
+          <img src="assets/images/dresscode.png" alt="Invitados con atuendo formal de playa: vestidos largos en colores vivos y trajes de lino claro" loading="lazy" width="1102" height="650" />
+        </picture>
+      </div>
+
+      <div class="dresscode__group">
+        <h3 class="dresscode__label">Mujeres &middot; Formal de playa</h3>
+        <p>Vestidos largos o midi, telas ligeras, colores y estampados que se sientan elegantes, frescos y perfectos para celebrar junto al mar.</p>
+      </div>
+
+      <div class="dresscode__group">
+        <h3 class="dresscode__label">Hombres &middot; Traje de lino</h3>
+        <p>Traje de lino o telas ligeras, acompañado de camisa y zapatos acordes a una celebración formal en la playa.</p>
+      </div>
+
+      <p class="dresscode__note">Las guayaberas son muy lindas —pero esta vez, no forman parte del dress code de la boda.</p>
+
+      <div class="dresscode__moodboard">
+        <p class="dresscode__moodboard-q">¿Todavía tienes dudas sobre qué ponerte?</p>
+        <p>Échale un vistazo a nuestro moodboard en Pinterest para inspirarte y conocer mejor el estilo que imaginamos para este día.</p>
+        <a class="dresscode__pinterest" href="https://mx.pinterest.com/mbepodu/dress-code/?invite_code=069c1161af5c442dad50dfdf1e000ed4&sender=551409685534610401" target="_blank" rel="noopener">Ver moodboard en Pinterest →</a>
+      </div>
     </div>
   </section>
 
@@ -386,16 +415,6 @@
 
         <details class="faq__item">
           <summary class="faq__question">
-            <span>¿Cuál es el dress code?</span>
-            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-          </summary>
-          <div class="faq__answer">
-            <p>Mujeres: formal playa. Hombres: traje de lino — <strong>absolutamente nada de guayabera</strong>.</p>
-          </div>
-        </details>
-
-        <details class="faq__item">
-          <summary class="faq__question">
             <span>¿Puedo dar un regalo en efectivo o transferencia?</span>
             <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
           </summary>
@@ -415,7 +434,7 @@
           </summary>
           <div class="faq__answer">
             <p>Nos encantan los pequeños, pero debido a que tendremos una celebración íntima y con cupo limitado, únicamente podrán acompañarnos los niños que estén incluidos en la invitación.</p>
-            <p>Si el nombre de tu hijo o hija aparece en tu invitación, ¡lo esperamos con mucho gusto! 🤍</p>
+            <p>Si el nombre de tu hijo o hija aparece en tu invitación, ¡lo esperamos con mucho gusto!</p>
             <p>Gracias por ayudarnos a mantener este día tan especial tal como lo hemos planeado.</p>
           </div>
         </details>

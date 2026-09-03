@@ -1,14 +1,25 @@
 /* ==========================================================================
    Mirna & José Miguel — wedding site
-   Palette and type scale are fixed by the brief. Do not re-derive colors.
+
+   Palette replaced (2026-09-02) with Mirna's own corrected colors — the
+   original terracotta/sienna/sage/bone/ink from the brief is gone.
+   Variable NAMES kept as-is so nothing else in this file needed to
+   change, but they now hold:
+     --color-terracotta -> Coral rosado  #E2727A (hero, arcos)
+     --color-sienna      -> Naranja tostado #D9720F (acento, flores —
+                             used here for hover/active, the deeper/
+                             richer shift down from coral)
+     --color-sage         -> Oliva fresca #A6A94F (vestido, follaje)
+     --color-bone          -> Marfil #F5EDE0 (base/fondo)
+     --color-ink            -> Vino profundo #4A1F2B (sombra, texto, noche)
    ========================================================================== */
 
 :root {
-  --color-terracotta: #C2652E;
-  --color-sienna:     #7A3319;
-  --color-sage:       #8A8F6E;
-  --color-bone:       #EFE7DC;
-  --color-ink:        #211E1B;
+  --color-terracotta: #E2727A;
+  --color-sienna:     #D9720F;
+  --color-sage:       #A6A94F;
+  --color-bone:       #F5EDE0;
+  --color-ink:        #4A1F2B;
 
   --color-white: #FFFFFF;
 

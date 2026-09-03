@@ -66,8 +66,9 @@ const translations = {
     'gallery.stub': 'Pendiente: set final de fotos de compromiso.',
 
     'nav.advice': 'Consejo',
-    'advice.title': 'Secretos para un feliz matrimonio y una gran amistad',
-    'advice.prompt': 'Dinos uno o más de tus secretos para un gran matrimonio y llevar una excelente amistad con tu pareja.',
+    'advice.title': 'Secretos para un matrimonio feliz y una gran amistad',
+    'advice.question': '¿Cuál es ese secreto que hace que el amor dure y la amistad crezca con los años?',
+    'advice.prompt': 'Compártenos uno o varios consejos que, para ti, sean clave para construir un matrimonio feliz, divertido y lleno de complicidad.',
     'advice.placeholder': 'Escribe aquí...',
     'advice.signature': 'Firma (tu nombre)',
     'advice.anon': 'Anónimo',
@@ -139,7 +140,8 @@ const translations = {
 
     'nav.advice': 'Advice',
     'advice.title': 'Secrets for a happy marriage and a great friendship',
-    'advice.prompt': 'Tell us one or more of your secrets for a great marriage and a strong friendship with your partner.',
+    'advice.question': 'What is the secret that makes love last and friendship grow through the years?',
+    'advice.prompt': 'Share one or more pieces of advice that, for you, are key to building a marriage that is happy, fun, and full of complicity.',
     'advice.placeholder': 'Write here...',
     'advice.signature': 'Signature (your name)',
     'advice.anon': 'Anonymous',

@@ -437,6 +437,14 @@ h1, h2, h3 {
   font-size: clamp(22px, 3.5vw, 28px);
 }
 
+.advice__question {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--color-terracotta);
+  margin: 16px 0 0;
+}
+
 .advice__prompt {
   font-size: 17px;
   line-height: 1.5;

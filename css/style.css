@@ -697,9 +697,15 @@ h1, h2, h3 {
    Hotels — full-bleed photo strip + popup (name/phone/map) per hotel
    ========================================================================== */
 
+.hotels__intro {
+  font-size: 15px;
+  color: var(--color-sienna);
+  margin: 8px 0 24px;
+}
+
 .hotels__art {
   position: relative;
-  margin: 0 auto;
+  margin: 24px auto 0;
 }
 
 /* Full width of the actual viewport on mobile ("que ocupe toda la
@@ -776,7 +782,13 @@ h1, h2, h3 {
 .hotel-modal__name {
   font-family: var(--font-display);
   font-size: 24px;
-  margin: 0 32px 16px 0;
+  margin: 0 32px 4px 0;
+}
+
+.hotel-modal__time {
+  font-size: 14px;
+  color: var(--color-sienna);
+  margin: 0 0 16px;
 }
 
 .hotel-modal__name a {

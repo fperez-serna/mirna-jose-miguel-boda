@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=19" />
+<link rel="stylesheet" href="css/style.css?v=20" />
 </head>
 <body>
 
@@ -320,11 +320,153 @@
   </section>
 
   <!-- 10. FAQ ================================================================= -->
-  <section id="faq" class="section section--stub">
+  <!--
+    10. FAQ — content from faq_boda.md, in Spanish only (not wired to the
+    ES/EN toggle) since it's dense factual/financial content (bank
+    account, addresses) not worth risking a translation error on without
+    the couple reviewing it first — same call as Letters. Collapsible via
+    native <details>/<summary>, no JS needed; chevron rotates via the
+    [open] CSS selector. Client asked for darker questions, muted
+    answers — see .faq__question / .faq__answer.
+  -->
+  <section id="faq" class="section">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="faq.eyebrow">Preguntas</p>
       <h2 class="section-title" data-i18n="faq.title">Preguntas frecuentes</h2>
-      <p class="stub-note" data-i18n="faq.stub">Pendiente: estacionamiento, clima, política de niños, contacto del día del evento.</p>
+
+      <div class="faq__list">
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿A qué hora es la ceremonia y la recepción?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>La misa es a las 12:00 p.m. en Iglesia Mismaloya (Calle 5 de Mayo S/N, 48294 Puerto Vallarta). La recepción comienza a la 1:00 p.m. en Cándida Azucena 88, 48300 Puerto Vallarta, Jal.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿En qué hotel me puedo quedar?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Hay varias opciones cerca del venue, ordenadas por distancia:</p>
+            <ul>
+              <li>Hotel Casa Iguana — 4 min</li>
+              <li>Barceló Puerto Vallarta All Inclusive — 6 min</li>
+              <li>Grand Park Royal All Inclusive — 10 min</li>
+              <li>Hilton Vallarta Riviera All-Inclusive Resort — 15 min</li>
+              <li>Hotel Playa Fiesta — 15 min</li>
+              <li>Hyatt Ziva Puerto Vallarta — 21 min</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Cómo llego del aeropuerto a la zona de la boda?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>En el <a href="https://www.aeropuertosgap.com.mx/es/puerto-vallarta.html" target="_blank" rel="noopener">aeropuerto de Puerto Vallarta</a> hay sitio de taxis a la mano, es la opción segura y directa — aprox. $700–800 MXN. Uber sí existe en Puerto Vallarta y es más económico (aprox. $300–400 MXN), pero <strong>no puede recoger pasajeros dentro del aeropuerto</strong>, solo dejarlos ahí. Para llegar desde el aeropuerto hay que tomar taxi de sitio; para moverte después durante tu estancia, Uber es una buena opción más barata.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Cuál es el dress code?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Mujeres: formal playa. Hombres: traje de lino — <strong>absolutamente nada de guayabera</strong>.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Puedo dar un regalo en efectivo o transferencia?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Sí, hay dos opciones:</p>
+            <ul>
+              <li>A nombre de Mirna: Santander, cuenta 014730605754380960</li>
+              <li>A nombre de José Miguel: <a href="https://www.zellepay.com/" target="_blank" rel="noopener">Zelle</a> a su celular (número disponible directamente con la pareja)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Puedo llevar niños?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Los niños esperados en la boda recibieron invitación directa. Si tu hijo o hija no viene incluido en tu invitación, te pedimos amablemente no llevarlo — es una boda boutique, con espacio limitado, y queremos que todos tengan un buen lugar. Gracias por su comprensión.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Hay fecha límite para confirmar asistencia (RSVP)?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Pendiente de confirmar con Mirna.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Hay menú especial para vegetarianos o veganos?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>No, no hay menú especial para vegetarianos ni veganos.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿A qué hora termina el evento?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Pendiente de confirmar con Mirna.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Hay estacionamiento en la recepción?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Pendiente de confirmar con Mirna.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Se permite llevar acompañante (plus one)?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Depende de cómo se otorgó tu invitación. Si tu invitación es individual, es sin acompañante. Si incluye +1, puedes llevar acompañante.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            <span>¿Qué tan lejos está el aeropuerto de la zona del evento?</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </summary>
+          <div class="faq__answer">
+            <p>Aproximadamente 27 km entre el aeropuerto y la dirección de recepción (Cándida Azucena 88), unos 35–40 minutos en auto dependiendo del tráfico.</p>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 

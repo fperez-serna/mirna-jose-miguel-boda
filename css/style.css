@@ -824,3 +824,71 @@ h1, h2, h3 {
   height: 100%;
   border: 0;
 }
+
+/* ==========================================================================
+   FAQ — native <details>/<summary> accordion, no JS needed
+   ========================================================================== */
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faq__item {
+  border-bottom: 1px solid rgba(33, 30, 27, 0.15);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 4px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__chevron {
+  flex-shrink: 0;
+  color: var(--color-terracotta);
+  transition: transform 0.2s ease;
+}
+
+.faq__item[open] .faq__chevron {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  padding: 0 4px 20px;
+  color: rgba(33, 30, 27, 0.62);
+  line-height: 1.6;
+}
+
+.faq__answer p {
+  margin: 0 0 12px;
+}
+
+.faq__answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq__answer ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.faq__answer a {
+  color: var(--color-terracotta);
+}
+
+.faq__answer strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}

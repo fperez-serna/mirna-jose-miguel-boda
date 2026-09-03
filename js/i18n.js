@@ -10,7 +10,7 @@ const translations = {
     'nav.itinerary': 'Itinerario',
     'nav.rsvp': 'RSVP',
     'nav.hotels': 'Hospedaje',
-    'nav.beauty': 'Belleza &amp; Estilo',
+    'nav.dresscode': 'Dresscode',
     'nav.gifts': 'Mesa de regalos',
     'nav.gallery': 'Galería',
 
@@ -53,9 +53,9 @@ const translations = {
     'hotels.title': 'Dónde quedarse',
     'hotels.stub': 'Pendiente: hoteles recomendados, bloques de habitaciones, transporte.',
 
-    'beauty.eyebrow': 'Belleza &amp; Estilo',
-    'beauty.title': 'Prepárate con nosotros',
-    'beauty.stub': 'Pendiente: contactos de maquillaje/peinado recomendados.',
+    'dresscode.eyebrow': 'Dresscode',
+    'dresscode.title': 'Dresscode',
+    'dresscode.stub': 'Pendiente: código de vestimenta para cada día del evento.',
 
     'gifts.eyebrow': 'Regalos',
     'gifts.title': 'Mesa de regalos',
@@ -82,7 +82,7 @@ const translations = {
     'nav.itinerary': 'Itinerary',
     'nav.rsvp': 'RSVP',
     'nav.hotels': 'Hotels',
-    'nav.beauty': 'Beauty &amp; Style',
+    'nav.dresscode': 'Dresscode',
     'nav.gifts': 'Registry',
     'nav.gallery': 'Gallery',
 
@@ -125,9 +125,9 @@ const translations = {
     'hotels.title': 'Where to stay',
     'hotels.stub': 'Pending: recommended hotels, room blocks, transport notes.',
 
-    'beauty.eyebrow': 'Beauty &amp; Style',
-    'beauty.title': 'Get ready with us',
-    'beauty.stub': 'Pending: recommended hair/makeup contacts.',
+    'dresscode.eyebrow': 'Dresscode',
+    'dresscode.title': 'Dresscode',
+    'dresscode.stub': 'Pending: dress code for each day of the event.',
 
     'gifts.eyebrow': 'Gifts',
     'gifts.title': 'Registry',

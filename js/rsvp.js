@@ -20,32 +20,49 @@ const rsvpPartyLabel = document.getElementById('rsvpPartyLabel');
 const rsvpPartySelect = document.getElementById('rsvpPartySelect');
 const rsvpThanks = document.getElementById('rsvpThanks');
 
+/*
+  Dynamic strings generated here don't go through the data-i18n dictionary
+  (there's no static element for them) — branch on the current language
+  directly instead. document.documentElement.lang is kept up to date by
+  js/i18n.js's applyLang() on every toggle.
+*/
+function isEnglish() {
+  return document.documentElement.lang === 'en';
+}
+
 function showFoundGuest(guest) {
   rsvpSearchResult.hidden = false;
   rsvpSearchResult.innerHTML = '';
+  const en = isEnglish();
 
   const nameLine = document.createElement('p');
   nameLine.className = 'rsvp__result-name';
-  nameLine.textContent = `¡Te encontramos, ${guest.name}!`;
+  nameLine.textContent = en ? `We found you, ${guest.name}!` : `¡Te encontramos, ${guest.name}!`;
   rsvpSearchResult.appendChild(nameLine);
 
   const detailLine = document.createElement('p');
   detailLine.className = 'rsvp__result-detail';
 
   if (guest.pase > 1) {
-    detailLine.textContent = `Tu invitación incluye hasta ${guest.pase} personas.`;
+    detailLine.textContent = en
+      ? `Your invitation covers up to ${guest.pase} people.`
+      : `Tu invitación incluye hasta ${guest.pase} personas.`;
     rsvpPartyField.hidden = false;
-    rsvpPartyLabel.textContent = `¿Cuántos de tu invitación asistirán (incluyéndote, máximo ${guest.pase})?`;
+    rsvpPartyLabel.textContent = en
+      ? `How many from your invitation will attend (including you, max ${guest.pase})?`
+      : `¿Cuántos de tu invitación asistirán (incluyéndote, máximo ${guest.pase})?`;
     rsvpPartySelect.innerHTML = '';
     for (let i = 1; i <= guest.pase; i++) {
       const opt = document.createElement('option');
       opt.value = String(i);
-      opt.textContent = i === 1 ? '1 persona' : `${i} personas`;
+      opt.textContent = en
+        ? (i === 1 ? '1 person' : `${i} people`)
+        : (i === 1 ? '1 persona' : `${i} personas`);
       if (i === guest.pase) opt.selected = true;
       rsvpPartySelect.appendChild(opt);
     }
   } else {
-    detailLine.textContent = 'Tu invitación es individual.';
+    detailLine.textContent = en ? 'Your invitation is individual.' : 'Tu invitación es individual.';
     rsvpPartyField.hidden = true;
   }
   rsvpSearchResult.appendChild(detailLine);
@@ -55,7 +72,9 @@ function showFoundGuest(guest) {
 
 function showNotFound(query) {
   rsvpSearchResult.hidden = false;
-  rsvpSearchResult.textContent = `No encontramos "${query}" en la lista. Revisa cómo lo escribiste, o contáctanos directamente si el problema sigue.`;
+  rsvpSearchResult.textContent = isEnglish()
+    ? `We couldn't find "${query}" on the list. Check how you typed it, or contact us directly if the problem continues.`
+    : `No encontramos "${query}" en la lista. Revisa cómo lo escribiste, o contáctanos directamente si el problema sigue.`;
   rsvpForm.hidden = true;
   rsvpPartyField.hidden = true;
 }
@@ -75,7 +94,9 @@ function handleSearch() {
     rsvpSearchResult.hidden = false;
     rsvpSearchResult.innerHTML = '';
     const label = document.createElement('p');
-    label.textContent = 'Encontramos varias coincidencias — ¿cuál eres?';
+    label.textContent = isEnglish()
+      ? 'We found several matches — which one are you?'
+      : 'Encontramos varias coincidencias — ¿cuál eres?';
     rsvpSearchResult.appendChild(label);
     matches.forEach((guest) => {
       const btn = document.createElement('button');

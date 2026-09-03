@@ -316,7 +316,7 @@ h1, h2, h3 {
 /* Tighter than the default .section padding — client said this section
    had too much dead space, wants it pulled closer to Cover above it. */
 #names-banner {
-  padding-top: clamp(16px, 3vh, 32px);
+  padding-top: clamp(8px, 1.5vh, 20px);
   padding-bottom: clamp(16px, 3vh, 32px);
 }
 
@@ -324,9 +324,12 @@ h1, h2, h3 {
   text-align: center;
 }
 
+/* Larger on mobile per client request (was clamp(32px,...) — 32px read
+   small on her phone); desktop unaffected since 6vw already exceeds 44px
+   past ~730px wide. */
 .names-banner__names {
   font-family: var(--font-display);
-  font-size: clamp(32px, 6vw, 56px);
+  font-size: clamp(44px, 6vw, 56px);
   color: var(--color-ink);
   margin: 0;
 }

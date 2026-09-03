@@ -12,9 +12,9 @@
   that image exists, and bump ?v= whenever the image file changes so chat
   apps don't serve a stale cached preview.
 -->
-<meta property="og:title" content="Mirna & José Miguel — Nos Casamos" />
+<meta property="og:title" content="Mirna Beatriz & José Miguel — Nos Casamos" />
 <meta property="og:description" content="Acompáñanos a celebrar. 16 de enero, 2027 · Puerto Vallarta, Jalisco" />
-<meta property="og:image" content="assets/og/og-image.png?v=1" />
+<meta property="og:image" content="assets/og/og-image.png?v=2" />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=11" />
+<link rel="stylesheet" href="css/style.css?v=12" />
 </head>
 <body>
 
@@ -80,12 +80,26 @@
     hidden; re-add visible text/date only if she asks.
   -->
   <section id="cover" class="section">
-    <h1 class="visually-hidden">Mirna &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
+    <h1 class="visually-hidden">Mirna Beatriz &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
     <div class="cover__art">
       <picture>
         <source srcset="assets/images/cover-collage.webp" type="image/webp" />
         <img src="assets/images/cover-collage.png" alt="Collage con foto de Mirna y José Miguel en la playa, el anillo de compromiso y el pastel de boda" loading="eager" width="1200" height="738" />
       </picture>
+    </div>
+  </section>
+
+  <!--
+    1b. NAMES BANNER — new section right below Cover, per client request:
+    same look as the og-image thumbnail she liked (bone bg, serif names,
+    terracotta divider, tracked-caps date/place). Cover itself is
+    untouched — this is its own block, not merged into it.
+  -->
+  <section id="names-banner" class="section names-banner">
+    <div class="section-inner">
+      <p class="names-banner__names">Mirna Beatriz &amp; José Miguel</p>
+      <div class="names-banner__divider"></div>
+      <p class="names-banner__meta">16 DE ENERO, 2027 &middot; PUERTO VALLARTA, JALISCO</p>
     </div>
   </section>
 

@@ -308,6 +308,37 @@ h1, h2, h3 {
   height: auto;
 }
 
+/* ==========================================================================
+   Names banner — same look as the og-image thumbnail, as its own section
+   right below Cover (client's request, kept separate from Cover itself)
+   ========================================================================== */
+
+.names-banner .section-inner {
+  text-align: center;
+}
+
+.names-banner__names {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 56px);
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.names-banner__divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-terracotta);
+  margin: 20px auto;
+}
+
+.names-banner__meta {
+  font-family: var(--font-body);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink);
+  margin: 0;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

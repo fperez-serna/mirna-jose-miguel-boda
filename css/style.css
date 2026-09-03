@@ -23,7 +23,7 @@
   --font-script: 'Hubballi', cursive;
 
   --nav-height: 64px;
-  --section-pad-y: clamp(64px, 10vh, 120px);
+  --section-pad-y: clamp(40px, 6vh, 72px);
   --section-pad-x: clamp(20px, 6vw, 64px);
 
   --max-content-width: 720px;

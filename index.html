@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=22" />
+<link rel="stylesheet" href="css/style.css?v=23" />
 </head>
 <body>
 
@@ -50,7 +50,7 @@
   -->
   <nav class="site-nav" id="siteNav">
     <ul class="site-nav__list">
-      <li><a href="#itinerary" data-i18n="nav.itinerary">Itinerario</a></li>
+<!-- <li><a href="#itinerary" data-i18n="nav.itinerary">Itinerario</a></li> -->
       <li><a href="#rsvp" class="is-rsvp" data-i18n="nav.rsvp">RSVP</a></li>
       <li><a href="#hotels" data-i18n="nav.hotels">Hospedaje</a></li>
       <li><a href="#dresscode" data-i18n="nav.dresscode">Dresscode</a></li>
@@ -157,7 +157,9 @@
     </div>
   </section>
 
-  <!-- 3. ITINERARY ========================================================= -->
+  <!-- 3. ITINERARY — hidden for now per client request (2026-09-02), not
+       ready yet. Restore this block + the nav link above when there's
+       real day-by-day content.
   <section id="itinerary" class="section section--stub">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="itinerary.eyebrow">Itinerario</p>
@@ -165,6 +167,7 @@
       <p class="stub-note" data-i18n="itinerary.stub">Pendiente: agenda de cada día y qué invitados asisten a cuál.</p>
     </div>
   </section>
+  -->
 
   <!--
     4. RSVP — search-first flow per client's request: guest types their
@@ -216,13 +219,10 @@
 
 
   <!--
-    5. LETTERS — the emotional peak of the site, per §6.
-    Client is designing this entirely in Canva (photos + handwritten text +
-    layout, all in one composition per letter) and will hand off finished
-    images — no live-coded version here until then. No translation (each
-    letter stays in its original language, see project memory).
-    TBD: the finished Canva image(s) for each letter.
-  -->
+    5. LETTERS — hidden for now per client request (2026-09-02), same
+    reason as before (Canva design not finished) plus now hidden from
+    view entirely, not just stubbed. Restore when the letter images
+    exist — see project memory for the fuller history on this section.
   <section id="letters" class="section section--stub">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="letters.eyebrow">Cartas</p>
@@ -230,7 +230,7 @@
       <p class="stub-note" data-i18n="letters.stub">Pendiente: diseño final de cada carta (hecho en Canva por la pareja).</p>
     </div>
   </section>
-
+  -->
   <!-- 6. HOTELS ============================================================= -->
   <!--
     6. HOTELS — image is now just the 6 photos, no text baked in (client

@@ -694,14 +694,33 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
-   Hotels — infographic + a plain link list mapped to its numbering
+   Hotels — full-bleed photo strip + popup (name/phone/map) per hotel
    ========================================================================== */
 
 .hotels__art {
   position: relative;
-  width: 100%;
-  max-width: 700px;
   margin: 0 auto;
+}
+
+/* Full width of the actual viewport on mobile ("que ocupe toda la
+   pantalla del cel") — breaks out of .section-inner's max-width and
+   .section's own side padding via the classic negative-margin trick.
+   Desktop reverts to a normal, contained, centered size. */
+@media (max-width: 719px) {
+  .hotels__art {
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+}
+
+@media (min-width: 720px) {
+  .hotels__art {
+    width: 100%;
+    max-width: 520px;
+  }
 }
 
 .hotels__art img {
@@ -710,12 +729,86 @@ h1, h2, h3 {
   display: block;
 }
 
-/* Invisible click targets over each numbered row of the image — see the
-   index.html comment above them for how the top/height percentages were
-   derived and why they need rechecking if the image changes. */
-/* Left/width per row now set inline in index.html (varies less than
-   top/height did, but kept together with them for the new hoteles2.png
-   layout). No hover/focus highlight — client wants these truly invisible. */
+/* Invisible click targets over each hotel photo — see the index.html
+   comment above them for how top/height were derived. left/width are
+   the same 0%/100% for every row so they're set once here instead of
+   per button. No hover/focus highlight — client wants these invisible;
+   the `title` attribute gives a native tooltip on desktop hover instead. */
 .hotels__hotspot {
   position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Hotel popup
+   ========================================================================== */
+
+.hotel-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 30, 27, 0.5);
+  z-index: 199;
+}
+
+.hotel-modal__dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  background: var(--color-bone);
+  border-radius: 4px;
+  padding: 28px;
+  width: min(90vw, 480px);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.hotel-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--color-ink);
+  padding: 6px;
+}
+
+.hotel-modal__name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin: 0 32px 16px 0;
+}
+
+.hotel-modal__name a {
+  color: var(--color-ink);
+}
+
+.hotel-modal__name a:hover {
+  color: var(--color-terracotta);
+}
+
+.hotel-modal__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-terracotta);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.hotel-modal__phone:hover {
+  color: var(--color-sienna);
+}
+
+.hotel-modal__map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hotel-modal__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

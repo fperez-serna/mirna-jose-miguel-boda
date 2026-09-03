@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=17" />
+<link rel="stylesheet" href="css/style.css?v=18" />
 </head>
 <body>
 
@@ -188,36 +188,61 @@
 
   <!-- 6. HOTELS ============================================================= -->
   <!--
-    6. HOTELS — client's Canva infographic (assets/images/hoteles.*) already
-    has all 6 hotels' names/addresses/distances baked in, numbered 1-6 by
-    distance from the venue. The image itself isn't clickable, so the
-    numbered link list below it maps 1:1 to it (same order) using the URLs
-    from hoteles_boda_links.html — keep that order if the image changes.
+    6. HOTELS — image is now just the 6 photos, no text baked in (client
+    swapped to "2.png" specifically so all the info could move into a
+    popup instead). Hotspots are <button>s (not links) that open the
+    modal below via js/hotels.js, which holds the name/url/phone/address
+    per hotel — keep that array's order matching the image (closest to
+    farthest, same as always). Row percentages are eyeballed against the
+    image since the hotel photos are irregular blob shapes with no clean
+    gaps between them — re-check if the image changes again (third time
+    now: HOTELES.png -> hoteles2.png -> HOTELES FINAL.png -> this one).
+    `title` attributes give a native tooltip on desktop hover (client
+    asked for the hotel name to show near the cursor there).
   -->
   <section id="hotels" class="section">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="hotels.eyebrow">Hospedaje</p>
       <h2 class="section-title" data-i18n="hotels.title">Dónde quedarse</h2>
 
-      <!--
-        Transparent clickable overlays positioned over each numbered row
-        in the image (percentages eyeballed against hoteles.png's own
-        layout — 1 at top to 6 at bottom). Re-check these if the image
-        is ever re-exported with a different layout — has happened twice
-        now ("hoteles2.png", then this "HOTELES FINAL.png" version, which
-        is evenly spaced: each row is ~16.6% of the image height).
-      -->
       <div class="hotels__art">
         <picture>
-          <source srcset="assets/images/hoteles.webp?v=3" type="image/webp" />
-          <img src="assets/images/hoteles.png?v=3" alt="Ruta de hoteles en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="1012" height="911" />
+          <source srcset="assets/images/hoteles.webp?v=4" type="image/webp" />
+          <img src="assets/images/hoteles.png?v=4" alt="Hoteles recomendados en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="665" height="893" />
         </picture>
-        <a class="hotels__hotspot" style="top:0%; height:18.8%; left:0%; width:97%;" href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener" aria-label="Hotel Casa Iguana"></a>
-        <a class="hotels__hotspot" style="top:18.8%; height:16.7%; left:0%; width:97%;" href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener" aria-label="Barceló Puerto Vallarta All Inclusive"></a>
-        <a class="hotels__hotspot" style="top:35.5%; height:16.6%; left:0%; width:97%;" href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener" aria-label="Grand Park Royal All Inclusive"></a>
-        <a class="hotels__hotspot" style="top:52.1%; height:16.5%; left:0%; width:97%;" href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener" aria-label="Hilton Vallarta Riviera All-Inclusive Resort"></a>
-        <a class="hotels__hotspot" style="top:68.6%; height:16.5%; left:0%; width:97%;" href="https://www.playafiesta.com/" target="_blank" rel="noopener" aria-label="Hotel Playa Fiesta"></a>
-        <a class="hotels__hotspot" style="top:85.1%; height:14.9%; left:0%; width:97%;" href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener" aria-label="Hyatt Ziva Puerto Vallarta"></a>
+        <button class="hotels__hotspot" style="top:0%; height:21.8%;" data-hotel="0" title="Hotel Casa Iguana" aria-label="Ver información de Hotel Casa Iguana"></button>
+        <button class="hotels__hotspot" style="top:21.8%; height:16.8%;" data-hotel="1" title="Barceló Puerto Vallarta All Inclusive" aria-label="Ver información de Barceló Puerto Vallarta All Inclusive"></button>
+        <button class="hotels__hotspot" style="top:38.6%; height:16.3%;" data-hotel="2" title="Grand Park Royal All Inclusive" aria-label="Ver información de Grand Park Royal All Inclusive"></button>
+        <button class="hotels__hotspot" style="top:54.9%; height:16.2%;" data-hotel="3" title="Hilton Vallarta Riviera All-Inclusive Resort" aria-label="Ver información de Hilton Vallarta Riviera All-Inclusive Resort"></button>
+        <button class="hotels__hotspot" style="top:71.1%; height:14.6%;" data-hotel="4" title="Hotel Playa Fiesta" aria-label="Ver información de Hotel Playa Fiesta"></button>
+        <button class="hotels__hotspot" style="top:85.7%; height:14.3%;" data-hotel="5" title="Hyatt Ziva Puerto Vallarta" aria-label="Ver información de Hyatt Ziva Puerto Vallarta"></button>
+      </div>
+    </div>
+
+    <!-- Popup with map/link/phone for whichever hotel was clicked -->
+    <div class="hotel-modal" id="hotelModal" hidden>
+      <div class="hotel-modal__backdrop" id="hotelModalBackdrop"></div>
+      <div class="hotel-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="hotelModalName">
+        <button class="hotel-modal__close" id="hotelModalClose" aria-label="Cerrar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+          </svg>
+        </button>
+
+        <h3 class="hotel-modal__name" id="hotelModalName">
+          <a id="hotelModalLink" href="#" target="_blank" rel="noopener"></a>
+        </h3>
+
+        <a class="hotel-modal__phone" id="hotelModalPhone" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+          </svg>
+          <span id="hotelModalPhoneText"></span>
+        </a>
+
+        <div class="hotel-modal__map">
+          <iframe id="hotelModalMap" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa del hotel"></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -305,6 +330,7 @@
 <script src="js/i18n.js?v=7"></script>
 <script src="js/guests.js?v=1"></script>
 <script src="js/rsvp.js?v=1"></script>
+<script src="js/hotels.js?v=1"></script>
 <script src="js/main.js?v=7"></script>
 </body>
 </html>

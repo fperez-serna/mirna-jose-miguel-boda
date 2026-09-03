@@ -466,7 +466,7 @@ h1, h2, h3 {
 .rsvp__banner {
   width: 100%;
   max-width: 900px;
-  margin: 0 auto 8px;
+  margin: 40px auto 0;
 }
 
 .rsvp__banner img {

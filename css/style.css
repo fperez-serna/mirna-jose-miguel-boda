@@ -651,17 +651,9 @@ h1, h2, h3 {
 /* Invisible click targets over each numbered row of the image — see the
    index.html comment above them for how the top/height percentages were
    derived and why they need rechecking if the image changes. */
+/* Left/width per row now set inline in index.html (varies less than
+   top/height did, but kept together with them for the new hoteles2.png
+   layout). No hover/focus highlight — client wants these truly invisible. */
 .hotels__hotspot {
   position: absolute;
-  left: 27%;
-  width: 60%;
-  border-radius: 8px;
-  transition: background-color 0.15s ease;
-}
-
-.hotels__hotspot:hover,
-.hotels__hotspot:focus-visible {
-  background-color: rgba(194, 101, 46, 0.12);
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
 }

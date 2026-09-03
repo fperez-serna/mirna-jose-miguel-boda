@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=10" />
+<link rel="stylesheet" href="css/style.css?v=11" />
 </head>
 <body>
 
@@ -188,21 +188,22 @@
       <!--
         Transparent clickable overlays positioned over each numbered row
         in the image (percentages eyeballed against hoteles.png's own
-        layout — 1 at top to 6 at bottom). If the image is ever
-        re-exported with a different layout, these percentages need
-        re-checking against it.
+        layout — 1 at top to 6 at bottom). Re-check these if the image
+        is ever re-exported with a different layout (already happened
+        once — client swapped in "hoteles2.png", a version without the
+        left title/decoration column, which shifted every row).
       -->
       <div class="hotels__art">
         <picture>
-          <source srcset="assets/images/hoteles.webp" type="image/webp" />
-          <img src="assets/images/hoteles.png" alt="Ruta de hoteles en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="1431" height="957" />
+          <source srcset="assets/images/hoteles.webp?v=2" type="image/webp" />
+          <img src="assets/images/hoteles.png?v=2" alt="Ruta de hoteles en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="1029" height="956" />
         </picture>
-        <a class="hotels__hotspot" style="top:0%; height:22.9%;" href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener" aria-label="Hotel Casa Iguana"></a>
-        <a class="hotels__hotspot" style="top:22.9%; height:13.8%;" href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener" aria-label="Barceló Puerto Vallarta All Inclusive"></a>
-        <a class="hotels__hotspot" style="top:36.7%; height:13.8%;" href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener" aria-label="Grand Park Royal All Inclusive"></a>
-        <a class="hotels__hotspot" style="top:50.5%; height:14.6%;" href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener" aria-label="Hilton Vallarta Riviera All-Inclusive Resort"></a>
-        <a class="hotels__hotspot" style="top:65.1%; height:14.2%;" href="https://www.playafiesta.com/" target="_blank" rel="noopener" aria-label="Hotel Playa Fiesta"></a>
-        <a class="hotels__hotspot" style="top:79.3%; height:20.7%;" href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener" aria-label="Hyatt Ziva Puerto Vallarta"></a>
+        <a class="hotels__hotspot" style="top:0%; height:23%; left:0%; width:82%;" href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener" aria-label="Hotel Casa Iguana"></a>
+        <a class="hotels__hotspot" style="top:23%; height:14.4%; left:0%; width:82%;" href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener" aria-label="Barceló Puerto Vallarta All Inclusive"></a>
+        <a class="hotels__hotspot" style="top:37.4%; height:14.1%; left:0%; width:82%;" href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener" aria-label="Grand Park Royal All Inclusive"></a>
+        <a class="hotels__hotspot" style="top:51.5%; height:14.2%; left:0%; width:82%;" href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener" aria-label="Hilton Vallarta Riviera All-Inclusive Resort"></a>
+        <a class="hotels__hotspot" style="top:65.7%; height:13.8%; left:0%; width:82%;" href="https://www.playafiesta.com/" target="_blank" rel="noopener" aria-label="Hotel Playa Fiesta"></a>
+        <a class="hotels__hotspot" style="top:79.5%; height:20.5%; left:0%; width:82%;" href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener" aria-label="Hyatt Ziva Puerto Vallarta"></a>
       </div>
     </div>
   </section>

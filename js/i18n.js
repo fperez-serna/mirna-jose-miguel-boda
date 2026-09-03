@@ -51,7 +51,7 @@ const translations = {
 
     'hotels.eyebrow': 'Hospedaje',
     'hotels.title': 'Dónde quedarse',
-    'hotels.intro': 'Pícale a cualquier hotel para ver la información. Están ordenados del más cercano al más lejano de la fiesta.',
+    'hotels.intro': 'Dale click a cualquier hotel para conocer todos los detalles. Están ordenados del más cercano al más lejano de la celebración.',
     'hotels.stub': 'Pendiente: hoteles recomendados, bloques de habitaciones, transporte.',
 
     'dresscode.eyebrow': 'Dresscode',

@@ -313,6 +313,13 @@ h1, h2, h3 {
    right below Cover (client's request, kept separate from Cover itself)
    ========================================================================== */
 
+/* Tighter than the default .section padding — client said this section
+   had too much dead space, wants it pulled closer to Cover above it. */
+#names-banner {
+  padding-top: clamp(16px, 3vh, 32px);
+  padding-bottom: clamp(16px, 3vh, 32px);
+}
+
 .names-banner .section-inner {
   text-align: center;
 }
@@ -322,6 +329,18 @@ h1, h2, h3 {
   font-size: clamp(32px, 6vw, 56px);
   color: var(--color-ink);
   margin: 0;
+}
+
+/* Forces "José Miguel" onto its own line only where it was wrapping
+   awkwardly (mobile); desktop has room so the break is disabled there. */
+.names-banner__break {
+  display: inline;
+}
+
+@media (min-width: 600px) {
+  .names-banner__break {
+    display: none;
+  }
 }
 
 .names-banner__divider {

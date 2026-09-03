@@ -35,7 +35,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -90,9 +89,17 @@ h1, h2, h3 {
   color: var(--color-terracotta);
 }
 
+/*
+  Nav-click landing spot: previously stacked scroll-padding-top (on html)
+  AND scroll-margin-top (on .section) on top of the section's own
+  --section-pad-y (up to 120px), so a jump could land ~200px+ below the
+  header before any heading was visible — read as "starts from the
+  middle of the screen". Cancel most of that padding out of the anchor
+  offset so the heading sits right under the sticky header instead.
+*/
 .section {
   padding: var(--section-pad-y) var(--section-pad-x);
-  scroll-margin-top: var(--nav-height);
+  scroll-margin-top: calc(var(--nav-height) - var(--section-pad-y));
 }
 
 .section-inner {
@@ -955,4 +962,86 @@ h1, h2, h3 {
 
 .dresscode__pinterest:hover {
   color: var(--color-sienna);
+}
+
+/* ==========================================================================
+   Details — Ceremonia & Recepción
+   ========================================================================== */
+
+.details__inner {
+  max-width: 900px;
+}
+
+.details__block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* Mobile: text always first, photo below — client's explicit request,
+   regardless of which side the image sits on at desktop width. */
+.details__art {
+  order: 2;
+}
+
+.details__text {
+  order: 1;
+}
+
+.details__art {
+  width: 100%;
+}
+
+.details__art img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.details__text h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.details__datetime {
+  color: var(--color-terracotta);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.details__venue {
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.details__desc {
+  line-height: 1.6;
+  color: rgba(33, 30, 27, 0.72);
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .details__block {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .details__block .details__art,
+  .details__block .details__text {
+    flex: 1;
+  }
+
+  /* Ceremonia: image left, text right on desktop (only block that
+     differs from the mobile order — Recepción's text-left already
+     matches the mobile default, see .details__art/.details__text above). */
+  .details__block--image-left .details__art {
+    order: 1;
+  }
+
+  .details__block--image-left .details__text {
+    order: 2;
+  }
 }

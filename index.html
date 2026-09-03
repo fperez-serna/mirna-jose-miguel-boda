@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=21" />
+<link rel="stylesheet" href="css/style.css?v=22" />
 </head>
 <body>
 
@@ -113,11 +113,47 @@
   </section>
 
   <!-- 2. DETAILS =========================================================== -->
-  <section id="details" class="section section--stub">
-    <div class="section-inner">
+  <!--
+    2. DETAILS — content from client, Spanish only (same precedent as
+    Letters/FAQ/Dresscode). Image/text order: Ceremonia is image-left on
+    desktop, Recepción is text-left — both collapse to text-then-photo on
+    mobile (client's explicit request), handled with flex `order` in CSS
+    rather than DOM reordering.
+  -->
+  <section id="details" class="section">
+    <div class="section-inner details__inner">
       <p class="eyebrow" data-i18n="details.eyebrow">Detalles</p>
       <h2 class="section-title" data-i18n="details.title">Ceremonia &amp; Recepción</h2>
-      <p class="stub-note" data-i18n="details.stub">Pendiente: horarios, nombres/direcciones de sedes, código de vestimenta.</p>
+
+      <div class="details__block details__block--image-left">
+        <div class="details__art">
+          <picture>
+            <source srcset="assets/images/ceremonia.webp" type="image/webp" />
+            <img src="assets/images/ceremonia.png" alt="Iglesia de Mismaloya" loading="lazy" width="1000" height="587" />
+          </picture>
+        </div>
+        <div class="details__text">
+          <h3>Ceremonia</h3>
+          <p class="details__datetime">16 de enero de 2027 &middot; 12:00 p.m.</p>
+          <p class="details__venue">Iglesia de Mismaloya<br />Calle 5 de Mayo S/N<br />48294 Puerto Vallarta, Jalisco</p>
+          <p class="details__desc">Acompáñanos a celebrar el momento en que comienza nuestra historia para siempre.</p>
+        </div>
+      </div>
+
+      <div class="details__block">
+        <div class="details__art">
+          <picture>
+            <source srcset="assets/images/recepcion.webp" type="image/webp" />
+            <img src="assets/images/recepcion.png" alt="Villa de la recepción en Puerto Vallarta" loading="lazy" width="1000" height="556" />
+          </picture>
+        </div>
+        <div class="details__text">
+          <h3>Recepción</h3>
+          <p class="details__datetime">16 de enero de 2027 &middot; 1:00 p.m.</p>
+          <p class="details__venue">Cándida Azucena 88<br />48300 Puerto Vallarta, Jalisco</p>
+          <p class="details__desc">Después de la ceremonia, nos vemos para brindar, comer, bailar y celebrar juntos.</p>
+        </div>
+      </div>
     </div>
   </section>
 

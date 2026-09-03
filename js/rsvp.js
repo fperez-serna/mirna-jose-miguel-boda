@@ -22,8 +22,18 @@ const rsvpThanks = document.getElementById('rsvpThanks');
 
 function showFoundGuest(guest) {
   rsvpSearchResult.hidden = false;
+  rsvpSearchResult.innerHTML = '';
+
+  const nameLine = document.createElement('p');
+  nameLine.className = 'rsvp__result-name';
+  nameLine.textContent = `¡Te encontramos, ${guest.name}!`;
+  rsvpSearchResult.appendChild(nameLine);
+
+  const detailLine = document.createElement('p');
+  detailLine.className = 'rsvp__result-detail';
+
   if (guest.pase > 1) {
-    rsvpSearchResult.textContent = `¡Te encontramos, ${guest.name}! Tu invitación incluye hasta ${guest.pase} personas.`;
+    detailLine.textContent = `Tu invitación incluye hasta ${guest.pase} personas.`;
     rsvpPartyField.hidden = false;
     rsvpPartyLabel.textContent = `¿Cuántos de tu invitación asistirán (incluyéndote, máximo ${guest.pase})?`;
     rsvpPartySelect.innerHTML = '';
@@ -35,9 +45,11 @@ function showFoundGuest(guest) {
       rsvpPartySelect.appendChild(opt);
     }
   } else {
-    rsvpSearchResult.textContent = `¡Te encontramos, ${guest.name}! Tu invitación es individual.`;
+    detailLine.textContent = 'Tu invitación es individual.';
     rsvpPartyField.hidden = true;
   }
+  rsvpSearchResult.appendChild(detailLine);
+
   rsvpForm.hidden = false;
 }
 

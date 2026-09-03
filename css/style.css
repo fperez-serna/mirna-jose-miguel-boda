@@ -534,6 +534,15 @@ h1, h2, h3 {
   color: var(--color-sienna);
 }
 
+.rsvp__search-result p {
+  margin: 0 0 6px;
+}
+
+.rsvp__result-name {
+  font-weight: 600;
+  font-size: 17px;
+}
+
 .rsvp__match-btn {
   display: block;
   width: 100%;

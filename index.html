@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=8" />
+<link rel="stylesheet" href="css/style.css?v=9" />
 </head>
 <body>
 
@@ -173,11 +173,33 @@
   </section>
 
   <!-- 6. HOTELS ============================================================= -->
-  <section id="hotels" class="section section--stub">
+  <!--
+    6. HOTELS — client's Canva infographic (assets/images/hoteles.*) already
+    has all 6 hotels' names/addresses/distances baked in, numbered 1-6 by
+    distance from the venue. The image itself isn't clickable, so the
+    numbered link list below it maps 1:1 to it (same order) using the URLs
+    from hoteles_boda_links.html — keep that order if the image changes.
+  -->
+  <section id="hotels" class="section">
     <div class="section-inner">
       <p class="eyebrow" data-i18n="hotels.eyebrow">Hospedaje</p>
       <h2 class="section-title" data-i18n="hotels.title">Dónde quedarse</h2>
-      <p class="stub-note" data-i18n="hotels.stub">Pendiente: hoteles recomendados, bloques de habitaciones, transporte.</p>
+
+      <div class="hotels__art">
+        <picture>
+          <source srcset="assets/images/hoteles.webp" type="image/webp" />
+          <img src="assets/images/hoteles.png" alt="Ruta de hoteles en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="1431" height="957" />
+        </picture>
+      </div>
+
+      <ol class="hotels__links">
+        <li><a href="https://www.casaiguana.com.mx/en" target="_blank" rel="noopener">1. Hotel Casa Iguana</a></li>
+        <li><a href="https://www.barcelo.com/en-us/barcelo-puerto-vallarta/" target="_blank" rel="noopener">2. Barceló Puerto Vallarta All Inclusive</a></li>
+        <li><a href="https://www.park-royalhotels.com/en/grand-park-royal-puerto-vallarta.html" target="_blank" rel="noopener">3. Grand Park Royal All Inclusive</a></li>
+        <li><a href="https://www.hilton.com/en/hotels/pvrpahh-hilton-vallarta-riviera-all-inclusive-resort/" target="_blank" rel="noopener">4. Hilton Vallarta Riviera All-Inclusive Resort</a></li>
+        <li><a href="https://www.playafiesta.com/" target="_blank" rel="noopener">5. Hotel Playa Fiesta</a></li>
+        <li><a href="https://www.hyatt.com/en-US/hotel/mexico/hyatt-ziva-puerto-vallarta/pvrif" target="_blank" rel="noopener">6. Hyatt Ziva Puerto Vallarta</a></li>
+      </ol>
     </div>
   </section>
 

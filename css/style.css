@@ -630,3 +630,44 @@ h1, h2, h3 {
   font-size: 18px;
   color: var(--color-sienna);
 }
+
+/* ==========================================================================
+   Hotels — infographic + a plain link list mapped to its numbering
+   ========================================================================== */
+
+.hotels__art {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.hotels__art img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hotels__links {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hotels__links a {
+  display: block;
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: var(--color-ink);
+}
+
+.hotels__links a:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}

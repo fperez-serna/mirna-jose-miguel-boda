@@ -114,11 +114,11 @@
 
   <!-- 2. DETAILS =========================================================== -->
   <!--
-    2. DETAILS — content from client, Spanish only (same precedent as
-    Letters/FAQ/Dresscode). Image/text order: Ceremonia is image-left on
-    desktop, Recepción is text-left — both collapse to text-then-photo on
-    mobile (client's explicit request), handled with flex `order` in CSS
-    rather than DOM reordering.
+    2. DETAILS — content from client, fully bilingual via data-i18n (see
+    js/i18n.js "details.*" keys). Image/text order: Ceremonia is
+    image-left on desktop, Recepción is text-left — both collapse to
+    text-then-photo on mobile (client's explicit request), handled with
+    flex `order` in CSS rather than DOM reordering.
   -->
   <section id="details" class="section">
     <div class="section-inner details__inner">
@@ -297,8 +297,8 @@
 
   <!-- 7. DRESSCODE (was "Belleza & Estilo") ================================= -->
   <!--
-    7. DRESSCODE — content from client, Spanish only (matches Letters/FAQ
-    precedent for dense factual copy). Pinterest link is her real
+    7. DRESSCODE — content from client, fully bilingual via data-i18n
+    (js/i18n.js "dresscode.*" keys). Pinterest link is her real
     moodboard, invite-coded — don't strip the query params.
   -->
   <section id="dresscode" class="section">
@@ -398,13 +398,12 @@
 
   <!-- 10. FAQ ================================================================= -->
   <!--
-    10. FAQ — content from faq_boda.md, in Spanish only (not wired to the
-    ES/EN toggle) since it's dense factual/financial content (bank
-    account, addresses) not worth risking a translation error on without
-    the couple reviewing it first — same call as Letters. Collapsible via
-    native <details>/<summary>, no JS needed; chevron rotates via the
-    [open] CSS selector. Client asked for darker questions, muted
-    answers — see .faq__question / .faq__answer.
+    10. FAQ — content from faq_boda.md, fully bilingual via data-i18n
+    (js/i18n.js "faq.q1"/"faq.a1" etc — translate carefully, this
+    includes financial/address details). Collapsible via native
+    <details>/<summary>, no JS needed; chevron rotates via the [open]
+    CSS selector. Client asked for darker questions, muted answers —
+    see .faq__question / .faq__answer.
   -->
   <section id="faq" class="section">
     <div class="section-inner">

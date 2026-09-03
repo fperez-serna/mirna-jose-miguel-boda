@@ -314,10 +314,11 @@ h1, h2, h3 {
    ========================================================================== */
 
 /* Tighter than the default .section padding — client said this section
-   had too much dead space, wants it pulled closer to Cover above it. */
+   had too much dead space, wants it pulled closer to Cover above it, and
+   more room below it so the next section doesn't peek into view. */
 #names-banner {
-  padding-top: clamp(8px, 1.5vh, 20px);
-  padding-bottom: clamp(16px, 3vh, 32px);
+  padding-top: 0;
+  padding-bottom: clamp(48px, 10vh, 96px);
 }
 
 .names-banner .section-inner {

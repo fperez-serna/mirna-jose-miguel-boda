@@ -39,6 +39,7 @@ const translations = {
 
     'rsvp.eyebrow': 'RSVP',
     'rsvp.title': 'Confirma tu asistencia',
+    'rsvp.deadline': 'Agradeceremos confirmar tu asistencia a más tardar el 1 de diciembre.',
     'rsvp.searchPrompt': 'Escribe tu nombre para buscar tu invitación.',
     'rsvp.searchPlaceholder': 'Tu nombre',
     'rsvp.searchButton': 'Buscar mi invitación',
@@ -161,6 +162,7 @@ const translations = {
 
     'rsvp.eyebrow': 'RSVP',
     'rsvp.title': 'Confirm your attendance',
+    'rsvp.deadline': 'We\'d appreciate you confirming by December 1st at the latest.',
     'rsvp.searchPrompt': 'Type your name to find your invitation.',
     'rsvp.searchPlaceholder': 'Your name',
     'rsvp.searchButton': 'Find my invitation',

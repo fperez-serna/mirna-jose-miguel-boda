@@ -62,7 +62,7 @@ const translations = {
 
     'hotels.eyebrow': 'Hospedaje',
     'hotels.title': 'Dónde quedarse',
-    'hotels.intro': 'Dale click a cualquier hotel para conocer todos los detalles. Están ordenados del más cercano al más lejano de la celebración.',
+    'hotels.intro': 'Toca cualquier foto para ver el mapa, el sitio web y el teléfono de ese hotel. Están ordenados del más cercano al más lejano de la celebración.',
     'hotels.stub': 'Pendiente: hoteles recomendados, bloques de habitaciones, transporte.',
 
     'dresscode.eyebrow': 'Dresscode',
@@ -79,7 +79,7 @@ const translations = {
 
     'gifts.eyebrow': 'Regalos',
     'gifts.title': 'Mesa de regalos',
-    'gifts.text': 'No tendremos mesa de regalos. Para nosotros, el mejor regalo es compartir este día con ustedes. Si aun así desean tener un detalle con nosotros, pueden elegir algo que crean que nos hará ilusión o, si lo prefieren, hacernos una transferencia.',
+    'gifts.text': 'No tendremos mesa de regalos. Para nosotros, el mejor regalo es compartir este día con ustedes. Si aun así desean tener un detalle con nosotros, pueden hacernos una transferencia.',
     'gifts.mirnaLabel': 'Mirna Beatriz Podesta Ureta',
     'gifts.mirnaBank': 'Santander',
     'gifts.jmLabel': 'José Miguel',
@@ -183,7 +183,7 @@ const translations = {
 
     'hotels.eyebrow': 'Hotels',
     'hotels.title': 'Where to stay',
-    'hotels.intro': 'Tap any hotel to see its info. They\'re ordered closest to farthest from the party.',
+    'hotels.intro': 'Tap any photo to see that hotel\'s map, website, and phone number. They\'re ordered closest to farthest from the party.',
     'hotels.stub': 'Pending: recommended hotels, room blocks, transport notes.',
 
     'dresscode.eyebrow': 'Dresscode',
@@ -200,7 +200,7 @@ const translations = {
 
     'gifts.eyebrow': 'Gifts',
     'gifts.title': 'Registry',
-    'gifts.text': 'We won\'t have a gift registry. For us, the best gift is sharing this day with you. If you\'d still like to give us something, feel free to choose whatever you think we\'d love, or, if you prefer, send us a bank transfer.',
+    'gifts.text': 'We won\'t have a gift registry. For us, the best gift is sharing this day with you. If you\'d still like to give us something, you\'re welcome to send us a bank transfer.',
     'gifts.mirnaLabel': 'Mirna Beatriz Podesta Ureta',
     'gifts.mirnaBank': 'Santander',
     'gifts.jmLabel': 'José Miguel',

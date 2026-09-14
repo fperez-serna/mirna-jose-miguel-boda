@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=26" />
+<link rel="stylesheet" href="css/style.css?v=27" />
 </head>
 <body>
 
@@ -82,20 +82,14 @@
 
   <!-- 1. COVER ============================================================ -->
   <!--
-    COVER — client's call: no text over the art (removed "Mirna & José
-    Miguel", eyebrow, date/city — was there before). Image is contained
-    and centered, not full-bleed (tried that — read as too big and got
-    cropped by the viewport). h1 kept for SEO/screen readers but visually
-    hidden; re-add visible text/date only if she asks.
+    COVER — client pulled the collage (2026-09-14), wants a new one.
+    Back to a plain stub (same pattern as Itinerary/Gallery/Letters)
+    until she hands off a replacement image. h1 kept for SEO/screen
+    readers but visually hidden.
   -->
-  <section id="cover" class="section">
+  <section id="cover" class="section section--stub">
     <h1 class="visually-hidden">Mirna Beatriz &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
-    <div class="cover__art">
-      <picture>
-        <source srcset="assets/images/cover-collage.webp" type="image/webp" />
-        <img src="assets/images/cover-collage.png" alt="Collage con foto de Mirna y José Miguel en la playa, el anillo de compromiso y el pastel de boda" loading="eager" width="1200" height="738" />
-      </picture>
-    </div>
+    <p class="stub-note">Pendiente: nueva imagen de portada.</p>
   </section>
 
   <!--
@@ -244,19 +238,38 @@
     <div class="section-inner">
       <p class="eyebrow" data-i18n="hotels.eyebrow">Hospedaje</p>
       <h2 class="section-title" data-i18n="hotels.title">Dónde quedarse</h2>
-      <p class="hotels__intro" data-i18n="hotels.intro">Dale click a cualquier hotel para conocer todos los detalles. Están ordenados del más cercano al más lejano de la celebración.</p>
+      <p class="hotels__intro" data-i18n="hotels.intro">Toca cualquier foto para ver el mapa, el sitio web y el teléfono de ese hotel. Están ordenados del más cercano al más lejano de la celebración.</p>
 
+      <!--
+        Hotspots were previously fully invisible (client's original
+        request) — she reversed that (2026-09-14): clickability wasn't
+        obvious. Each now carries a small "+" badge (Lucide-style SVG,
+        no emoji) in its bottom-right corner as a tap affordance,
+        without touching the underlying photo asset itself.
+      -->
       <div class="hotels__art">
         <picture>
           <source srcset="assets/images/hoteles.webp?v=4" type="image/webp" />
           <img src="assets/images/hoteles.png?v=4" alt="Hoteles recomendados en Puerto Vallarta, del más cercano al más lejano a la boda" loading="lazy" width="665" height="893" />
         </picture>
-        <button class="hotels__hotspot" style="top:0%; height:21.8%;" data-hotel="0" title="Hotel Casa Iguana" aria-label="Ver información de Hotel Casa Iguana"></button>
-        <button class="hotels__hotspot" style="top:21.8%; height:16.8%;" data-hotel="1" title="Barceló Puerto Vallarta All Inclusive" aria-label="Ver información de Barceló Puerto Vallarta All Inclusive"></button>
-        <button class="hotels__hotspot" style="top:38.6%; height:16.3%;" data-hotel="2" title="Grand Park Royal All Inclusive" aria-label="Ver información de Grand Park Royal All Inclusive"></button>
-        <button class="hotels__hotspot" style="top:54.9%; height:16.2%;" data-hotel="3" title="Hilton Vallarta Riviera All-Inclusive Resort" aria-label="Ver información de Hilton Vallarta Riviera All-Inclusive Resort"></button>
-        <button class="hotels__hotspot" style="top:71.1%; height:14.6%;" data-hotel="4" title="Hotel Playa Fiesta" aria-label="Ver información de Hotel Playa Fiesta"></button>
-        <button class="hotels__hotspot" style="top:85.7%; height:14.3%;" data-hotel="5" title="Hyatt Ziva Puerto Vallarta" aria-label="Ver información de Hyatt Ziva Puerto Vallarta"></button>
+        <button class="hotels__hotspot" style="top:0%; height:21.8%;" data-hotel="0" title="Hotel Casa Iguana" aria-label="Ver información de Hotel Casa Iguana">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
+        <button class="hotels__hotspot" style="top:21.8%; height:16.8%;" data-hotel="1" title="Barceló Puerto Vallarta All Inclusive" aria-label="Ver información de Barceló Puerto Vallarta All Inclusive">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
+        <button class="hotels__hotspot" style="top:38.6%; height:16.3%;" data-hotel="2" title="Grand Park Royal All Inclusive" aria-label="Ver información de Grand Park Royal All Inclusive">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
+        <button class="hotels__hotspot" style="top:54.9%; height:16.2%;" data-hotel="3" title="Hilton Vallarta Riviera All-Inclusive Resort" aria-label="Ver información de Hilton Vallarta Riviera All-Inclusive Resort">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
+        <button class="hotels__hotspot" style="top:71.1%; height:14.6%;" data-hotel="4" title="Hotel Playa Fiesta" aria-label="Ver información de Hotel Playa Fiesta">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
+        <button class="hotels__hotspot" style="top:85.7%; height:14.3%;" data-hotel="5" title="Hyatt Ziva Puerto Vallarta" aria-label="Ver información de Hyatt Ziva Puerto Vallarta">
+          <span class="hotels__hotspot-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></span>
+        </button>
       </div>
     </div>
 
@@ -558,7 +571,7 @@
 
 </main>
 
-<script src="js/i18n.js?v=9"></script>
+<script src="js/i18n.js?v=10"></script>
 <script type="module" src="js/rsvp.js?v=3"></script>
 <script src="js/hotels.js?v=3"></script>
 <script src="js/main.js?v=8"></script>

@@ -851,6 +851,28 @@ h1, h2, h3 {
   width: 100%;
 }
 
+/* Small always-visible tap affordance (client reversed the original
+   "invisible hotspot" call — clickability wasn't obvious enough). */
+.hotels__hotspot-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(245, 237, 224, 0.9);
+  color: var(--color-terracotta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(33, 30, 27, 0.25);
+}
+
+.hotels__hotspot-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* ==========================================================================
    Hotel popup
    ========================================================================== */

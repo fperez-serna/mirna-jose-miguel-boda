@@ -28,3 +28,34 @@ if (adviceForm) {
     adviceThanks.hidden = false;
   });
 }
+
+/*
+  Gifts — "Copiar" buttons (§15). Copies the raw account/phone digits to
+  the clipboard and briefly swaps the button label to "Copiado"/"Copied".
+*/
+document.querySelectorAll('.gifts__copy').forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    const value = btn.getAttribute('data-copy');
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch (e) {
+      /* clipboard API unavailable (older browser, insecure context) —
+         fall back to a manual select so the user can still copy. */
+      const temp = document.createElement('textarea');
+      temp.value = value;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      try { document.execCommand('copy'); } catch (e2) { /* give up silently */ }
+      document.body.removeChild(temp);
+    }
+    const en = document.documentElement.lang === 'en';
+    btn.textContent = en ? 'Copied!' : '¡Copiado!';
+    btn.classList.add('is-copied');
+    setTimeout(() => {
+      btn.textContent = en ? 'Copy' : 'Copiar';
+      btn.classList.remove('is-copied');
+    }, 1800);
+  });
+});

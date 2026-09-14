@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Panel — Mirna &amp; José Miguel</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hubballi&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css?v=26" />
+<link rel="stylesheet" href="admin.css?v=1" />
+</head>
+<body class="admin-body">
+
+<!-- LOGIN — password only, per Mirna's request. The email identity is
+     fixed internally (js/firebase-config.js + ADMIN_EMAIL in admin.js);
+     she only ever sees/types a password. -->
+<div class="admin-login" id="adminLogin">
+  <form class="admin-login__form" id="adminLoginForm">
+    <h1 class="admin-login__title">Panel de la boda</h1>
+    <label for="adminPassword" class="admin-login__label">Contraseña</label>
+    <input type="password" id="adminPassword" name="password" autocomplete="current-password" required />
+    <button type="submit" class="admin-login__submit">Entrar</button>
+    <p class="admin-login__error" id="adminLoginError" hidden role="alert"></p>
+  </form>
+</div>
+
+<!-- DASHBOARD — hidden until auth confirms an admin session. -->
+<div class="admin-dash" id="adminDash" hidden>
+  <header class="admin-dash__header">
+    <h1>Panel de la boda</h1>
+    <button type="button" class="admin-dash__logout" id="adminLogout">Cerrar sesión</button>
+  </header>
+
+  <section class="admin-metrics" id="adminMetrics" aria-live="polite">
+    <div class="admin-metric"><span class="admin-metric__value" id="mTotalInvitaciones">—</span><span class="admin-metric__label">Invitaciones totales</span></div>
+    <div class="admin-metric"><span class="admin-metric__value" id="mTotalLugares">—</span><span class="admin-metric__label">Lugares totales</span></div>
+    <div class="admin-metric"><span class="admin-metric__value" id="mPersonasConfirmadas">—</span><span class="admin-metric__label">Personas confirmadas</span></div>
+    <div class="admin-metric"><span class="admin-metric__value" id="mInvitacionesConfirmadas">—</span><span class="admin-metric__label">Invitaciones confirmadas</span></div>
+    <div class="admin-metric"><span class="admin-metric__value" id="mNoAsisten">—</span><span class="admin-metric__label">No asistirán</span></div>
+    <div class="admin-metric"><span class="admin-metric__value" id="mPendientes">—</span><span class="admin-metric__label">Pendientes</span></div>
+    <div class="admin-metric admin-metric--wide"><span class="admin-metric__value" id="mRespuestas">—</span><span class="admin-metric__label">Respuestas recibidas</span></div>
+  </section>
+
+  <section class="admin-controls">
+    <div class="admin-filters" id="adminFilters" role="group" aria-label="Filtrar por estado">
+      <button type="button" class="admin-filter is-active" data-filter="TODOS">Todos</button>
+      <button type="button" class="admin-filter" data-filter="CONFIRMADO">Confirmados</button>
+      <button type="button" class="admin-filter" data-filter="NO_ASISTE">No asistirán</button>
+      <button type="button" class="admin-filter" data-filter="PENDIENTE">Pendientes</button>
+    </div>
+    <div class="admin-search">
+      <label for="adminSearch" class="visually-hidden">Buscar por nombre</label>
+      <input type="text" id="adminSearch" placeholder="Buscar por nombre…" />
+    </div>
+    <div class="admin-sort">
+      <label for="adminSort">Ordenar por</label>
+      <select id="adminSort">
+        <option value="nombre">Nombre (A–Z)</option>
+        <option value="estado">Estado</option>
+        <option value="actualizado">Última actualización</option>
+        <option value="confirmados">Personas confirmadas</option>
+      </select>
+    </div>
+  </section>
+
+  <p class="admin-loading" id="adminLoading">Cargando invitados…</p>
+  <p class="admin-error" id="adminError" hidden role="alert"></p>
+
+  <div class="admin-table-wrap" id="adminTableWrap" hidden>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Pases</th>
+          <th>Estado</th>
+          <th>Confirmados</th>
+          <th>Teléfono</th>
+          <th>Notas</th>
+          <th>Actualizado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody"></tbody>
+    </table>
+  </div>
+  <p class="admin-empty" id="adminEmpty" hidden>No hay invitados que coincidan con este filtro/búsqueda.</p>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="admin-modal" id="adminModal" hidden>
+  <div class="admin-modal__backdrop" id="adminModalBackdrop"></div>
+  <div class="admin-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <button type="button" class="admin-modal__close" id="adminModalClose" aria-label="Cerrar">×</button>
+    <h2 class="admin-modal__title" id="adminModalTitle">Editar respuesta</h2>
+    <p class="admin-modal__name" id="adminModalName"></p>
+
+    <form id="adminEditForm">
+      <label for="editEstado">Estado</label>
+      <select id="editEstado" name="estado">
+        <option value="PENDIENTE">Pendiente</option>
+        <option value="CONFIRMADO">Confirmado</option>
+        <option value="NO_ASISTE">No asiste</option>
+      </select>
+
+      <label for="editConfirmados">Personas confirmadas (máx. <span id="editMaxPases"></span>)</label>
+      <input type="number" id="editConfirmados" name="confirmados" min="0" step="1" />
+
+      <label for="editComentario">Comentario</label>
+      <textarea id="editComentario" name="comentario" rows="3"></textarea>
+
+      <p class="admin-modal__error" id="adminModalError" hidden role="alert"></p>
+
+      <div class="admin-modal__actions">
+        <button type="button" class="admin-modal__cancel" id="adminModalCancel">Cancelar</button>
+        <button type="submit" class="admin-modal__save" id="adminModalSave">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="admin.js?v=1"></script>
+</body>
+</html>

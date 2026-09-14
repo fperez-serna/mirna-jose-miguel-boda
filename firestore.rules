@@ -1,0 +1,78 @@
+rules_version = '2';
+
+/*
+  Data model (see migration/migrate.js for how these get populated):
+
+  - guests/{id}        Full guest record (nombre_mostrar, nombre_busqueda,
+                        pases_maximos, telefono, notas_invitacion,
+                        rsvp_estado, asistentes_confirmados,
+                        rsvp_actualizado, rsvp_comentario). Admin-only,
+                        no public access at all — this is where phone
+                        numbers and private notes ("BABY SEBI", etc.) live.
+
+  - rsvp_public/{id}    One doc per guest, same id as guests/{id}, holding
+                        only what the public RSVP flow needs:
+                        pases_maximos, rsvp_estado, asistentes_confirmados,
+                        rsvp_actualizado, rsvp_comentario. Public can `get`
+                        a specific guest's doc (never `list` the
+                        collection) and can update ONLY the RSVP fields,
+                        within validated bounds — pases_maximos, names,
+                        phone, and notes are never exposed here.
+
+  - search_index/public  ONE document containing {entries: [{id,
+                        nombre_busqueda, pases_maximos}, ...]} for every
+                        guest, public-readable, so the client can
+                        fuzzy-match a typed name without the `guests`
+                        collection ever being listable. Known trade-off
+                        (documented in the delivery report): this index
+                        necessarily exposes name + pases_maximos per
+                        guest to anyone who inspects network traffic —
+                        not surfaced in the UI, but technically
+                        fetchable. Removing that entirely would require
+                        a server-side search (Cloud Function, Blaze
+                        plan) instead of a purely static site.
+*/
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /guests/{guestId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /rsvp_public/{guestId} {
+      allow get: if true;
+      allow list: if request.auth != null;
+      allow create: if request.auth != null;
+      allow delete: if request.auth != null;
+      allow update: if request.auth != null || isValidPublicRsvpUpdate();
+
+      function isValidPublicRsvpUpdate() {
+        let incoming = request.resource.data;
+        let existing = resource.data;
+        return
+          incoming.diff(existing).affectedKeys()
+            .hasOnly(['rsvp_estado', 'asistentes_confirmados', 'rsvp_actualizado', 'rsvp_comentario']) &&
+          incoming.pases_maximos == existing.pases_maximos &&
+          incoming.rsvp_estado in ['CONFIRMADO', 'NO_ASISTE'] &&
+          incoming.asistentes_confirmados is int &&
+          incoming.asistentes_confirmados >= 0 &&
+          incoming.asistentes_confirmados <= incoming.pases_maximos &&
+          (incoming.rsvp_estado == 'NO_ASISTE' ? incoming.asistentes_confirmados == 0 : true) &&
+          incoming.rsvp_actualizado == request.time &&
+          (!('rsvp_comentario' in incoming) || incoming.rsvp_comentario == null ||
+            (incoming.rsvp_comentario is string && incoming.rsvp_comentario.size() <= 500));
+      }
+    }
+
+    match /search_index/{docId} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if request.auth != null;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

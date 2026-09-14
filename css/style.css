@@ -711,6 +711,93 @@ h1, h2, h3 {
   color: var(--color-sienna);
 }
 
+.rsvp__actions {
+  max-width: 480px;
+  margin: 24px auto 0;
+  text-align: left;
+}
+
+.rsvp__status {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.rsvp__saving {
+  color: var(--color-sienna);
+  text-align: center;
+}
+
+.rsvp__error {
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
+.rsvp__btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 420px) {
+  .rsvp__btn-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.rsvp__btn {
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.rsvp__btn--yes {
+  background: var(--color-terracotta);
+  color: var(--color-white);
+}
+
+.rsvp__btn--yes:hover {
+  background: var(--color-sienna);
+}
+
+.rsvp__btn--no {
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  color: var(--color-ink);
+}
+
+.rsvp__btn--no:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+.rsvp__btn--confirm {
+  display: block;
+  margin: 16px auto 0;
+  background: var(--color-terracotta);
+  color: var(--color-white);
+}
+
+.rsvp__btn--confirm:hover {
+  background: var(--color-sienna);
+}
+
+.rsvp__btn--change {
+  display: block;
+  margin: 4px auto 0;
+  color: var(--color-terracotta);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.rsvp__btn--change:hover {
+  color: var(--color-sienna);
+}
+
 /* ==========================================================================
    Hotels — full-bleed photo strip + popup (name/phone/map) per hotel
    ========================================================================== */

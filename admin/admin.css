@@ -1,0 +1,454 @@
+/* Admin panel — utilitarian, reuses the site's color tokens/fonts from
+   ../css/style.css but its own layout (not part of the public site's
+   visual design pass). */
+
+.admin-body {
+  font-family: var(--font-body);
+  background: var(--color-bone);
+  color: var(--color-ink);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Login
+   ========================================================================== */
+
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-login__form {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.15);
+  border-radius: 8px;
+  padding: 32px 28px;
+}
+
+.admin-login__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.admin-login__label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-login__form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-ink);
+}
+
+.admin-login__form input:focus {
+  outline: none;
+  border-color: var(--color-terracotta);
+}
+
+.admin-login__submit {
+  margin-top: 8px;
+  background: var(--color-terracotta);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.admin-login__submit:hover {
+  background: var(--color-sienna);
+}
+
+.admin-login__error {
+  color: #b3261e;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Dashboard shell
+   ========================================================================== */
+
+.admin-dash {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+.admin-dash__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.admin-dash__header h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  margin: 0;
+}
+
+.admin-dash__logout {
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-dash__logout:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+/* ==========================================================================
+   Metrics
+   ========================================================================== */
+
+.admin-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+@media (min-width: 640px) {
+  .admin-metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .admin-metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.admin-metric {
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.12);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-metric--wide {
+  grid-column: 1 / -1;
+}
+
+.admin-metric__value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--color-terracotta);
+}
+
+.admin-metric__label {
+  font-size: 13px;
+  color: rgba(33, 30, 27, 0.65);
+}
+
+/* ==========================================================================
+   Controls: filters, search, sort
+   ========================================================================== */
+
+.admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-filter {
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-filter.is-active {
+  background: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: var(--color-white);
+}
+
+.admin-search input {
+  padding: 8px 12px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.admin-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.admin-sort select {
+  padding: 6px 10px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   Table (desktop) / cards (mobile)
+   ========================================================================== */
+
+.admin-loading,
+.admin-empty {
+  color: rgba(33, 30, 27, 0.6);
+}
+
+.admin-error {
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(33, 30, 27, 0.55);
+  padding: 8px 10px;
+  border-bottom: 2px solid rgba(33, 30, 27, 0.15);
+}
+
+.admin-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(33, 30, 27, 0.1);
+  vertical-align: top;
+}
+
+.admin-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-status--PENDIENTE {
+  background: rgba(33, 30, 27, 0.08);
+  color: var(--color-ink);
+}
+
+.admin-status--CONFIRMADO {
+  background: rgba(166, 169, 79, 0.2);
+  color: #4d5424;
+}
+
+.admin-status--NO_ASISTE {
+  background: rgba(226, 114, 122, 0.18);
+  color: #8a2d34;
+}
+
+.admin-table a.admin-phone {
+  color: var(--color-terracotta);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-edit-btn {
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-edit-btn:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+/* Mobile: cards instead of a horizontally-scrolling table for the core
+   fields; the table itself is still reachable via horizontal scroll if
+   preferred, but cards are the primary mobile UX per the client's
+   "responsive cards or controlled horizontal scroll" requirement. */
+@media (max-width: 720px) {
+  .admin-table thead {
+    display: none;
+  }
+
+  .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-table tr {
+    background: var(--color-white);
+    border: 1px solid rgba(33, 30, 27, 0.12);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 10px 4px;
+  }
+
+  .admin-table td {
+    border-bottom: none;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: right;
+  }
+
+  .admin-table td::before {
+    content: attr(data-label);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(33, 30, 27, 0.5);
+    font-weight: 700;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Edit modal
+   ========================================================================== */
+
+.admin-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 30, 27, 0.45);
+  z-index: 200;
+}
+
+.admin-modal__dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 201;
+  width: min(420px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+
+.admin-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 22px;
+  line-height: 1;
+  color: rgba(33, 30, 27, 0.5);
+}
+
+.admin-modal__close:hover {
+  color: var(--color-terracotta);
+}
+
+.admin-modal__title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.admin-modal__name {
+  color: rgba(33, 30, 27, 0.6);
+  margin: 0 0 20px;
+}
+
+#adminEditForm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#adminEditForm label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#adminEditForm select,
+#adminEditForm input,
+#adminEditForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-ink);
+  resize: vertical;
+}
+
+.admin-modal__error {
+  color: #b3261e;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.admin-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.admin-modal__cancel {
+  padding: 10px 18px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.admin-modal__save {
+  padding: 10px 18px;
+  background: var(--color-terracotta);
+  color: var(--color-white);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.admin-modal__save:hover {
+  background: var(--color-sienna);
+}

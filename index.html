@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=25" />
+<link rel="stylesheet" href="css/style.css?v=26" />
 </head>
 <body>
 
@@ -174,14 +174,16 @@
   -->
 
   <!--
-    4. RSVP — search-first flow per client's request: guest types their
-    name, we look them up (js/guests.js — name + party size only, no
-    phone numbers client-side, per client's choice of speed over a
-    private server-side lookup) and show how many the invitation covers
-    before asking anything else. Day-selector + party-size confirm +
-    meal + kids per §8. No submission backend yet — same thank-you-on-
-    submit placeholder pattern as the Advice section; TBD once a
-    Sheet-connected endpoint exists. RSVP deadline still TBD.
+    4. RSVP — search-first flow, now backed by Firestore (js/rsvp.js,
+    js/firebase-config.js). Guest types their name; a client-side
+    normalize+token+edit-distance matcher checks it against
+    search_index/public (id + name + pases_maximos only — no phone/notes
+    ever reach the public frontend, see firestore.rules). A single
+    confident match reveals their invitation and a Sí/No + attendee-count
+    flow that writes to rsvp_public/{id}; an ambiguous match never lists
+    candidate names, just asks for a last name. RSVP deadline: Dec 1
+    (see faq.a6) — the site does not currently block changes after that
+    date; see the delivery report for that decision.
   -->
   <section id="rsvp" class="section">
     <div class="section-inner rsvp__inner">
@@ -194,23 +196,12 @@
           <input type="text" id="rsvpSearchInput" data-i18n-placeholder="rsvp.searchPlaceholder" placeholder="Tu nombre" />
           <button type="button" id="rsvpSearchBtn" data-i18n="rsvp.searchButton">Buscar mi invitación</button>
         </div>
-        <div class="rsvp__search-result" id="rsvpSearchResult" hidden></div>
+        <div class="rsvp__search-result" id="rsvpSearchResult" hidden aria-live="polite"></div>
       </div>
 
-      <!-- Day-selector, meal, and kids fields removed per client request
-           (2026-09-02) — re-add if/when she wants them back; rsvp.js and
-           the i18n keys for them were left in place minimally, just the
-           markup was stripped. -->
-      <form class="rsvp__form" id="rsvpForm" hidden>
-        <div class="rsvp__field" id="rsvpPartyField" hidden>
-          <label for="rsvpPartySelect" id="rsvpPartyLabel" data-i18n="rsvp.partyLabel">¿Cuántos de tu invitación asistirán (incluyéndote)?</label>
-          <select id="rsvpPartySelect" name="partySize"></select>
-        </div>
-
-        <button type="submit" class="rsvp__submit" data-i18n="rsvp.submit">Enviar RSVP</button>
-      </form>
-
-      <p class="rsvp__thanks" id="rsvpThanks" hidden data-i18n="rsvp.thanks">¡Gracias por confirmar!</p>
+      <!-- Populated entirely by js/rsvp.js once a guest is found: status
+           text, Sí/No buttons, attendee-count step, change-response. -->
+      <div class="rsvp__actions" id="rsvpActions" hidden aria-live="polite"></div>
 
       <div class="rsvp__banner">
         <picture>
@@ -568,8 +559,7 @@
 </main>
 
 <script src="js/i18n.js?v=9"></script>
-<script src="js/guests.js?v=1"></script>
-<script src="js/rsvp.js?v=2"></script>
+<script type="module" src="js/rsvp.js?v=3"></script>
 <script src="js/hotels.js?v=3"></script>
 <script src="js/main.js?v=8"></script>
 </body>

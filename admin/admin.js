@@ -1,19 +1,11 @@
 import { db, auth } from '../js/firebase-config.js';
 import {
   signInWithEmailAndPassword, onAuthStateChanged, signOut,
-  setPersistence, browserLocalPersistence,
+  setPersistence, browserLocalPersistence, browserSessionPersistence,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import {
   collection, getDocs, doc, writeBatch, serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
-
-/* Some mobile browsers/webviews silently fall back to in-memory (tab-
-   only) persistence unless local persistence is requested explicitly —
-   that's what was causing the session to disappear on every close. */
-setPersistence(auth, browserLocalPersistence).catch(() => {
-  /* if localStorage is truly unavailable (e.g. private browsing), the
-     session just won't survive a close — nothing else to do about it */
-});
 
 /* Fixed internal login identity — Mirna only ever types a password (see
    admin/index.html comment); must match migration/create-admin-user.js. */
@@ -25,6 +17,9 @@ const els = {
   loginForm: document.getElementById('adminLoginForm'),
   loginPassword: document.getElementById('adminPassword'),
   loginError: document.getElementById('adminLoginError'),
+  loginSubmit: document.getElementById('adminLoginSubmit'),
+  togglePassword: document.getElementById('adminTogglePassword'),
+  remember: document.getElementById('adminRemember'),
   dash: document.getElementById('adminDash'),
   logout: document.getElementById('adminLogout'),
   loading: document.getElementById('adminLoading'),
@@ -64,14 +59,32 @@ function authErrorMessage(err) {
   return 'No se pudo iniciar sesión. Intenta de nuevo.';
 }
 
+els.togglePassword.addEventListener('click', () => {
+  const showing = els.loginPassword.type === 'text';
+  els.loginPassword.type = showing ? 'password' : 'text';
+  els.togglePassword.textContent = showing ? 'Ver' : 'Ocultar';
+  els.togglePassword.setAttribute('aria-pressed', String(!showing));
+  els.togglePassword.setAttribute('aria-label', showing ? 'Mostrar contraseña' : 'Ocultar contraseña');
+});
+
 els.loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   els.loginError.hidden = true;
+  els.loginSubmit.disabled = true;
+  els.loginSubmit.textContent = 'Entrando…';
   try {
+    /* Some mobile browsers/webviews silently fall back to in-memory
+       (tab-only) persistence unless local persistence is requested
+       explicitly — "Recordar mi sesión" controls that choice. */
+    await setPersistence(auth, els.remember.checked ? browserLocalPersistence : browserSessionPersistence);
     await signInWithEmailAndPassword(auth, ADMIN_EMAIL, els.loginPassword.value);
+    // onAuthStateChanged below hides the login box and shows the
+    // dashboard once Firebase confirms the sign-in.
   } catch (err) {
     els.loginError.hidden = false;
     els.loginError.textContent = authErrorMessage(err);
+    els.loginSubmit.disabled = false;
+    els.loginSubmit.textContent = 'Entrar';
   }
 });
 
@@ -89,6 +102,11 @@ onAuthStateChanged(auth, (user) => {
     els.login.hidden = false;
     window.scrollTo(0, 0);
     els.loginPassword.value = '';
+    els.loginPassword.type = 'password';
+    els.togglePassword.textContent = 'Ver';
+    els.togglePassword.setAttribute('aria-pressed', 'false');
+    els.loginSubmit.disabled = false;
+    els.loginSubmit.textContent = 'Entrar';
   }
 });
 

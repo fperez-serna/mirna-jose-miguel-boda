@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hubballi&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../css/style.css?v=29" />
-<link rel="stylesheet" href="admin.css?v=2" />
+<link rel="stylesheet" href="admin.css?v=3" />
 </head>
 <body class="admin-body">
 
@@ -26,8 +26,15 @@
   <form class="admin-login__form" id="adminLoginForm">
     <h1 class="admin-login__title">Panel de la boda</h1>
     <label for="adminPassword" class="admin-login__label">Contraseña</label>
-    <input type="password" id="adminPassword" name="password" autocomplete="current-password" required />
-    <button type="submit" class="admin-login__submit">Entrar</button>
+    <div class="admin-login__password-row">
+      <input type="password" id="adminPassword" name="password" autocomplete="current-password" required />
+      <button type="button" class="admin-login__toggle-visibility" id="adminTogglePassword" aria-label="Mostrar contraseña" aria-pressed="false">Ver</button>
+    </div>
+    <label class="admin-login__remember">
+      <input type="checkbox" id="adminRemember" checked />
+      <span>Recordar mi sesión en este dispositivo</span>
+    </label>
+    <button type="submit" class="admin-login__submit" id="adminLoginSubmit">Entrar</button>
     <p class="admin-login__error" id="adminLoginError" hidden role="alert"></p>
   </form>
 </div>
@@ -126,6 +133,6 @@
   </div>
 </div>
 
-<script type="module" src="admin.js?v=4"></script>
+<script type="module" src="admin.js?v=5"></script>
 </body>
 </html>

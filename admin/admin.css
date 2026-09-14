@@ -69,6 +69,49 @@
   border-color: var(--color-terracotta);
 }
 
+.admin-login__password-row {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-login__password-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-login__toggle-visibility {
+  flex: 0 0 auto;
+  padding: 0 14px;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.admin-login__toggle-visibility:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+.admin-login__remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(33, 30, 27, 0.75);
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.admin-login__remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-terracotta);
+  cursor: pointer;
+}
+
 .admin-login__submit {
   margin-top: 8px;
   background: var(--color-terracotta);
@@ -77,6 +120,11 @@
   border-radius: 6px;
   font-weight: 600;
   font-size: 16px;
+}
+
+.admin-login__submit:disabled {
+  opacity: 0.7;
+  cursor: default;
 }
 
 .admin-login__submit:hover {

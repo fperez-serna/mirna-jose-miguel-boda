@@ -20,6 +20,7 @@ setPersistence(auth, browserLocalPersistence).catch(() => {
 const ADMIN_EMAIL = 'mirna.admin@mirnabeyjosemiguel.com';
 
 const els = {
+  initLoading: document.getElementById('adminInitLoading'),
   login: document.getElementById('adminLogin'),
   loginForm: document.getElementById('adminLoginForm'),
   loginPassword: document.getElementById('adminPassword'),
@@ -77,6 +78,7 @@ els.loginForm.addEventListener('submit', async (e) => {
 els.logout.addEventListener('click', () => signOut(auth));
 
 onAuthStateChanged(auth, (user) => {
+  els.initLoading.hidden = true;
   if (user) {
     els.login.hidden = true;
     els.dash.hidden = false;

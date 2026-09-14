@@ -9,15 +9,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hubballi&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../css/style.css?v=26" />
-<link rel="stylesheet" href="admin.css?v=1" />
+<link rel="stylesheet" href="../css/style.css?v=29" />
+<link rel="stylesheet" href="admin.css?v=2" />
 </head>
 <body class="admin-body">
+
+<p class="admin-init-loading" id="adminInitLoading">Cargando…</p>
 
 <!-- LOGIN — password only, per Mirna's request. The email identity is
      fixed internally (js/firebase-config.js + ADMIN_EMAIL in admin.js);
      she only ever sees/types a password. -->
-<div class="admin-login" id="adminLogin">
+<!-- Hidden until admin.js confirms there's no existing session — avoids
+     a flash of the password box for someone already logged in while
+     Firebase checks the persisted session asynchronously. -->
+<div class="admin-login" id="adminLogin" hidden>
   <form class="admin-login__form" id="adminLoginForm">
     <h1 class="admin-login__title">Panel de la boda</h1>
     <label for="adminPassword" class="admin-login__label">Contraseña</label>
@@ -121,6 +126,6 @@
   </div>
 </div>
 
-<script type="module" src="admin.js?v=3"></script>
+<script type="module" src="admin.js?v=4"></script>
 </body>
 </html>

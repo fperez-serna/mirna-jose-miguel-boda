@@ -802,11 +802,15 @@ h1, h2, h3 {
    Hotels — full-bleed photo strip + popup (name/phone/map) per hotel
    ========================================================================== */
 
+/* font-family switched to the display serif (Fraunces, weight 600) —
+   the body script font (Hubballi) only ships one weight, so
+   font-weight alone barely reads as "bold" on it. */
 .hotels__instruction {
-  font-size: 16px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
   color: var(--color-terracotta);
-  margin: 8px 0 4px;
+  margin: 10px 0 4px;
 }
 
 .hotels__intro {

@@ -13,21 +13,21 @@
    Login
    ========================================================================== */
 
+/* Deliberately NOT centered with min-height:100vh — on mobile that
+   unit includes the area under the collapsible browser toolbar, which
+   pushed this content below the visible fold on load. Top-aligned with
+   plain padding instead, so it's always right there at the top. */
 .admin-init-loading {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
   color: rgba(33, 30, 27, 0.5);
   font-size: 14px;
 }
 
 .admin-login {
-  min-height: 100vh;
+  padding: 40px 24px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 24px;
 }
 
 .admin-login__form {

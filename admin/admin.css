@@ -2,6 +2,16 @@
    ../css/style.css but its own layout (not part of the public site's
    visual design pass). */
 
+/* Without this, elements that also declare their own `display` (like
+   .admin-login's `display: flex`) override the browser's default
+   `[hidden] { display: none }` UA rule, since an author stylesheet
+   always wins over the UA stylesheet — that was the actual bug behind
+   the login box staying visible on top of the dashboard after a
+   successful sign-in. */
+[hidden] {
+  display: none !important;
+}
+
 .admin-body {
   font-family: var(--font-body);
   background: var(--color-bone);

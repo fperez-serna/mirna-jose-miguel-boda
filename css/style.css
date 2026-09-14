@@ -44,6 +44,14 @@
   box-sizing: border-box;
 }
 
+/* Guards against any element whose own class also declares `display`
+   (e.g. flex/grid containers) silently overriding the `hidden`
+   attribute's default `display: none` — author styles otherwise beat
+   the UA stylesheet even when `hidden` is set via JS. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }

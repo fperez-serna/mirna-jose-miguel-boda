@@ -1,10 +1,19 @@
 import { db, auth } from '../js/firebase-config.js';
 import {
   signInWithEmailAndPassword, onAuthStateChanged, signOut,
+  setPersistence, browserLocalPersistence,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import {
   collection, getDocs, doc, writeBatch, serverTimestamp,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+
+/* Some mobile browsers/webviews silently fall back to in-memory (tab-
+   only) persistence unless local persistence is requested explicitly —
+   that's what was causing the session to disappear on every close. */
+setPersistence(auth, browserLocalPersistence).catch(() => {
+  /* if localStorage is truly unavailable (e.g. private browsing), the
+     session just won't survive a close — nothing else to do about it */
+});
 
 /* Fixed internal login identity — Mirna only ever types a password (see
    admin/index.html comment); must match migration/create-admin-user.js. */

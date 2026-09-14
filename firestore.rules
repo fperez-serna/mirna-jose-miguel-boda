@@ -33,6 +33,12 @@ rules_version = '2';
                         fetchable. Removing that entirely would require
                         a server-side search (Cloud Function, Blaze
                         plan) instead of a purely static site.
+
+  - advice/{autoId}     One doc per "Secretos para un matrimonio feliz"
+                        submission (secreto, firma, anonimo,
+                        submitted_at). Public can only create a new one
+                        (never read/list/edit/delete any), validated
+                        below; only admin can read them, from /admin.
 */
 
 service cloud.firestore {
@@ -71,6 +77,21 @@ service cloud.firestore {
       allow get: if true;
       allow list: if false;
       allow write: if request.auth != null;
+    }
+
+    match /advice/{adviceId} {
+      allow get, list, update, delete: if request.auth != null;
+      allow create: if request.auth != null || isValidAdviceCreate();
+
+      function isValidAdviceCreate() {
+        let d = request.resource.data;
+        return
+          d.keys().hasOnly(['secreto', 'firma', 'anonimo', 'submitted_at']) &&
+          d.secreto is string && d.secreto.size() > 0 && d.secreto.size() <= 2000 &&
+          (!('firma' in d) || d.firma == null || (d.firma is string && d.firma.size() <= 100)) &&
+          d.anonimo is bool &&
+          d.submitted_at == request.time;
+      }
     }
 
     match /{document=**} {

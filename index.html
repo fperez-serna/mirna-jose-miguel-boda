@@ -23,7 +23,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=32" />
+<link rel="stylesheet" href="css/style.css?v=33" />
 </head>
 <body>
 
@@ -412,6 +412,7 @@
             <span data-i18n="advice.anon">Anónimo</span>
           </label>
           <button type="submit" class="advice__submit" data-i18n="advice.submit">Enviar</button>
+          <p class="advice__error" id="adviceError" hidden role="alert"></p>
         </form>
 
         <p class="advice__thanks" id="adviceThanks" hidden data-i18n="advice.thanks">¡Gracias por tu consejo!</p>
@@ -582,7 +583,8 @@
 
 <script src="js/i18n.js?v=14"></script>
 <script type="module" src="js/rsvp.js?v=4"></script>
+<script type="module" src="js/advice.js?v=1"></script>
 <script src="js/hotels.js?v=3"></script>
-<script src="js/main.js?v=8"></script>
+<script src="js/main.js?v=9"></script>
 </body>
 </html>

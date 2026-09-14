@@ -171,17 +171,89 @@
   margin: 0;
 }
 
+.admin-dash__header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-dash__toggle-advice,
 .admin-dash__logout {
   border: 1px solid rgba(33, 30, 27, 0.25);
   border-radius: 6px;
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
+.admin-dash__toggle-advice:hover,
 .admin-dash__logout:hover {
   border-color: var(--color-terracotta);
   color: var(--color-terracotta);
+}
+
+/* ==========================================================================
+   Consejos de matrimonio
+   ========================================================================== */
+
+.admin-advice {
+  margin-top: 12px;
+  margin-bottom: 28px;
+  background: var(--color-white);
+  border: 1px solid rgba(33, 30, 27, 0.12);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.admin-advice__title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin: 0 0 14px;
+}
+
+.admin-advice__loading,
+.admin-advice__empty {
+  color: rgba(33, 30, 27, 0.6);
+  font-size: 14px;
+}
+
+.admin-advice__error {
+  color: #b3261e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.admin-advice__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-advice__item {
+  border-bottom: 1px solid rgba(33, 30, 27, 0.1);
+  padding-bottom: 14px;
+}
+
+.admin-advice__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.admin-advice__secreto {
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.admin-advice__meta {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(33, 30, 27, 0.55);
 }
 
 /* ==========================================================================

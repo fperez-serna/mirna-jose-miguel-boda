@@ -537,6 +537,13 @@ h1, h2, h3 {
   color: var(--color-sienna);
 }
 
+.advice__error {
+  color: var(--color-terracotta);
+  font-weight: 600;
+  font-size: 14px;
+  margin: 4px 0 0;
+}
+
 @media (min-width: 720px) {
   .advice__form {
     align-items: flex-start;

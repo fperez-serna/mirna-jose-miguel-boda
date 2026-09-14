@@ -4,7 +4,7 @@ import {
   setPersistence, browserLocalPersistence, browserSessionPersistence,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import {
-  collection, getDocs, doc, writeBatch, serverTimestamp,
+  collection, getDocs, doc, writeBatch, serverTimestamp, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 
 /* Fixed internal login identity — Mirna only ever types a password (see
@@ -41,6 +41,12 @@ const els = {
   editConfirmados: document.getElementById('editConfirmados'),
   editComentario: document.getElementById('editComentario'),
   editMaxPases: document.getElementById('editMaxPases'),
+  toggleAdvice: document.getElementById('adminToggleAdvice'),
+  advicePanel: document.getElementById('adminAdvicePanel'),
+  adviceLoading: document.getElementById('adviceLoading'),
+  adviceListError: document.getElementById('adviceListError'),
+  adviceEmpty: document.getElementById('adviceEmpty'),
+  adviceList: document.getElementById('adviceList'),
 };
 
 let allGuests = [];
@@ -372,3 +378,67 @@ els.editForm.addEventListener('submit', async (e) => {
     saveBtn.textContent = 'Guardar';
   }
 });
+
+/* ============================================================
+   Consejos de matrimonio ("Secretos para un matrimonio feliz")
+   — loaded lazily, only the first time the panel is opened.
+   ============================================================ */
+
+let adviceLoaded = false;
+
+els.toggleAdvice.addEventListener('click', async () => {
+  const opening = els.advicePanel.hidden;
+  els.advicePanel.hidden = !opening;
+  els.toggleAdvice.setAttribute('aria-expanded', String(opening));
+  els.toggleAdvice.textContent = opening ? 'Ocultar consejos' : 'Ver consejos';
+  if (opening && !adviceLoaded) {
+    adviceLoaded = true;
+    await loadAdvice();
+  }
+});
+
+function formatAdviceDate(ts) {
+  if (!ts) return '';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
+}
+
+async function loadAdvice() {
+  els.adviceLoading.hidden = false;
+  els.adviceListError.hidden = true;
+  els.adviceEmpty.hidden = true;
+  els.adviceList.innerHTML = '';
+  try {
+    const snap = await getDocs(query(collection(db, 'advice'), orderBy('submitted_at', 'desc')));
+    els.adviceLoading.hidden = true;
+    if (snap.empty) {
+      els.adviceEmpty.hidden = false;
+      return;
+    }
+    snap.forEach((docSnap) => {
+      const a = docSnap.data();
+      const li = document.createElement('li');
+      li.className = 'admin-advice__item';
+
+      const secreto = document.createElement('p');
+      secreto.className = 'admin-advice__secreto';
+      secreto.textContent = a.secreto;
+      li.appendChild(secreto);
+
+      const meta = document.createElement('p');
+      meta.className = 'admin-advice__meta';
+      const who = a.anonimo || !a.firma ? 'Anónimo' : a.firma;
+      const when = formatAdviceDate(a.submitted_at);
+      meta.textContent = when ? `${who} · ${when}` : who;
+      li.appendChild(meta);
+
+      els.adviceList.appendChild(li);
+    });
+  } catch (err) {
+    els.adviceLoading.hidden = true;
+    els.adviceListError.hidden = false;
+    els.adviceListError.textContent = navigator.onLine
+      ? 'No pudimos cargar los consejos. Intenta de nuevo.'
+      : 'Sin conexión. Revisa tu internet e intenta de nuevo.';
+  }
+}

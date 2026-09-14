@@ -62,7 +62,8 @@ const translations = {
 
     'hotels.eyebrow': 'Hospedaje',
     'hotels.title': 'Dónde quedarse',
-    'hotels.intro': 'Toca cualquier foto para ver el mapa, el sitio web y el teléfono de ese hotel. Están ordenados del más cercano al más lejano de la celebración.',
+    'hotels.instruction': 'Toca cualquier foto para ver el hotel',
+    'hotels.intro': 'Están ordenados del más cercano al más lejano de la celebración.',
     'hotels.stub': 'Pendiente: hoteles recomendados, bloques de habitaciones, transporte.',
 
     'dresscode.eyebrow': 'Dresscode',
@@ -183,7 +184,8 @@ const translations = {
 
     'hotels.eyebrow': 'Hotels',
     'hotels.title': 'Where to stay',
-    'hotels.intro': 'Tap any photo to see that hotel\'s map, website, and phone number. They\'re ordered closest to farthest from the party.',
+    'hotels.instruction': 'Tap any photo to see that hotel',
+    'hotels.intro': 'They\'re ordered closest to farthest from the party.',
     'hotels.stub': 'Pending: recommended hotels, room blocks, transport notes.',
 
     'dresscode.eyebrow': 'Dresscode',

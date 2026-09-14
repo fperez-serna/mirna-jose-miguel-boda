@@ -1024,6 +1024,17 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+.faq__weather-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.faq__weather-row svg {
+  flex-shrink: 0;
+  color: var(--color-terracotta);
+}
+
 /* ==========================================================================
    Dresscode
    ========================================================================== */

@@ -128,6 +128,8 @@ const translations = {
     'faq.a10': '<p>Si tu invitación incluye un +1, puedes venir con acompañante. Si tu invitación es individual, significa que hemos reservado ese lugar especialmente para ti.</p>',
     'faq.q11': '¿Qué tan lejos está el aeropuerto de la zona del evento?',
     'faq.a11': '<p>Aproximadamente 27 km entre el aeropuerto y la dirección de recepción (Cándida Azucena 88), unos 35–40 minutos en auto dependiendo del tráfico.</p>',
+    'faq.q12': '¿Qué clima hace en enero?',
+    'faq.a12': '<p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><span>Día: alrededor de 27–29 °C (81–84 °F)</span></p><p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><span>Noche: aproximadamente 17–19 °C (63–66 °F)</span></p>',
   },
   en: {
     'nav.itinerary': 'Itinerary',
@@ -251,6 +253,8 @@ const translations = {
     'faq.a10': '<p>If your invitation includes a +1, you\'re welcome to bring a guest. If your invitation is individual, it means we\'ve reserved that spot especially for you.</p>',
     'faq.q11': 'How far is the airport from the event area?',
     'faq.a11': '<p>About 27 km between the airport and the reception address (Cándida Azucena 88), roughly 35–40 minutes by car depending on traffic.</p>',
+    'faq.q12': 'What\'s the weather like in January?',
+    'faq.a12': '<p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><span>Day: around 27–29 °C (81–84 °F)</span></p><p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><span>Night: approximately 17–19 °C (63–66 °F)</span></p>',
   },
 };
 

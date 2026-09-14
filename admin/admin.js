@@ -71,10 +71,12 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     els.login.hidden = true;
     els.dash.hidden = false;
+    window.scrollTo(0, 0);
     loadGuests();
   } else {
     els.dash.hidden = true;
     els.login.hidden = false;
+    window.scrollTo(0, 0);
     els.loginPassword.value = '';
   }
 });

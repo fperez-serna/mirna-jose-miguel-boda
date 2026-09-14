@@ -297,7 +297,9 @@ async function showFoundGuest(matchEntry) {
   const en = isEnglish();
   const nameLine = document.createElement('p');
   nameLine.className = 'rsvp__result-name';
-  nameLine.textContent = en ? `We found your invitation.` : '¡Encontramos tu invitación!';
+  nameLine.textContent = en
+    ? `We found your invitation: ${matchEntry.nombre_mostrar}`
+    : `Encontramos tu invitación: ${matchEntry.nombre_mostrar}`;
   rsvpSearchResult.appendChild(nameLine);
 
   clearActions();

@@ -20,8 +20,10 @@ rules_version = '2';
                         phone, and notes are never exposed here.
 
   - search_index/public  ONE document containing {entries: [{id,
-                        nombre_busqueda, pases_maximos}, ...]} for every
-                        guest, public-readable, so the client can
+                        nombre_busqueda, nombre_mostrar, pases_maximos},
+                        ...]} for every guest, public-readable, so the
+                        client can show the properly-cased matched name
+                        back to the guest for confirmation, and
                         fuzzy-match a typed name without the `guests`
                         collection ever being listable. Known trade-off
                         (documented in the delivery report): this index

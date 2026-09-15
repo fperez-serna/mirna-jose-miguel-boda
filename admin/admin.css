@@ -1,6 +1,9 @@
-/* Admin panel — utilitarian, reuses the site's color tokens/fonts from
-   ../css/style.css but its own layout (not part of the public site's
-   visual design pass). */
+/* Admin panel — utilitarian, reuses the site's color tokens from
+   ../css/style.css but overrides the font tokens with Raleway (sans-
+   serif) instead of the public site's Playfair/Cormorant — client
+   found the decorative fonts hard to read on a data-heavy page
+   (2026-09-15). Its own layout otherwise; not part of the public
+   site's visual design pass. */
 
 /* Without this, elements that also declare their own `display` (like
    .admin-login's `display: flex`) override the browser's default
@@ -13,6 +16,8 @@
 }
 
 .admin-body {
+  --font-display: 'Raleway', sans-serif;
+  --font-body: 'Raleway', sans-serif;
   font-family: var(--font-body);
   background: var(--color-bone);
   color: var(--color-ink);

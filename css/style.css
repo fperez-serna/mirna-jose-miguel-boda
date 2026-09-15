@@ -148,13 +148,21 @@ h3 {
 }
 
 /* Centered titles and text from RSVP onward (client request,
-   2026-09-15) — Cover/Names banner/Details stay as they were. */
+   2026-09-15) — Cover/Names banner stay as they were. */
 #rsvp .section-inner,
 #hotels .section-inner,
 #dresscode .section-inner,
 #gifts .section-inner,
 #advice .section-inner,
 #faq .section-inner {
+  text-align: center;
+}
+
+/* Details keeps its side-by-side ceremony/reception layout (left-
+   aligned prose), but the section's own eyebrow+title are centered
+   like the rest (client request, 2026-09-15). */
+#details > .section-inner > .eyebrow,
+#details > .section-inner > .section-title {
   text-align: center;
 }
 

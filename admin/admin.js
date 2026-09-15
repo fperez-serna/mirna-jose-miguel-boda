@@ -122,8 +122,28 @@ async function loadGuests() {
   els.tableWrap.hidden = true;
   els.empty.hidden = true;
   try {
-    const snap = await getDocs(collection(db, 'guests'));
-    allGuests = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    /* The public RSVP flow (js/rsvp.js) only ever writes to
+       rsvp_public/{id} — guests/{id} is admin-only and never touched
+       by a public confirm/change. So guests/{id} is the source of
+       truth for name/pases/telefono/notas, but rsvp_public/{id} is the
+       source of truth for the LIVE rsvp_estado/asistentes_confirmados/
+       rsvp_actualizado/rsvp_comentario — merge both by id. */
+    const [guestsSnap, rsvpSnap] = await Promise.all([
+      getDocs(collection(db, 'guests')),
+      getDocs(collection(db, 'rsvp_public')),
+    ]);
+    const rsvpById = new Map(rsvpSnap.docs.map((d) => [d.id, d.data()]));
+    allGuests = guestsSnap.docs.map((d) => {
+      const base = { id: d.id, ...d.data() };
+      const live = rsvpById.get(d.id);
+      if (live) {
+        base.rsvp_estado = live.rsvp_estado;
+        base.asistentes_confirmados = live.asistentes_confirmados;
+        base.rsvp_actualizado = live.rsvp_actualizado;
+        base.rsvp_comentario = live.rsvp_comentario;
+      }
+      return base;
+    });
     els.loading.hidden = true;
     renderMetrics();
     renderTable();

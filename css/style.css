@@ -29,9 +29,12 @@
      sized up from a typical 16px baseline (20px) since Hubballi's
      handwriting-style letterforms read smaller than a plain sans at the
      same pixel size. */
-  --font-display: 'Fraunces', 'Georgia', serif;
-  --font-body: 'Hubballi', cursive;
-  --font-script: 'Hubballi', cursive;
+  /* TYPOGRAPHY TEST (client request, 2026-09-15) — was 'Fraunces' /
+     'Hubballi'. Revert these two lines (and the Google Fonts <link> in
+     index.html) if she doesn't like it. */
+  --font-display: 'Parisienne', cursive;
+  --font-body: 'Cormorant', serif;
+  --font-script: 'Cormorant', serif;
 
   --nav-height: 64px;
   --section-pad-y: clamp(40px, 6vh, 72px);

@@ -19,7 +19,7 @@
   --color-terracotta: #E2727A;
   --color-sienna:     #D9720F;
   --color-sage:       #A6A94F;
-  --color-bone:       #FBF6EC;
+  --color-bone:       #FDFBF6;
   --color-ink:        #4A1F2B;
 
   --color-white: #FFFFFF;
@@ -113,6 +113,17 @@ h1, h2 {
 h3 {
   font-family: var(--font-body);
   font-weight: 700;
+}
+
+/* Avoids orphan words alone on a paragraph's last line (client
+   request, 2026-09-15) — browsers without support just wrap normally,
+   no harm either way. */
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
 }
 
 .eyebrow {

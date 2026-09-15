@@ -4,24 +4,32 @@ rules_version = '2';
   Data model (see migration/migrate.js for how these get populated):
 
   - guests/{id}        Full guest record (nombre_mostrar, nombre_busqueda,
-                        pases_maximos, telefono, notas_invitacion,
-                        rsvp_estado, asistentes_confirmados,
-                        rsvp_actualizado, rsvp_comentario). Admin-only,
-                        no public access at all — this is where phone
-                        numbers and private notes ("BABY SEBI", etc.) live.
+                        pases_maximos, ninos_maximos, telefono,
+                        notas_invitacion, rsvp_estado,
+                        asistentes_confirmados, rsvp_actualizado,
+                        rsvp_comentario). Admin-only, no public access at
+                        all — this is where phone numbers and private
+                        notes ("BABY SEBI", etc.) live. ninos_maximos is
+                        how many of pases_maximos are children (2026-09-15
+                        addition) — the public RSVP flow counts them
+                        separately from adults (kids opt in/out as a
+                        block, not counted one-by-one in the attendee
+                        selector).
 
   - rsvp_public/{id}    One doc per guest, same id as guests/{id}, holding
                         only what the public RSVP flow needs:
-                        pases_maximos, rsvp_estado, asistentes_confirmados,
-                        rsvp_actualizado, rsvp_comentario. Public can `get`
-                        a specific guest's doc (never `list` the
-                        collection) and can update ONLY the RSVP fields,
-                        within validated bounds — pases_maximos, names,
+                        pases_maximos, ninos_maximos, rsvp_estado,
+                        asistentes_confirmados, rsvp_actualizado,
+                        rsvp_comentario. Public can `get` a specific
+                        guest's doc (never `list` the collection) and can
+                        update ONLY the RSVP fields, within validated
+                        bounds — pases_maximos, ninos_maximos, names,
                         phone, and notes are never exposed here.
 
   - search_index/public  ONE document containing {entries: [{id,
-                        nombre_busqueda, nombre_mostrar, pases_maximos},
-                        ...]} for every guest, public-readable, so the
+                        nombre_busqueda, nombre_mostrar, pases_maximos,
+                        ninos_maximos}, ...]} for every guest, public-
+                        readable, so the
                         client can show the properly-cased matched name
                         back to the guest for confirmation, and
                         fuzzy-match a typed name without the `guests`
@@ -62,6 +70,7 @@ service cloud.firestore {
           incoming.diff(existing).affectedKeys()
             .hasOnly(['rsvp_estado', 'asistentes_confirmados', 'rsvp_actualizado', 'rsvp_comentario']) &&
           incoming.pases_maximos == existing.pases_maximos &&
+          incoming.ninos_maximos == existing.ninos_maximos &&
           incoming.rsvp_estado in ['CONFIRMADO', 'NO_ASISTE'] &&
           incoming.asistentes_confirmados is int &&
           incoming.asistentes_confirmados >= 0 &&

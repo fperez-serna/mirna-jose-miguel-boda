@@ -757,6 +757,22 @@ h1, h2, h3 {
   color: var(--color-ink);
 }
 
+.rsvp__kids-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  margin: 14px 0 0;
+  cursor: pointer;
+}
+
+.rsvp__kids-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-terracotta);
+  cursor: pointer;
+}
+
 .rsvp__submit {
   align-self: center;
   background: var(--color-terracotta);

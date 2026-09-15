@@ -147,8 +147,26 @@ function offlineErrorText() {
     : 'Parece que no tienes conexión. Revisa tu internet e intenta de nuevo.';
 }
 
+/*
+  Kids are tracked separately from adults (client request, 2026-09-15):
+  pases_maximos is the total physical spots, ninos_maximos is how many
+  of those are children. The attendee selector only counts adults
+  one-by-one; kids attend as a single yes/no block (they don't eat the
+  same menu / aren't seated as "a person" the way an adult headcount
+  implies).
+*/
+function invitationDescription(pasesMaximos, ninosMaximos, en) {
+  const adultsMax = pasesMaximos - (ninosMaximos || 0);
+  let base;
+  if (adultsMax <= 1) base = en ? 'Your invitation is individual' : 'Tu invitación es individual';
+  else if (adultsMax === 2) base = en ? 'Your invitation is for two' : 'Tu invitación es doble';
+  else base = en ? `Your invitation is for ${adultsMax} people` : `Tu invitación es para ${adultsMax} personas`;
+  const kidsSuffix = ninosMaximos > 0 ? (en ? ' with kids' : ' con hijos') : '';
+  return `${base}${kidsSuffix}.`;
+}
+
 /* Renders the Sí/No buttons + (if attending) the attendee-count step. */
-function renderRsvpButtons(guestId, pasesMaximos, currentConfirmed) {
+function renderRsvpButtons(guestId, pasesMaximos, ninosMaximos, currentConfirmed) {
   clearActions();
   rsvpActions.hidden = false;
   const en = isEnglish();
@@ -169,29 +187,53 @@ function renderRsvpButtons(guestId, pasesMaximos, currentConfirmed) {
   row.appendChild(btnNo);
   rsvpActions.appendChild(row);
 
-  btnYes.addEventListener('click', () => renderAttendeeStep(guestId, pasesMaximos, currentConfirmed));
+  btnYes.addEventListener('click', () => renderAttendeeStep(guestId, pasesMaximos, ninosMaximos, currentConfirmed));
   btnNo.addEventListener('click', () => submitRsvp(guestId, 'NO_ASISTE', 0, pasesMaximos));
 }
 
-function renderAttendeeStep(guestId, pasesMaximos, currentConfirmed) {
+function renderAttendeeStep(guestId, pasesMaximos, ninosMaximos, currentConfirmed) {
   clearActions();
   rsvpActions.hidden = false;
   const en = isEnglish();
+  const adultsMax = pasesMaximos - (ninosMaximos || 0);
 
   const label = document.createElement('label');
   label.setAttribute('for', 'rsvpAttendeeSelect');
   label.textContent = en
-    ? `How many from your invitation will attend (including you, max ${pasesMaximos})?`
-    : `¿Cuántos de tu invitación asistirán (incluyéndote, máximo ${pasesMaximos})?`;
+    ? `How many adults from your invitation will attend (including you, max ${adultsMax})?`
+    : `¿Cuántos adultos de tu invitación asistirán (incluyéndote, máximo ${adultsMax})?`;
 
   const select = document.createElement('select');
   select.id = 'rsvpAttendeeSelect';
-  for (let i = 1; i <= pasesMaximos; i++) {
+  const prevAdults = currentConfirmed ? Math.min(currentConfirmed, adultsMax) : adultsMax;
+  for (let i = 1; i <= adultsMax; i++) {
     const opt = document.createElement('option');
     opt.value = String(i);
-    opt.textContent = en ? (i === 1 ? '1 person' : `${i} people`) : (i === 1 ? '1 persona' : `${i} personas`);
-    if (i === (currentConfirmed || pasesMaximos)) opt.selected = true;
+    opt.textContent = en ? (i === 1 ? '1 adult' : `${i} adults`) : (i === 1 ? '1 adulto' : `${i} adultos`);
+    if (i === prevAdults) opt.selected = true;
     select.appendChild(opt);
+  }
+
+  const field = document.createElement('div');
+  field.className = 'rsvp__field';
+  field.appendChild(label);
+  field.appendChild(select);
+  rsvpActions.appendChild(field);
+
+  let kidsCheckbox = null;
+  if (ninosMaximos > 0) {
+    const kidsField = document.createElement('label');
+    kidsField.className = 'rsvp__kids-toggle';
+    kidsCheckbox = document.createElement('input');
+    kidsCheckbox.type = 'checkbox';
+    kidsCheckbox.checked = true;
+    const kidsText = document.createElement('span');
+    kidsText.textContent = en
+      ? `Will your ${ninosMaximos === 1 ? 'child' : `${ninosMaximos} children`} attend?`
+      : `¿Asistirán tus ${ninosMaximos === 1 ? 'hijo' : `${ninosMaximos} hijos`}?`;
+    kidsField.appendChild(kidsCheckbox);
+    kidsField.appendChild(kidsText);
+    rsvpActions.appendChild(kidsField);
   }
 
   const confirmBtn = document.createElement('button');
@@ -199,29 +241,13 @@ function renderAttendeeStep(guestId, pasesMaximos, currentConfirmed) {
   confirmBtn.className = 'rsvp__btn rsvp__btn--confirm';
   confirmBtn.textContent = en ? 'Confirm' : 'Confirmar';
   confirmBtn.addEventListener('click', () => {
-    const n = Number(select.value);
-    if (!Number.isInteger(n) || n < 1 || n > pasesMaximos) return; // frontend guard; rules enforce it too
-    submitRsvp(guestId, 'CONFIRMADO', n, pasesMaximos);
+    const adults = Number(select.value);
+    if (!Number.isInteger(adults) || adults < 1 || adults > adultsMax) return; // frontend guard; rules enforce it too
+    const kidsAttending = kidsCheckbox ? kidsCheckbox.checked : false;
+    const total = adults + (kidsAttending ? ninosMaximos : 0);
+    submitRsvp(guestId, 'CONFIRMADO', total, pasesMaximos);
   });
-
-  const field = document.createElement('div');
-  field.className = 'rsvp__field';
-  field.appendChild(label);
-  field.appendChild(select);
-  rsvpActions.appendChild(field);
   rsvpActions.appendChild(confirmBtn);
-}
-
-function renderChangeResponse(guestId, pasesMaximos, currentConfirmed) {
-  clearActions();
-  rsvpActions.hidden = false;
-  const en = isEnglish();
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'rsvp__btn rsvp__btn--change';
-  btn.textContent = en ? 'Change my response' : 'Cambiar respuesta';
-  btn.addEventListener('click', () => renderRsvpButtons(guestId, pasesMaximos, currentConfirmed));
-  rsvpActions.appendChild(btn);
 }
 
 async function submitRsvp(guestId, estado, asistentesConfirmados, pasesMaximos) {
@@ -261,34 +287,35 @@ function showStatus(guestId, rsvp) {
   clearActions();
   rsvpActions.hidden = false;
   const en = isEnglish();
+  const ninosMaximos = rsvp.ninos_maximos || 0;
+  const adultsMax = rsvp.pases_maximos - ninosMaximos;
+
+  if (rsvp.rsvp_estado === 'PENDIENTE') {
+    renderRsvpButtons(guestId, rsvp.pases_maximos, ninosMaximos, rsvp.asistentes_confirmados);
+    return;
+  }
+
   const p = document.createElement('p');
   p.className = 'rsvp__status';
 
   if (rsvp.rsvp_estado === 'CONFIRMADO') {
+    const includesKids = ninosMaximos > 0 && rsvp.asistentes_confirmados > adultsMax;
     p.textContent = en
-      ? `You currently have ${rsvp.asistentes_confirmados} ${rsvp.asistentes_confirmados === 1 ? 'person' : 'people'} confirmed. Thank you!`
-      : `Actualmente tienes confirmadas ${rsvp.asistentes_confirmados} persona${rsvp.asistentes_confirmados === 1 ? '' : 's'}. ¡Gracias!`;
+      ? `You currently have ${rsvp.asistentes_confirmados} ${rsvp.asistentes_confirmados === 1 ? 'person' : 'people'} confirmed${includesKids ? ' (including your kids)' : ''}. Thank you!`
+      : `Actualmente tienes confirmadas ${rsvp.asistentes_confirmados} persona${rsvp.asistentes_confirmados === 1 ? '' : 's'}${includesKids ? ' (incluye a tus hijos)' : ''}. ¡Gracias!`;
   } else if (rsvp.rsvp_estado === 'NO_ASISTE') {
     p.textContent = en
       ? "Thanks for letting us know. We'll miss celebrating with you."
       : 'Gracias por avisarnos. Sentiremos mucho no poder celebrar contigo.';
-  } else {
-    p.textContent = en
-      ? `Your invitation covers ${rsvp.pases_maximos} ${rsvp.pases_maximos === 1 ? 'spot' : 'spots'}.`
-      : `Tu invitación incluye ${rsvp.pases_maximos} lugar${rsvp.pases_maximos === 1 ? '' : 'es'}.`;
   }
   rsvpActions.appendChild(p);
 
-  if (rsvp.rsvp_estado === 'PENDIENTE') {
-    renderRsvpButtons(guestId, rsvp.pases_maximos, rsvp.asistentes_confirmados);
-  } else {
-    const changeBtn = document.createElement('button');
-    changeBtn.type = 'button';
-    changeBtn.className = 'rsvp__btn rsvp__btn--change';
-    changeBtn.textContent = en ? 'Change my response' : 'Cambiar respuesta';
-    changeBtn.addEventListener('click', () => renderRsvpButtons(guestId, rsvp.pases_maximos, rsvp.asistentes_confirmados));
-    rsvpActions.appendChild(changeBtn);
-  }
+  const changeBtn = document.createElement('button');
+  changeBtn.type = 'button';
+  changeBtn.className = 'rsvp__btn rsvp__btn--change';
+  changeBtn.textContent = en ? 'Change my response' : 'Cambiar respuesta';
+  changeBtn.addEventListener('click', () => renderRsvpButtons(guestId, rsvp.pases_maximos, ninosMaximos, rsvp.asistentes_confirmados));
+  rsvpActions.appendChild(changeBtn);
 }
 
 async function showFoundGuest(matchEntry) {
@@ -297,9 +324,10 @@ async function showFoundGuest(matchEntry) {
   const en = isEnglish();
   const nameLine = document.createElement('p');
   nameLine.className = 'rsvp__result-name';
+  const desc = invitationDescription(matchEntry.pases_maximos, matchEntry.ninos_maximos, en);
   nameLine.textContent = en
-    ? `We found your invitation: ${matchEntry.nombre_mostrar}`
-    : `Encontramos tu invitación: ${matchEntry.nombre_mostrar}`;
+    ? `We found your invitation: ${matchEntry.nombre_mostrar} — ${desc}`
+    : `Encontramos tu invitación: ${matchEntry.nombre_mostrar} - ${desc}`;
   rsvpSearchResult.appendChild(nameLine);
 
   clearActions();

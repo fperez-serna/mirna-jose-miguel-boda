@@ -1233,6 +1233,14 @@ h3 {
   order: 1;
 }
 
+/* Ceremonia/Recepción text centered on mobile only (client request,
+   2026-09-15) — desktop keeps the left-aligned side-by-side layout. */
+@media (max-width: 719px) {
+  .details__text {
+    text-align: center;
+  }
+}
+
 .details__art {
   width: 100%;
 }

@@ -32,7 +32,7 @@
   /* TYPOGRAPHY TEST (client request, 2026-09-15) — was 'Fraunces' /
      'Hubballi'. Revert these two lines (and the Google Fonts <link> in
      index.html) if she doesn't like it. */
-  --font-display: 'Parisienne', cursive;
+  --font-display: 'Playfair Display', 'Georgia', serif;
   --font-body: 'Cormorant', serif;
   --font-script: 'Cormorant', serif;
 

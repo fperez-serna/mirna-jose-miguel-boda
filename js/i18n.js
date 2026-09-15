@@ -81,7 +81,7 @@ const translations = {
 
     'gifts.eyebrow': 'Regalos',
     'gifts.title': 'Mesa de regalos',
-    'gifts.text': 'No tendremos mesa de regalos. Para nosotros, el mejor regalo es compartir este día con ustedes. Si aun así desean tener un detalle con nosotros, pueden hacernos una transferencia.',
+    'gifts.text': 'No tendremos mesa de regalos. Para nosotros, el mejor regalo es compartir este día tan especial con ustedes. Si aun así desean darnos algo, agradeceremos un regalo que ustedes elijan y les guste, o, si lo prefieren, pueden hacernos una transferencia bancaria.',
     'gifts.mirnaLabel': 'Mirna Beatriz Podesta Ureta',
     'gifts.mirnaBank': 'Santander',
     'gifts.jmLabel': 'José Miguel',
@@ -206,7 +206,7 @@ const translations = {
 
     'gifts.eyebrow': 'Gifts',
     'gifts.title': 'Registry',
-    'gifts.text': 'We won\'t have a gift registry. For us, the best gift is sharing this day with you. If you\'d still like to give us something, you\'re welcome to send us a bank transfer.',
+    'gifts.text': 'We won\'t have a gift registry. For us, the best gift is sharing this special day with you. If you\'d still like to give us something, we\'d be grateful for a gift you choose and love, or, if you prefer, you\'re welcome to send us a bank transfer.',
     'gifts.mirnaLabel': 'Mirna Beatriz Podesta Ureta',
     'gifts.mirnaBank': 'Santander',
     'gifts.jmLabel': 'José Miguel',

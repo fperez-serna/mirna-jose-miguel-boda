@@ -96,10 +96,22 @@ a:focus {
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display);
   font-weight: 500;
   margin: 0;
   color: var(--color-ink);
+}
+
+/* Main titles (h1/h2 — section titles, hero names) stay in the
+   display script font; h3-level subtitles and subtitle-like elements
+   use the body serif at a real bold weight instead (client request,
+   2026-09-15). */
+h1, h2 {
+  font-family: var(--font-display);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
 }
 
 .eyebrow {
@@ -436,6 +448,7 @@ h1, h2, h3 {
   align-items: center;
   gap: 40px;
   text-align: center;
+  margin-top: 24px;
 }
 
 @media (min-width: 720px) {
@@ -462,12 +475,9 @@ h1, h2, h3 {
   max-width: 480px;
 }
 
-.advice__panel .section-title {
-  font-size: clamp(22px, 3.5vw, 28px);
-}
-
 .advice__question {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 22px;
   line-height: 1.4;
   color: var(--color-terracotta);
@@ -827,12 +837,9 @@ h1, h2, h3 {
    Hotels — full-bleed photo strip + popup (name/phone/map) per hotel
    ========================================================================== */
 
-/* font-family switched to the display serif (Fraunces, weight 600) —
-   the body script font (Hubballi) only ships one weight, so
-   font-weight alone barely reads as "bold" on it. */
 .hotels__instruction {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 19px;
   color: var(--color-terracotta);
   margin: 10px 0 4px;
@@ -921,7 +928,8 @@ h1, h2, h3 {
 }
 
 .hotel-modal__name {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 24px;
   margin: 0 32px 4px 0;
 }
@@ -1066,7 +1074,8 @@ h1, h2, h3 {
 }
 
 .dresscode__label {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 20px;
   color: var(--color-terracotta);
   margin: 0 0 6px;
@@ -1141,7 +1150,8 @@ h1, h2, h3 {
 }
 
 .gifts__name {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 19px;
   margin: 0 0 4px;
   color: var(--color-ink);
@@ -1216,7 +1226,8 @@ h1, h2, h3 {
 }
 
 .details__text h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 26px;
   margin-bottom: 8px;
 }

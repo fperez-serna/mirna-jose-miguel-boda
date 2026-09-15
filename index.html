@@ -27,7 +27,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=34" />
+<link rel="stylesheet" href="css/style.css?v=35" />
 </head>
 <body>
 
@@ -395,31 +395,37 @@
     Google Form's formResponse endpoint once that URL exists.
   -->
   <section id="advice" class="section advice">
-    <div class="section-inner advice__inner">
-      <div class="advice__art">
-        <picture>
-          <source srcset="assets/images/secretos-matrimonio.webp?v=4" type="image/webp" />
-          <img src="assets/images/secretos-matrimonio.png?v=4" alt="Sobre abierto estilo papel rasgado con una casita de playa, globos de corazón y la frase: secretos para un feliz matrimonio y una gran amistad" loading="lazy" width="540" height="727" />
-        </picture>
-      </div>
+    <div class="section-inner">
+      <!-- Full-width title, left-margin like every other section's
+           (client request, 2026-09-15) — was squeezed inside
+           .advice__panel next to the art at a smaller size. -->
+      <h2 class="section-title" data-i18n="advice.title">Secretos para un matrimonio feliz y una gran amistad</h2>
 
-      <div class="advice__panel">
-        <h2 class="section-title" data-i18n="advice.title">Secretos para un matrimonio feliz y una gran amistad</h2>
-        <p class="advice__question" data-i18n="advice.question">¿Cuál es ese secreto que hace que el amor dure y la amistad crezca con los años?</p>
-        <p class="advice__prompt" data-i18n="advice.prompt">Compártenos uno o varios consejos que, para ti, sean clave para construir un matrimonio feliz, divertido y lleno de complicidad.</p>
+      <div class="advice__inner">
+        <div class="advice__art">
+          <picture>
+            <source srcset="assets/images/secretos-matrimonio.webp?v=4" type="image/webp" />
+            <img src="assets/images/secretos-matrimonio.png?v=4" alt="Sobre abierto estilo papel rasgado con una casita de playa, globos de corazón y la frase: secretos para un feliz matrimonio y una gran amistad" loading="lazy" width="540" height="727" />
+          </picture>
+        </div>
 
-        <form class="advice__form" id="adviceForm">
-          <textarea class="advice__textarea" name="secreto" rows="6" data-i18n-placeholder="advice.placeholder" placeholder="Escribe aquí..." required></textarea>
-          <input class="advice__signature" type="text" name="firma" data-i18n-placeholder="advice.signature" placeholder="Firma (tu nombre)" />
-          <label class="advice__anon">
-            <input type="checkbox" name="anonimo" id="adviceAnon" />
-            <span data-i18n="advice.anon">Anónimo</span>
-          </label>
-          <button type="submit" class="advice__submit" data-i18n="advice.submit">Enviar</button>
-          <p class="advice__error" id="adviceError" hidden role="alert"></p>
-        </form>
+        <div class="advice__panel">
+          <p class="advice__question" data-i18n="advice.question">¿Cuál es ese secreto que hace que el amor dure y la amistad crezca con los años?</p>
+          <p class="advice__prompt" data-i18n="advice.prompt">Compártenos uno o varios consejos que, para ti, sean clave para construir un matrimonio feliz, divertido y lleno de complicidad.</p>
 
-        <p class="advice__thanks" id="adviceThanks" hidden data-i18n="advice.thanks">¡Gracias por tu consejo!</p>
+          <form class="advice__form" id="adviceForm">
+            <textarea class="advice__textarea" name="secreto" rows="6" data-i18n-placeholder="advice.placeholder" placeholder="Escribe aquí..." required></textarea>
+            <input class="advice__signature" type="text" name="firma" data-i18n-placeholder="advice.signature" placeholder="Firma (tu nombre)" />
+            <label class="advice__anon">
+              <input type="checkbox" name="anonimo" id="adviceAnon" />
+              <span data-i18n="advice.anon">Anónimo</span>
+            </label>
+            <button type="submit" class="advice__submit" data-i18n="advice.submit">Enviar</button>
+            <p class="advice__error" id="adviceError" hidden role="alert"></p>
+          </form>
+
+          <p class="advice__thanks" id="adviceThanks" hidden data-i18n="advice.thanks">¡Gracias por tu consejo!</p>
+        </div>
       </div>
     </div>
   </section>

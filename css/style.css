@@ -10,7 +10,8 @@
                              used here for hover/active, the deeper/
                              richer shift down from coral)
      --color-sage         -> Oliva fresca #A6A94F (vestido, follaje)
-     --color-bone          -> Marfil #F5EDE0 (base/fondo)
+     --color-bone          -> Marfil claro #FBF6EC (base/fondo — aclarado
+                             2026-09-15 a pedido de la clienta)
      --color-ink            -> Vino profundo #4A1F2B (sombra, texto, noche)
    ========================================================================== */
 
@@ -18,7 +19,7 @@
   --color-terracotta: #E2727A;
   --color-sienna:     #D9720F;
   --color-sage:       #A6A94F;
-  --color-bone:       #F5EDE0;
+  --color-bone:       #FBF6EC;
   --color-ink:        #4A1F2B;
 
   --color-white: #FFFFFF;
@@ -64,7 +65,7 @@ body {
   background: var(--color-bone);
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }

@@ -42,7 +42,9 @@ const els = {
   editComentario: document.getElementById('editComentario'),
   editMaxPases: document.getElementById('editMaxPases'),
   toggleAdvice: document.getElementById('adminToggleAdvice'),
-  advicePanel: document.getElementById('adminAdvicePanel'),
+  adviceModal: document.getElementById('adviceModal'),
+  adviceModalBackdrop: document.getElementById('adviceModalBackdrop'),
+  adviceModalClose: document.getElementById('adviceModalClose'),
   adviceLoading: document.getElementById('adviceLoading'),
   adviceListError: document.getElementById('adviceListError'),
   adviceEmpty: document.getElementById('adviceEmpty'),
@@ -406,15 +408,27 @@ els.editForm.addEventListener('submit', async (e) => {
 
 let adviceLoaded = false;
 
-els.toggleAdvice.addEventListener('click', async () => {
-  const opening = els.advicePanel.hidden;
-  els.advicePanel.hidden = !opening;
-  els.toggleAdvice.setAttribute('aria-expanded', String(opening));
-  els.toggleAdvice.textContent = opening ? 'Ocultar consejos' : 'Ver consejos';
-  if (opening && !adviceLoaded) {
+async function openAdviceModal() {
+  els.adviceModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  els.adviceModalClose.focus();
+  if (!adviceLoaded) {
     adviceLoaded = true;
     await loadAdvice();
   }
+}
+
+function closeAdviceModal() {
+  els.adviceModal.hidden = true;
+  document.body.style.overflow = '';
+  els.toggleAdvice.focus();
+}
+
+els.toggleAdvice.addEventListener('click', openAdviceModal);
+els.adviceModalClose.addEventListener('click', closeAdviceModal);
+els.adviceModalBackdrop.addEventListener('click', closeAdviceModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !els.adviceModal.hidden) closeAdviceModal();
 });
 
 function formatAdviceDate(ts) {

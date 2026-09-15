@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hubballi&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../css/style.css?v=33" />
-<link rel="stylesheet" href="admin.css?v=6" />
+<link rel="stylesheet" href="admin.css?v=7" />
 </head>
 <body class="admin-body">
 
@@ -44,7 +44,7 @@
   <header class="admin-dash__header">
     <h1>Panel de la boda</h1>
     <div class="admin-dash__header-actions">
-      <button type="button" class="admin-dash__toggle-advice" id="adminToggleAdvice" aria-expanded="false" aria-controls="adminAdvicePanel">Ver consejos</button>
+      <button type="button" class="admin-dash__toggle-advice" id="adminToggleAdvice" aria-haspopup="dialog" aria-controls="adviceModal">Ver consejos</button>
       <button type="button" class="admin-dash__logout" id="adminLogout">Cerrar sesión</button>
     </div>
   </header>
@@ -102,16 +102,6 @@
     </table>
   </div>
   <p class="admin-empty" id="adminEmpty" hidden>No hay invitados que coincidan con este filtro/búsqueda.</p>
-
-  <!-- "Secretos para un matrimonio feliz" — hidden by default, loaded
-       lazily (only fetched from Firestore the first time it's opened). -->
-  <section class="admin-advice" id="adminAdvicePanel" hidden aria-live="polite">
-    <h2 class="admin-advice__title">Consejos de matrimonio</h2>
-    <p class="admin-advice__loading" id="adviceLoading">Cargando…</p>
-    <p class="admin-advice__error" id="adviceListError" hidden role="alert"></p>
-    <p class="admin-advice__empty" id="adviceEmpty" hidden>Todavía no hay consejos.</p>
-    <ul class="admin-advice__list" id="adviceList"></ul>
-  </section>
 </div>
 
 <!-- EDIT MODAL -->
@@ -146,6 +136,23 @@
   </div>
 </div>
 
-<script type="module" src="admin.js?v=7"></script>
+<!-- ADVICE MODAL — "Secretos para un matrimonio feliz" submissions,
+     loaded lazily the first time it's opened. -->
+<div class="admin-modal" id="adviceModal" hidden>
+  <div class="admin-modal__backdrop" id="adviceModalBackdrop"></div>
+  <div class="admin-modal__dialog admin-modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="adviceModalTitle">
+    <button type="button" class="admin-modal__close" id="adviceModalClose" aria-label="Cerrar">×</button>
+    <h2 class="admin-modal__title" id="adviceModalTitle">Consejos de matrimonio</h2>
+
+    <div class="admin-advice" id="adminAdvicePanel" aria-live="polite">
+      <p class="admin-advice__loading" id="adviceLoading">Cargando…</p>
+      <p class="admin-advice__error" id="adviceListError" hidden role="alert"></p>
+      <p class="admin-advice__empty" id="adviceEmpty" hidden>Todavía no hay consejos.</p>
+      <ul class="admin-advice__list" id="adviceList"></ul>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="admin.js?v=8"></script>
 </body>
 </html>

@@ -198,18 +198,7 @@
    ========================================================================== */
 
 .admin-advice {
-  margin-top: 12px;
-  margin-bottom: 28px;
-  background: var(--color-white);
-  border: 1px solid rgba(33, 30, 27, 0.12);
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.admin-advice__title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  margin: 0 0 14px;
+  margin-top: 4px;
 }
 
 .admin-advice__loading,
@@ -509,6 +498,10 @@
   background: var(--color-white);
   border-radius: 10px;
   padding: 28px 24px;
+}
+
+.admin-modal__dialog--wide {
+  width: min(560px, 90vw);
 }
 
 .admin-modal__close {

@@ -379,49 +379,32 @@ h1, h2, h3 {
 /* Text sits over the empty corners of the artwork; positions are
    percentages of the art and font sizes are container-width units, so
    everything scales together (min sizes keep it readable on phones). */
-.cover__title {
-  position: absolute;
-  left: 73%;
-  top: 12%;
-  transform: translateX(-50%);
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Same look as the old names banner: Playfair names in the site ink,
-   a short terracotta divider, and tracked caps for date/place. */
-.cover__names {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(15px, 5cqw, 46px);
-  line-height: 1.08;
-  color: var(--color-ink);
-}
-
-.cover__amp {
-  font-size: 0.85em;
-}
-
-.cover__divider {
-  width: clamp(24px, 6cqw, 56px);
-  height: 2px;
-  background: var(--color-terracotta);
-  margin: clamp(9px, 2.6cqw, 22px) auto 0;
-}
-
+/* Date/place sits in the empty top-right corner of the artwork; the
+   names go on one line just below it. Sizes are container-width units so
+   everything scales with the art (min sizes keep phones readable). */
 .cover__meta {
   position: absolute;
-  left: 28%;
-  bottom: 8%;
+  left: 76%;
+  top: 11%;
   transform: translateX(-50%);
   margin: 0;
   text-align: center;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: clamp(11px, 2.6cqw, 23px);
+  font-size: clamp(11px, 2.5cqw, 23px);
   letter-spacing: 0.08em;
   line-height: 1.45;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.cover__names {
+  margin: clamp(-30px, -3cqw, -10px) 0 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(21px, 5.2cqw, 48px);
+  line-height: 1.1;
   color: var(--color-ink);
   white-space: nowrap;
 }

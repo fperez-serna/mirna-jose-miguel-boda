@@ -1426,7 +1426,7 @@ h1, h2, h3 {
    place and date each on its own line (client layout, 2026-09-21). */
 @media (max-width: 719px) {
   .cover__names {
-    font-size: 16cqw;
+    font-size: 15.4cqw;
     line-height: 1.02;
     margin-top: 2cqw;
   }
@@ -1445,7 +1445,7 @@ h1, h2, h3 {
     flex-direction: column-reverse;
     align-items: center;
     gap: 6px;
-    font-size: clamp(13px, 4.4cqw, 20px);
+    font-size: clamp(12px, 4.1cqw, 19px);
     letter-spacing: 0.1em;
   }
 

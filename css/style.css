@@ -1412,7 +1412,7 @@ h1, h2, h3 {
    section keeps its full height and Detalles stays below the fold. */
 @media (min-width: 720px) {
   .cover__art {
-    transform: translateY(clamp(-120px, -13vh, -56px));
+    transform: translateY(clamp(-84px, -9vh, -40px));
   }
 
   /* More air between names, divider and date/place on desktop. */

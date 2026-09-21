@@ -19,7 +19,6 @@ const translations = {
     'cover.meta': '16 DE ENERO, 2027<br />PUERTO VALLARTA, JALISCO',
     'cover.date': '16 de enero, 2027',
     'cover.city': 'Puerto Vallarta, Jalisco',
-    'namesBanner.meta': '16 DE ENERO, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',
 
     'details.eyebrow': 'Detalles',
     'details.title': 'Ceremonia &amp; Recepción',
@@ -146,7 +145,6 @@ const translations = {
     'cover.meta': 'JANUARY 16TH, 2027<br />PUERTO VALLARTA, JALISCO',
     'cover.date': 'January 16th, 2027',
     'cover.city': 'Puerto Vallarta, Jalisco',
-    'namesBanner.meta': 'JANUARY 16TH, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',
 
     'details.eyebrow': 'Details',
     'details.title': 'Ceremony &amp; Reception',

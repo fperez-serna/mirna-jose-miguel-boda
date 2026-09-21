@@ -27,7 +27,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=49" />
+<link rel="stylesheet" href="css/style.css?v=50" />
 </head>
 <body>
 
@@ -110,22 +110,11 @@
         <source srcset="assets/images/portada.webp?v=1" type="image/webp" />
         <img src="assets/images/portada.png?v=1" alt="Polaroid de Mirna y José Miguel bailando en la playa al atardecer, rodeada de flores tropicales, conchas y un listón coral" loading="eager" width="1366" height="768" />
       </picture>
-      <p class="cover__names" aria-hidden="true">Mirna Be<br /><span class="cover__amp">&amp;</span><br />José Miguel</p>
+      <div class="cover__title" aria-hidden="true">
+        <p class="cover__names">Mirna Be<br /><span class="cover__amp">&amp;</span><br />José Miguel</p>
+        <div class="cover__divider"></div>
+      </div>
       <p class="cover__meta" data-i18n="cover.meta">16 DE ENERO, 2027<br />PUERTO VALLARTA, JALISCO</p>
-    </div>
-  </section>
-
-  <!--
-    1b. NAMES BANNER — new section right below Cover, per client request:
-    same look as the og-image thumbnail she liked (bone bg, serif names,
-    terracotta divider, tracked-caps date/place). Cover itself is
-    untouched — this is its own block, not merged into it.
-  -->
-  <section id="names-banner" class="section names-banner">
-    <div class="section-inner">
-      <p class="names-banner__names">Mirna Be <br class="names-banner__break" />&amp; <br class="names-banner__break" />José Miguel</p>
-      <div class="names-banner__divider"></div>
-      <p class="names-banner__meta" data-i18n="namesBanner.meta">16 DE ENERO, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO</p>
     </div>
   </section>
 
@@ -619,7 +608,7 @@
   </a>
 </footer>
 
-<script src="js/i18n.js?v=18"></script>
+<script src="js/i18n.js?v=19"></script>
 <script type="module" src="js/rsvp.js?v=5"></script>
 <script type="module" src="js/advice.js?v=1"></script>
 <script src="js/hotels.js?v=3"></script>

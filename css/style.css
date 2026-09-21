@@ -1370,7 +1370,7 @@ h1, h2, h3 {
 /* Atlas Tech & Design cube in the nav: a light tone of the header ink,
    so it half-blends in; terracotta on hover/focus. */
 .site-nav__list a.site-nav__atlas {
-  color: #BCAEB2;
+  color: #DCD3D6;
 }
 
 .site-nav__list a.site-nav__atlas:hover,

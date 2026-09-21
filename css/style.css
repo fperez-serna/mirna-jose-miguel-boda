@@ -382,9 +382,9 @@ h1, h2, h3 {
   position: relative;
   width: 100%;
   /* Also capped by viewport height so art + names + date always fit the
-     first screen on short desktop windows (stack is ~0.74x its width). */
-  max-width: min(900px, calc((100vh - 220px) / 0.74));
-  max-width: min(900px, calc((100svh - 220px) / 0.74));
+     first screen on short desktop windows (stack is ~0.8x its width). */
+  max-width: min(900px, calc((100vh - 220px) / 0.8));
+  max-width: min(900px, calc((100svh - 220px) / 0.8));
   container-type: inline-size;
 }
 
@@ -396,7 +396,7 @@ h1, h2, h3 {
    container-width units so it all scales with the art (min sizes keep
    phones readable). */
 .cover__names {
-  margin: clamp(-30px, -3cqw, -10px) 0 0;
+  margin: clamp(4px, 1.5cqw, 14px) 0 0;
   text-align: center;
   font-family: var(--font-display);
   font-weight: 500;

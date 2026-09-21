@@ -45,3 +45,11 @@ document.querySelectorAll('.gifts__copy').forEach((btn) => {
     }, 1800);
   });
 });
+
+/*
+  Always open at the very top (like scrolling all the way up) instead of
+  restoring a previous mid-page scroll position, unless the URL points at a
+  specific section (#hash).
+*/
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!location.hash) window.scrollTo(0, 0);

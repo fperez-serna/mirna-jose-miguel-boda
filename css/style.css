@@ -366,6 +366,11 @@ h1, h2, h3 {
   min-height: calc(100vh - var(--nav-height));
   min-height: calc(100svh - var(--nav-height));
   padding-bottom: 64px;
+  /* The sticky header already occupies the top 64px in flow, so the cover
+     sits at offsetTop = nav-height; a margin of the same size makes the
+     #cover anchor (the MB & JM home link) land at scrollY = 0 instead of
+     scrolling the group ~46px up under the header. */
+  scroll-margin-top: var(--nav-height);
 }
 
 /*

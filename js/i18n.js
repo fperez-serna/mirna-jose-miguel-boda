@@ -7,7 +7,7 @@
 
 const translations = {
   es: {
-    'footer.credit': 'Invitación hecha y desarrollada por Atlas Tech &amp; Design',
+    'footer.credit': 'Diseño y desarrollo por Atlas Tech &amp; Design',
     'nav.itinerary': 'Itinerario',
     'nav.rsvp': 'RSVP',
     'nav.hotels': 'Hospedaje',
@@ -133,7 +133,7 @@ const translations = {
     'faq.a12': '<p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><span>Día: alrededor de 27–29 °C (81–84 °F)</span></p><p class="faq__weather-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><span>Noche: aproximadamente 17–19 °C (63–66 °F)</span></p>',
   },
   en: {
-    'footer.credit': 'Invitation made and powered by Atlas Tech &amp; Design',
+    'footer.credit': 'Design and development by Atlas Tech &amp; Design',
     'nav.itinerary': 'Itinerary',
     'nav.rsvp': 'RSVP',
     'nav.hotels': 'Hotels',

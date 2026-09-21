@@ -27,7 +27,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=48" />
+<link rel="stylesheet" href="css/style.css?v=49" />
 </head>
 <body>
 
@@ -101,6 +101,18 @@
   -->
   <section id="cover" class="section">
     <h1 class="visually-hidden">Mirna Be &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
+    <!-- Transparent 16:9 artwork (client-supplied, 2026-09-21) with the
+         names top-right and date/place bottom-left as real text, placed
+         by percentage over the empty areas of the art so they scale with
+         it (see .cover__* in css/style.css). -->
+    <div class="cover__art">
+      <picture>
+        <source srcset="assets/images/portada.webp?v=1" type="image/webp" />
+        <img src="assets/images/portada.png?v=1" alt="Polaroid de Mirna y José Miguel bailando en la playa al atardecer, rodeada de flores tropicales, conchas y un listón coral" loading="eager" width="1366" height="768" />
+      </picture>
+      <p class="cover__names" aria-hidden="true">Mirna Be<br /><span class="cover__amp">&amp;</span><br />José Miguel</p>
+      <p class="cover__meta" data-i18n="cover.meta">16 DE ENERO, 2027<br />PUERTO VALLARTA, JALISCO</p>
+    </div>
   </section>
 
   <!--
@@ -607,7 +619,7 @@
   </a>
 </footer>
 
-<script src="js/i18n.js?v=17"></script>
+<script src="js/i18n.js?v=18"></script>
 <script type="module" src="js/rsvp.js?v=5"></script>
 <script type="module" src="js/advice.js?v=1"></script>
 <script src="js/hotels.js?v=3"></script>

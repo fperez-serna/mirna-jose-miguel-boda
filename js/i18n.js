@@ -16,6 +16,7 @@ const translations = {
     'nav.gallery': 'Galería',
 
     'cover.eyebrow': 'Nos casamos',
+    'cover.meta': '16 DE ENERO, 2027<br />PUERTO VALLARTA, JALISCO',
     'cover.date': '16 de enero, 2027',
     'cover.city': 'Puerto Vallarta, Jalisco',
     'namesBanner.meta': '16 DE ENERO, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',
@@ -142,6 +143,7 @@ const translations = {
     'nav.gallery': 'Gallery',
 
     'cover.eyebrow': "We're getting married",
+    'cover.meta': 'JANUARY 16TH, 2027<br />PUERTO VALLARTA, JALISCO',
     'cover.date': 'January 16th, 2027',
     'cover.city': 'Puerto Vallarta, Jalisco',
     'namesBanner.meta': 'JANUARY 16TH, 2027<br class="names-banner__break" /> PUERTO VALLARTA, JALISCO',

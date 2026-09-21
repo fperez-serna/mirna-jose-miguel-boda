@@ -370,8 +370,48 @@ h1, h2, h3 {
   middle of the screen.
 */
 .cover__art {
+  position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
+  container-type: inline-size;
+}
+
+/* Text sits over the empty corners of the artwork; positions are
+   percentages of the art and font sizes are container-width units, so
+   everything scales together (min sizes keep it readable on phones). */
+.cover__names {
+  position: absolute;
+  left: 73%;
+  top: 12%;
+  transform: translateX(-50%);
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(15px, 5cqw, 46px);
+  line-height: 1.08;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.cover__amp {
+  font-size: 0.85em;
+}
+
+.cover__meta {
+  position: absolute;
+  left: 28%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(10px, 2.3cqw, 21px);
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--color-ink);
+  white-space: nowrap;
 }
 
 .cover__art img {

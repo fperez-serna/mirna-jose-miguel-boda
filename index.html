@@ -27,7 +27,7 @@
 
 <!-- Bump every ?v= below on any CSS/JS change — GitHub Pages/browsers
      cache these aggressively, which caused a stale-CSS bug once already. -->
-<link rel="stylesheet" href="css/style.css?v=55" />
+<link rel="stylesheet" href="css/style.css?v=56" />
 </head>
 <body>
 
@@ -101,10 +101,10 @@
   -->
   <section id="cover" class="section">
     <h1 class="visually-hidden">Mirna Be &amp; José Miguel — 16 de enero, 2027, Puerto Vallarta, Jalisco</h1>
-    <!-- Transparent 16:9 artwork (client-supplied, 2026-09-21) with the
-         names top-right and date/place bottom-left as real text, placed
-         by percentage over the empty areas of the art so they scale with
-         it (see .cover__* in css/style.css). -->
+    <!-- Transparent 16:9 artwork (client-supplied, 2026-09-21). Below it,
+         as real text: names on one line, terracotta divider, date/place.
+         The section fills the first screen with everything centered and a
+         blinking scroll cue (see #cover / .cover__* in css/style.css). -->
     <div class="cover__art">
       <picture>
         <source srcset="assets/images/portada.webp?v=2" type="image/webp" />
@@ -114,6 +114,10 @@
       <div class="cover__divider"></div>
       <p class="cover__meta" data-i18n="cover.meta">16 DE ENERO, 2027 &nbsp;&middot;&nbsp; PUERTO VALLARTA, JALISCO</p>
     </div>
+
+    <a class="cover__scroll" href="#details" aria-label="Seguir bajando">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </a>
   </section>
 
   <!-- 2. DETAILS =========================================================== -->

@@ -353,10 +353,19 @@ h1, h2, h3 {
    Cover
    ========================================================================== */
 
+/* First screen: the cover fills the viewport below the sticky header and
+   its content is centered, so the next section never peeks in (client
+   request 2026-09-21). svh (small viewport height) so mobile browser
+   toolbars don't push it off-screen; vh is the fallback. */
 #cover {
+  position: relative;
   background: var(--color-bone);
   display: flex;
+  align-items: center;
   justify-content: center;
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100svh - var(--nav-height));
+  padding-bottom: 64px;
 }
 
 /*
@@ -372,7 +381,10 @@ h1, h2, h3 {
 .cover__art {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  /* Also capped by viewport height so art + names + date always fit the
+     first screen on short desktop windows (stack is ~0.74x its width). */
+  max-width: min(900px, calc((100vh - 220px) / 0.74));
+  max-width: min(900px, calc((100svh - 220px) / 0.74));
   container-type: inline-size;
 }
 
@@ -1361,4 +1373,33 @@ h1, h2, h3 {
 .site-nav__list a.site-nav__atlas:hover,
 .site-nav__list a.site-nav__atlas:focus {
   color: var(--color-terracotta);
+}
+
+/* Blinking scroll cue at the bottom of the cover */
+.cover__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 8px;
+  color: var(--color-terracotta);
+  animation: cover-scroll-cue 1.8s ease-in-out infinite;
+}
+
+.cover__scroll:hover,
+.cover__scroll:focus {
+  color: var(--color-sienna);
+}
+
+@keyframes cover-scroll-cue {
+  0%, 100% { opacity: 0.25; transform: translate(-50%, 0); }
+  50% { opacity: 1; transform: translate(-50%, 6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover__scroll {
+    animation: none;
+    opacity: 0.7;
+  }
 }

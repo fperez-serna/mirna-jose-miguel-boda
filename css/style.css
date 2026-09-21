@@ -1342,3 +1342,27 @@ h1, h2, h3 {
     order: 2;
   }
 }
+
+/* ==========================================================================
+   Footer credit — small and discreet
+   ========================================================================== */
+
+.site-footer {
+  padding: 20px var(--section-pad-x) 28px;
+  text-align: center;
+  border-top: 1px solid rgba(33, 30, 27, 0.08);
+}
+
+.site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: rgba(33, 30, 27, 0.5);
+}
+
+.site-footer__link:hover,
+.site-footer__link:focus {
+  color: var(--color-terracotta);
+}

@@ -1359,7 +1359,7 @@ h1, h2, h3 {
   gap: 6px;
   font-size: 13px;
   letter-spacing: 0.03em;
-  color: rgba(33, 30, 27, 0.5);
+  color: rgba(33, 30, 27, 0.78);
 }
 
 .site-footer__link:hover,

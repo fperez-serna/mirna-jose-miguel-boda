@@ -1420,3 +1420,36 @@ h1, h2, h3 {
     margin: clamp(22px, 4.2cqw, 40px) auto;
   }
 }
+
+/* Phones: names stacked (Mirna Be / & / José Miguel) at a size where
+   "José Miguel" spans nearly the full width, then the divider, then
+   place and date each on its own line (client layout, 2026-09-21). */
+@media (max-width: 719px) {
+  .cover__names {
+    font-size: 16cqw;
+    line-height: 1.02;
+    margin-top: 2cqw;
+  }
+
+  .cover__names span {
+    display: block;
+  }
+
+  .cover__amp {
+    font-size: 0.7em;
+    line-height: 1.1;
+  }
+
+  .cover__meta {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 6px;
+    font-size: clamp(13px, 4.4cqw, 20px);
+    letter-spacing: 0.1em;
+  }
+
+  .cover__dot {
+    display: none;
+  }
+}

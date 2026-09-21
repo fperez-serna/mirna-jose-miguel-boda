@@ -407,7 +407,7 @@ h1, h2, h3 {
   width: clamp(24px, 6cqw, 56px);
   height: 2px;
   background: var(--color-terracotta);
-  margin: clamp(6px, 1.6cqw, 14px) auto 0;
+  margin: clamp(9px, 2.6cqw, 22px) auto 0;
 }
 
 .cover__meta {

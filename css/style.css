@@ -1403,3 +1403,12 @@ h1, h2, h3 {
     opacity: 0.7;
   }
 }
+
+/* Desktop only: nudge the cover group (art + names + date) up a bit so it
+   sits higher on the first screen. transform doesn't affect layout, so the
+   section keeps its full height and Detalles stays below the fold. */
+@media (min-width: 720px) {
+  .cover__art {
+    transform: translateY(clamp(-64px, -7vh, -24px));
+  }
+}

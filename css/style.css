@@ -1366,3 +1366,14 @@ h1, h2, h3 {
 .site-footer__link:focus {
   color: var(--color-terracotta);
 }
+
+/* Atlas Tech & Design cube in the nav: a light tone of the header ink,
+   so it half-blends in; terracotta on hover/focus. */
+.site-nav__list a.site-nav__atlas {
+  color: #9A8389;
+}
+
+.site-nav__list a.site-nav__atlas:hover,
+.site-nav__list a.site-nav__atlas:focus {
+  color: var(--color-terracotta);
+}

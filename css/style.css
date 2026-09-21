@@ -224,23 +224,11 @@ h1, h2, h3 {
   gap: 12px;
 }
 
-.header-tools {
+.lang-toggle {
   position: fixed;
   top: calc(var(--nav-height) + 10px);
   right: 16px;
   z-index: 98;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-@media (min-width: 480px) {
-  .header-tools {
-    right: var(--section-pad-x);
-  }
-}
-
-.lang-toggle {
   background: var(--color-bone);
   border: 1px solid rgba(33, 30, 27, 0.2);
   border-radius: 20px;
@@ -251,6 +239,12 @@ h1, h2, h3 {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--color-ink);
+}
+
+@media (min-width: 480px) {
+  .lang-toggle {
+    right: var(--section-pad-x);
+  }
 }
 
 .lang-toggle span {
@@ -1373,15 +1367,13 @@ h1, h2, h3 {
   color: var(--color-terracotta);
 }
 
-/* Atlas Tech & Design cube next to the language toggle: a very light
-   tone of the header ink so it half-blends in; terracotta on hover. */
-.header-tools__atlas {
-  display: inline-flex;
-  align-items: center;
-  color: #BCAEB2;
+/* Atlas Tech & Design cube in the nav: a light tone of the header ink,
+   so it half-blends in; terracotta on hover/focus. */
+.site-nav__list a.site-nav__atlas {
+  color: #9A8389;
 }
 
-.header-tools__atlas:hover,
-.header-tools__atlas:focus {
+.site-nav__list a.site-nav__atlas:hover,
+.site-nav__list a.site-nav__atlas:focus {
   color: var(--color-terracotta);
 }

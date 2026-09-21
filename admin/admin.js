@@ -4,7 +4,7 @@ import {
   setPersistence, browserLocalPersistence, browserSessionPersistence,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import {
-  collection, getDocs, doc, writeBatch, serverTimestamp, query, orderBy,
+  collection, getDocs, doc, runTransaction, serverTimestamp, query, orderBy,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 
 /* Fixed internal login identity — Mirna only ever types a password (see
@@ -41,6 +41,15 @@ const els = {
   editConfirmados: document.getElementById('editConfirmados'),
   editComentario: document.getElementById('editComentario'),
   editMaxPases: document.getElementById('editMaxPases'),
+  editNombre: document.getElementById('editNombre'),
+  editPases: document.getElementById('editPases'),
+  editNinos: document.getElementById('editNinos'),
+  editTelefono: document.getElementById('editTelefono'),
+  editNotas: document.getElementById('editNotas'),
+  modalTitle: document.getElementById('adminModalTitle'),
+  modalDelete: document.getElementById('adminModalDelete'),
+  addGuest: document.getElementById('adminAddGuest'),
+  exportCsv: document.getElementById('adminExportCsv'),
   toggleAdvice: document.getElementById('adminToggleAdvice'),
   adviceModal: document.getElementById('adviceModal'),
   adviceModalBackdrop: document.getElementById('adviceModalBackdrop'),
@@ -233,7 +242,7 @@ function renderTable() {
 
     const tdPases = document.createElement('td');
     tdPases.setAttribute('data-label', 'Pases');
-    tdPases.textContent = g.pases_maximos;
+    tdPases.textContent = g.ninos_maximos ? `${g.pases_maximos} (${g.ninos_maximos} ${g.ninos_maximos === 1 ? 'niño' : 'niños'})` : g.pases_maximos;
     tr.appendChild(tdPases);
 
     const tdEstado = document.createElement('td');
@@ -308,24 +317,58 @@ els.sort.addEventListener('change', () => {
 });
 
 /* ============================================================
-   Edit modal — rsvp_estado / asistentes_confirmados /
-   rsvp_comentario only. document_id, nombre, pases_maximos are
-   never editable from here.
+   Edit / add / delete guest.
+
+   The admin panel is the source of truth for the guest list (the old
+   Excel is no longer used). Every write keeps three places in sync:
+     guests/{id}        full record (admin-only)
+     rsvp_public/{id}   what the public RSVP flow reads/writes
+     search_index/public single doc with {id, nombre_busqueda,
+                        nombre_mostrar, pases_maximos, ninos_maximos}
+                        per guest — this is what the public name
+                        search matches against, so a rename/add/
+                        delete here shows up for guests on their
+                        next page load.
+   All three are changed in ONE transaction so they can't drift.
    ============================================================ */
 
+let isAddMode = false;
+
+function stripAccents(str) {
+  return str.normalize('NFD').replace(/\p{Mn}/gu, '');
+}
+
+function nextGuestId() {
+  const nums = allGuests
+    .map((g) => /^INV-(\d+)$/.exec(g.id))
+    .filter(Boolean)
+    .map((m) => Number(m[1]));
+  const next = (nums.length ? Math.max(...nums) : 0) + 1;
+  return `INV-${String(next).padStart(3, '0')}`;
+}
+
 function openEditModal(guest, triggerBtn) {
-  editingId = guest.id;
+  isAddMode = !guest;
+  editingId = guest ? guest.id : null;
   lastFocusedEditBtn = triggerBtn || null;
-  els.modalName.textContent = `${guest.nombre_mostrar} · máx. ${guest.pases_maximos} pases`;
-  els.editEstado.value = guest.rsvp_estado || 'PENDIENTE';
-  els.editConfirmados.value = guest.asistentes_confirmados ?? 0;
-  els.editConfirmados.max = guest.pases_maximos;
-  els.editMaxPases.textContent = guest.pases_maximos;
-  els.editComentario.value = guest.rsvp_comentario || '';
+
+  els.modalTitle.textContent = isAddMode ? 'Agregar invitado' : 'Editar invitado';
+  els.modalName.textContent = isAddMode ? 'Nueva invitación' : guest.nombre_mostrar;
+  els.modalDelete.hidden = isAddMode;
+
+  els.editNombre.value = guest ? guest.nombre_mostrar : '';
+  els.editPases.value = guest ? guest.pases_maximos : 1;
+  els.editNinos.value = guest ? (guest.ninos_maximos || 0) : 0;
+  els.editTelefono.value = guest ? (guest.telefono || '') : '';
+  els.editNotas.value = guest ? (guest.notas_invitacion || '') : '';
+  els.editEstado.value = guest ? (guest.rsvp_estado || 'PENDIENTE') : 'PENDIENTE';
+  els.editConfirmados.value = guest ? (guest.asistentes_confirmados ?? 0) : 0;
+  els.editComentario.value = guest ? (guest.rsvp_comentario || '') : '';
+  syncPasesLabel();
   syncConfirmadosField();
   els.modalError.hidden = true;
   els.modal.hidden = false;
-  els.editEstado.focus();
+  els.editNombre.focus();
   document.body.style.overflow = 'hidden';
 }
 
@@ -333,7 +376,14 @@ function closeEditModal() {
   els.modal.hidden = true;
   document.body.style.overflow = '';
   editingId = null;
+  isAddMode = false;
   if (lastFocusedEditBtn) lastFocusedEditBtn.focus();
+}
+
+function syncPasesLabel() {
+  const pases = Number(els.editPases.value) || 0;
+  els.editMaxPases.textContent = pases;
+  els.editConfirmados.max = pases;
 }
 
 function syncConfirmadosField() {
@@ -347,6 +397,8 @@ function syncConfirmadosField() {
 }
 
 els.editEstado.addEventListener('change', syncConfirmadosField);
+els.editPases.addEventListener('input', syncPasesLabel);
+els.addGuest.addEventListener('click', () => openEditModal(null, els.addGuest));
 els.modalClose.addEventListener('click', closeEditModal);
 els.modalCancel.addEventListener('click', closeEditModal);
 els.modalBackdrop.addEventListener('click', closeEditModal);
@@ -354,51 +406,167 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && !els.modal.hidden) closeEditModal();
 });
 
+function showModalError(msg) {
+  els.modalError.hidden = false;
+  els.modalError.textContent = msg;
+}
+
+function saveErrorMessage() {
+  return navigator.onLine
+    ? 'No se pudo guardar. Intenta de nuevo.'
+    : 'Sin conexión. Revisa tu internet e intenta de nuevo.';
+}
+
 els.editForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (!editingId) return;
-  const guest = allGuests.find((g) => g.id === editingId);
-  if (!guest) return;
+  els.modalError.hidden = true;
 
+  const nombre = els.editNombre.value.trim().replace(/\s+/g, ' ');
+  const pases = Number(els.editPases.value);
+  const ninos = Number(els.editNinos.value || 0);
   const estado = els.editEstado.value;
   let confirmados = Number(els.editConfirmados.value);
   if (estado !== 'CONFIRMADO') confirmados = 0;
-  if (!Number.isInteger(confirmados) || confirmados < 0 || confirmados > guest.pases_maximos) {
-    els.modalError.hidden = false;
-    els.modalError.textContent = `Las personas confirmadas deben estar entre 0 y ${guest.pases_maximos}.`;
-    return;
+
+  if (!nombre) return showModalError('Escribe el nombre del invitado.');
+  if (!Number.isInteger(pases) || pases < 1 || pases > 20) return showModalError('Los pases deben ser un número entre 1 y 20.');
+  if (!Number.isInteger(ninos) || ninos < 0 || ninos > pases - 1) {
+    return showModalError('Los niños deben ser un número entre 0 y los pases menos 1 (siempre hay al menos un adulto).');
   }
+  if (!Number.isInteger(confirmados) || confirmados < 0 || confirmados > pases) {
+    return showModalError(`Las personas confirmadas deben estar entre 0 y ${pases}.`);
+  }
+  const nombreMostrar = nombre.toUpperCase();
+  const nombreBusqueda = stripAccents(nombreMostrar);
+  const dup = allGuests.find((g) => g.id !== editingId && stripAccents(g.nombre_mostrar.toUpperCase()) === nombreBusqueda);
+  if (dup) return showModalError('Ya existe un invitado con ese nombre exacto. Agrega un apellido o distintivo para que el buscador no los confunda.');
+
+  const telefono = els.editTelefono.value.trim() || null;
+  const notas = els.editNotas.value.trim() || null;
   const comentario = els.editComentario.value.trim() || null;
+
+  const existing = editingId ? allGuests.find((g) => g.id === editingId) : null;
+  const id = editingId || nextGuestId();
 
   const saveBtn = document.getElementById('adminModalSave');
   saveBtn.disabled = true;
   saveBtn.textContent = 'Guardando…';
 
   try {
-    const batch = writeBatch(db);
-    const update = {
-      rsvp_estado: estado,
-      asistentes_confirmados: confirmados,
-      rsvp_comentario: comentario,
-      rsvp_actualizado: serverTimestamp(),
-    };
-    batch.update(doc(db, 'guests', editingId), update);
-    batch.update(doc(db, 'rsvp_public', editingId), update);
-    await batch.commit();
+    await runTransaction(db, async (tx) => {
+      const searchRef = doc(db, 'search_index', 'public');
+      const searchSnap = await tx.get(searchRef);
+      const entries = searchSnap.exists() ? [...(searchSnap.data().entries || [])] : [];
 
-    Object.assign(guest, update, { rsvp_actualizado: { toDate: () => new Date(), toMillis: () => Date.now() } });
-    renderMetrics();
-    renderTable();
+      const meta = {
+        nombre_mostrar: nombreMostrar,
+        nombre_busqueda: nombreBusqueda,
+        pases_maximos: pases,
+        ninos_maximos: ninos,
+        telefono,
+        notas_invitacion: notas,
+      };
+      const rsvpChanged = !existing
+        || existing.rsvp_estado !== estado
+        || (existing.asistentes_confirmados ?? 0) !== confirmados
+        || (existing.rsvp_comentario || null) !== comentario;
+      const rsvp = {
+        rsvp_estado: estado,
+        asistentes_confirmados: confirmados,
+        rsvp_comentario: comentario,
+      };
+      if (rsvpChanged) rsvp.rsvp_actualizado = serverTimestamp();
+
+      const guestRef = doc(db, 'guests', id);
+      const publicRef = doc(db, 'rsvp_public', id);
+      const publicMeta = { pases_maximos: pases, ninos_maximos: ninos };
+
+      if (existing) {
+        tx.update(guestRef, { ...meta, ...rsvp });
+        tx.update(publicRef, { ...publicMeta, ...rsvp });
+      } else {
+        tx.set(guestRef, { ...meta, ...rsvp, rsvp_actualizado: rsvp.rsvp_actualizado || null });
+        tx.set(publicRef, { ...publicMeta, ...rsvp, rsvp_actualizado: rsvp.rsvp_actualizado || null });
+      }
+
+      const entry = {
+        id,
+        nombre_busqueda: nombreBusqueda,
+        nombre_mostrar: nombreMostrar,
+        pases_maximos: pases,
+        ninos_maximos: ninos,
+      };
+      const idx = entries.findIndex((en) => en.id === id);
+      if (idx >= 0) entries[idx] = entry; else entries.push(entry);
+      tx.set(searchRef, { entries, updated_at: serverTimestamp() });
+    });
+
     closeEditModal();
+    await loadGuests();
   } catch (err) {
-    els.modalError.hidden = false;
-    els.modalError.textContent = navigator.onLine
-      ? 'No se pudo guardar. Intenta de nuevo.'
-      : 'Sin conexión. Revisa tu internet e intenta de nuevo.';
+    showModalError(saveErrorMessage());
   } finally {
     saveBtn.disabled = false;
     saveBtn.textContent = 'Guardar';
   }
+});
+
+els.modalDelete.addEventListener('click', async () => {
+  if (!editingId) return;
+  const guest = allGuests.find((g) => g.id === editingId);
+  if (!guest) return;
+  const responded = guest.rsvp_estado && guest.rsvp_estado !== 'PENDIENTE';
+  const msg = `¿Borrar a ${guest.nombre_mostrar}?${responded ? '\n\nEsta invitación ya tiene una respuesta registrada, que también se borrará.' : ''}\n\nNo se puede deshacer.`;
+  if (!window.confirm(msg)) return;
+
+  els.modalDelete.disabled = true;
+  try {
+    await runTransaction(db, async (tx) => {
+      const searchRef = doc(db, 'search_index', 'public');
+      const searchSnap = await tx.get(searchRef);
+      const entries = (searchSnap.exists() ? searchSnap.data().entries || [] : []).filter((en) => en.id !== guest.id);
+      tx.delete(doc(db, 'guests', guest.id));
+      tx.delete(doc(db, 'rsvp_public', guest.id));
+      tx.set(searchRef, { entries, updated_at: serverTimestamp() });
+    });
+    closeEditModal();
+    await loadGuests();
+  } catch (err) {
+    showModalError(saveErrorMessage());
+  } finally {
+    els.modalDelete.disabled = false;
+  }
+});
+
+/* ============================================================
+   Export CSV — every guest (not just the current filter), with the
+   merged live RSVP state. UTF-8 BOM so Excel opens accents correctly.
+   ============================================================ */
+
+function csvCell(v) {
+  const s = v == null ? '' : String(v);
+  return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+
+els.exportCsv.addEventListener('click', () => {
+  const header = ['ID', 'Nombre', 'Pases máximos', 'Niños', 'Estado', 'Personas confirmadas', 'Teléfono', 'Notas', 'Comentario', 'Última actualización'];
+  const rows = [...allGuests]
+    .sort((a, b) => a.nombre_mostrar.localeCompare(b.nombre_mostrar, 'es'))
+    .map((g) => [
+      g.id, g.nombre_mostrar, g.pases_maximos, g.ninos_maximos || 0,
+      ESTADO_LABEL[g.rsvp_estado] || g.rsvp_estado, g.asistentes_confirmados ?? 0,
+      g.telefono, g.notas_invitacion, g.rsvp_comentario,
+      g.rsvp_actualizado ? formatDate(g.rsvp_actualizado) : '',
+    ]);
+  const csv = '﻿' + [header, ...rows].map((r) => r.map(csvCell).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `invitados-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 });
 
 /* ============================================================

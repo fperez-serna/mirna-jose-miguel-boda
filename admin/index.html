@@ -13,7 +13,7 @@
      the script/serif combo hard to read on a data-heavy utility page. -->
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../css/style.css?v=43" />
-<link rel="stylesheet" href="admin.css?v=9" />
+<link rel="stylesheet" href="admin.css?v=10" />
 </head>
 <body class="admin-body">
 
@@ -47,6 +47,8 @@
   <header class="admin-dash__header">
     <h1>Panel de la boda</h1>
     <div class="admin-dash__header-actions">
+      <button type="button" class="admin-dash__toggle-advice" id="adminAddGuest" aria-haspopup="dialog" aria-controls="adminModal">Agregar invitado</button>
+      <button type="button" class="admin-dash__toggle-advice" id="adminExportCsv">Exportar CSV</button>
       <button type="button" class="admin-dash__toggle-advice" id="adminToggleAdvice" aria-haspopup="dialog" aria-controls="adviceModal">Ver consejos</button>
       <button type="button" class="admin-dash__logout" id="adminLogout">Cerrar sesión</button>
     </div>
@@ -112,26 +114,53 @@
   <div class="admin-modal__backdrop" id="adminModalBackdrop"></div>
   <div class="admin-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
     <button type="button" class="admin-modal__close" id="adminModalClose" aria-label="Cerrar">×</button>
-    <h2 class="admin-modal__title" id="adminModalTitle">Editar respuesta</h2>
+    <h2 class="admin-modal__title" id="adminModalTitle">Editar invitado</h2>
     <p class="admin-modal__name" id="adminModalName"></p>
 
     <form id="adminEditForm">
-      <label for="editEstado">Estado</label>
-      <select id="editEstado" name="estado">
-        <option value="PENDIENTE">Pendiente</option>
-        <option value="CONFIRMADO">Confirmado</option>
-        <option value="NO_ASISTE">No asiste</option>
-      </select>
+      <fieldset class="admin-modal__group">
+        <legend>Invitación</legend>
+        <label for="editNombre">Nombre completo</label>
+        <input type="text" id="editNombre" name="nombre" required maxlength="80" autocomplete="off" />
 
-      <label for="editConfirmados">Personas confirmadas (máx. <span id="editMaxPases"></span>)</label>
-      <input type="number" id="editConfirmados" name="confirmados" min="0" step="1" />
+        <div class="admin-modal__row">
+          <div>
+            <label for="editPases">Pases máximos</label>
+            <input type="number" id="editPases" name="pases" min="1" max="20" step="1" required />
+          </div>
+          <div>
+            <label for="editNinos">De ellos, niños</label>
+            <input type="number" id="editNinos" name="ninos" min="0" max="19" step="1" />
+          </div>
+        </div>
 
-      <label for="editComentario">Comentario</label>
-      <textarea id="editComentario" name="comentario" rows="3"></textarea>
+        <label for="editTelefono">Teléfono</label>
+        <input type="text" id="editTelefono" name="telefono" maxlength="30" autocomplete="off" />
+
+        <label for="editNotas">Notas de la invitación</label>
+        <input type="text" id="editNotas" name="notas" maxlength="120" autocomplete="off" />
+      </fieldset>
+
+      <fieldset class="admin-modal__group">
+        <legend>Respuesta</legend>
+        <label for="editEstado">Estado</label>
+        <select id="editEstado" name="estado">
+          <option value="PENDIENTE">Pendiente</option>
+          <option value="CONFIRMADO">Confirmado</option>
+          <option value="NO_ASISTE">No asiste</option>
+        </select>
+
+        <label for="editConfirmados">Personas confirmadas (máx. <span id="editMaxPases"></span>)</label>
+        <input type="number" id="editConfirmados" name="confirmados" min="0" step="1" />
+
+        <label for="editComentario">Comentario</label>
+        <textarea id="editComentario" name="comentario" rows="3"></textarea>
+      </fieldset>
 
       <p class="admin-modal__error" id="adminModalError" hidden role="alert"></p>
 
       <div class="admin-modal__actions">
+        <button type="button" class="admin-modal__delete" id="adminModalDelete">Borrar invitado</button>
         <button type="button" class="admin-modal__cancel" id="adminModalCancel">Cancelar</button>
         <button type="submit" class="admin-modal__save" id="adminModalSave">Guardar</button>
       </div>
@@ -156,6 +185,6 @@
   </div>
 </div>
 
-<script type="module" src="admin.js?v=8"></script>
+<script type="module" src="admin.js?v=9"></script>
 </body>
 </html>

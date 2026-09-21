@@ -590,3 +590,52 @@
 .admin-modal__save:hover {
   background: var(--color-sienna);
 }
+
+/* Edit/add guest modal: grouped fields + delete action */
+.admin-modal__group {
+  border: 1px solid rgba(33, 30, 27, 0.15);
+  border-radius: 8px;
+  padding: 4px 14px 14px;
+  margin: 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-modal__group legend {
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(33, 30, 27, 0.55);
+}
+
+.admin-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.admin-modal__row label {
+  display: block;
+}
+
+.admin-modal__delete {
+  margin-right: auto;
+  padding: 10px 14px;
+  border: 1px solid #b3261e;
+  border-radius: 6px;
+  color: #b3261e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.admin-modal__delete:hover {
+  background: #b3261e;
+  color: var(--color-white);
+}
+
+.admin-modal__dialog {
+  width: min(460px, 92vw);
+}

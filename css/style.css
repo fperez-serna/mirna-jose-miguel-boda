@@ -445,23 +445,6 @@ h1, h2, h3 {
   white-space: nowrap;
 }
 
-/* Leaf sprig under the date/place — sized to roughly match that text's
-   own width (measured against the container, same cqw basis) rather
-   than the date/place element itself, since nowrap text's width isn't
-   something CSS can hand to a sibling directly. */
-.cover__frame {
-  display: block;
-  width: 64%;
-  height: auto;
-  margin: clamp(10px, 2cqw, 20px) auto 0;
-}
-
-/* Scoped to the wrapper around the main photo specifically — NOT just
-   ".cover__art img", which would also match .cover__frame (also an
-   <img> inside .cover__art) and, being more specific than
-   ".cover__frame" alone, silently overrode its width/margin no matter
-   what they were set to. This was the actual bug behind the frame
-   never shrinking (2026-09-22), not a caching issue. */
 .cover__art-img img {
   display: block;
   width: 100%;
@@ -1454,20 +1437,9 @@ h1, h2, h3 {
     margin: clamp(22px, 4.2cqw, 40px) auto;
   }
 
-  /* Same as .cover__frame's margin-top below, so the whole names +
-     date/place block sits with equal space above and below it —
-     centered as a whole between the flowers and the frame (client
-     request, 2026-09-22, web — was clamp(16,3cqw,30)). */
+  /* A bit more space between the flowers and the names, web only. */
   .cover__names {
-    margin-top: 10px;
-  }
-
-  /* Web: fixed 10px gap and clearly shorter than the date/place line
-     Fixed 400px per client request, 2026-09-22 (was 26%; still well
-     under the ~477px date/place line at typical desktop widths). */
-  .cover__frame {
-    width: 400px;
-    margin-top: 10px;
+    margin-top: clamp(16px, 3cqw, 30px);
   }
 }
 
@@ -1478,11 +1450,7 @@ h1, h2, h3 {
   .cover__names {
     font-size: 15.4cqw;
     line-height: 1.02;
-    /* Same as .cover__frame's margin-top below, so the whole names +
-       date/place block sits with equal space above and below it —
-       "centered" between the flowers and the frame (client request,
-       2026-09-22, was 2cqw). */
-    margin-top: 8px;
+    margin-top: 2cqw;
   }
 
   .cover__names span {
@@ -1509,11 +1477,5 @@ h1, h2, h3 {
 
   .cover__dot {
     display: none;
-  }
-
-  /* Still closer (client request, 2026-09-22 — was 0.5cqw); size
-     unchanged. */
-  .cover__frame {
-    margin-top: 8px;
   }
 }

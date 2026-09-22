@@ -456,7 +456,13 @@ h1, h2, h3 {
   margin: clamp(10px, 2cqw, 20px) auto 0;
 }
 
-.cover__art img {
+/* Scoped to the wrapper around the main photo specifically — NOT just
+   ".cover__art img", which would also match .cover__frame (also an
+   <img> inside .cover__art) and, being more specific than
+   ".cover__frame" alone, silently overrode its width/margin no matter
+   what they were set to. This was the actual bug behind the frame
+   never shrinking (2026-09-22), not a caching issue. */
+.cover__art-img img {
   display: block;
   width: 100%;
   height: auto;

@@ -30,6 +30,7 @@ const els = {
   filters: document.getElementById('adminFilters'),
   search: document.getElementById('adminSearch'),
   sort: document.getElementById('adminSort'),
+  viewToggle: document.getElementById('adminViewToggle'),
   modal: document.getElementById('adminModal'),
   modalBackdrop: document.getElementById('adminModalBackdrop'),
   modalClose: document.getElementById('adminModalClose'),
@@ -61,7 +62,12 @@ const els = {
 };
 
 let allGuests = [];
-let state = { filter: 'TODOS', search: '', sort: 'nombre' };
+let state = {
+  filter: 'TODOS',
+  search: '',
+  sort: 'nombre',
+  compactMobile: localStorage.getItem('admin_compact_view') === '1',
+};
 let editingId = null;
 let lastFocusedEditBtn = null;
 
@@ -220,9 +226,16 @@ function getFiltered() {
   return sorted;
 }
 
+function applyCompactView() {
+  els.tableWrap.classList.toggle('is-compact', state.compactMobile);
+  els.viewToggle.setAttribute('aria-pressed', String(state.compactMobile));
+  els.viewToggle.textContent = state.compactMobile ? 'Vista completa' : 'Vista compacta';
+}
+
 function renderTable() {
   const list = getFiltered();
   els.tableBody.innerHTML = '';
+  applyCompactView();
 
   if (list.length === 0) {
     els.tableWrap.hidden = true;
@@ -234,8 +247,12 @@ function renderTable() {
 
   list.forEach((g) => {
     const tr = document.createElement('tr');
+    tr.addEventListener('click', () => {
+      if (state.compactMobile) openEditModal(g, editBtn);
+    });
 
     const tdName = document.createElement('td');
+    tdName.className = 'admin-td-nombre';
     tdName.setAttribute('data-label', 'Nombre');
     tdName.textContent = g.nombre_mostrar;
     tr.appendChild(tdName);
@@ -246,6 +263,7 @@ function renderTable() {
     tr.appendChild(tdPases);
 
     const tdEstado = document.createElement('td');
+    tdEstado.className = 'admin-td-estado';
     tdEstado.setAttribute('data-label', 'Estado');
     const badge = document.createElement('span');
     badge.className = `admin-status admin-status--${g.rsvp_estado}`;
@@ -289,7 +307,10 @@ function renderTable() {
     editBtn.type = 'button';
     editBtn.className = 'admin-edit-btn';
     editBtn.textContent = 'Editar';
-    editBtn.addEventListener('click', () => openEditModal(g, editBtn));
+    editBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEditModal(g, editBtn);
+    });
     tdEdit.appendChild(editBtn);
     tr.appendChild(tdEdit);
 
@@ -304,6 +325,12 @@ els.filters.querySelectorAll('.admin-filter').forEach((btn) => {
     state.filter = btn.getAttribute('data-filter');
     renderTable();
   });
+});
+
+els.viewToggle.addEventListener('click', () => {
+  state.compactMobile = !state.compactMobile;
+  localStorage.setItem('admin_compact_view', state.compactMobile ? '1' : '0');
+  applyCompactView();
 });
 
 els.search.addEventListener('input', () => {

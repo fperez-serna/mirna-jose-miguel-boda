@@ -198,6 +198,28 @@
   color: var(--color-terracotta);
 }
 
+/* Mobile: title takes the full width, the 4 action buttons wrap into
+   a tidy 2x2 grid below it instead of squeezing into the same row
+   (client request, 2026-09-22 — "se ve raro"). */
+@media (max-width: 640px) {
+  .admin-dash__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .admin-dash__header-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-dash__toggle-advice,
+  .admin-dash__logout {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* ==========================================================================
    Consejos de matrimonio
    ========================================================================== */
@@ -353,6 +375,30 @@
   font-size: 13px;
 }
 
+/* Mobile-only toggle between full cards and a compact name+status list
+   (client request, 2026-09-22). Hidden on desktop, where the table is
+   already compact. */
+.admin-view-toggle {
+  display: none;
+  border: 1px solid rgba(33, 30, 27, 0.25);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-view-toggle:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+@media (max-width: 720px) {
+  .admin-view-toggle {
+    display: inline-flex;
+  }
+}
+
 /* ==========================================================================
    Table (desktop) / cards (mobile)
    ========================================================================== */
@@ -478,6 +524,36 @@
     color: rgba(33, 30, 27, 0.5);
     font-weight: 700;
     text-align: left;
+  }
+
+  /* Compact list: just name + status, tap the row to edit (client
+     request, 2026-09-22 — "no ver las cajas grandotas"). */
+  .admin-table-wrap.is-compact .admin-table tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    cursor: pointer;
+  }
+
+  .admin-table-wrap.is-compact .admin-table td {
+    display: none;
+  }
+
+  .admin-table-wrap.is-compact .admin-table td.admin-td-nombre,
+  .admin-table-wrap.is-compact .admin-table td.admin-td-estado {
+    display: block;
+    padding: 0;
+  }
+
+  .admin-table-wrap.is-compact .admin-table td.admin-td-nombre::before,
+  .admin-table-wrap.is-compact .admin-table td.admin-td-estado::before {
+    content: none;
+  }
+
+  .admin-table-wrap.is-compact .admin-table td.admin-td-nombre {
+    font-weight: 600;
+    font-size: 15px;
   }
 }
 

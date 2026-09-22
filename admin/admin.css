@@ -341,7 +341,7 @@
 
 .admin-filter {
   border: 1px solid rgba(33, 30, 27, 0.25);
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 6px 14px;
   font-size: 13px;
   font-weight: 600;
@@ -377,15 +377,20 @@
 
 /* Mobile-only toggle between full cards and a compact name+status list
    (client request, 2026-09-22). Hidden on desktop, where the table is
-   already compact. */
+   already compact. Own sage-tinted background (reusing the CONFIRMADO
+   status color) so it reads as a different kind of action from the
+   plain status filters next to it (client request, 2026-09-22). */
 .admin-view-toggle {
   display: none;
-  border: 1px solid rgba(33, 30, 27, 0.25);
-  border-radius: 20px;
+  border: 1px solid rgba(166, 169, 79, 0.4);
+  border-radius: 6px;
   padding: 6px 14px;
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
+  background: rgba(166, 169, 79, 0.2);
+  color: #4d5424;
+  flex-shrink: 0;
 }
 
 .admin-view-toggle:hover {
@@ -396,6 +401,20 @@
 @media (max-width: 720px) {
   .admin-view-toggle {
     display: inline-flex;
+  }
+
+  /* All status filters + the view toggle stay on one horizontally
+     scrollable row on mobile instead of wrapping to multiple lines
+     (client request, 2026-09-22). */
+  .admin-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .admin-filter {
+    flex-shrink: 0;
   }
 }
 

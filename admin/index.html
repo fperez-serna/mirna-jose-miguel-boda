@@ -15,7 +15,7 @@
      the script/serif combo hard to read on a data-heavy utility page. -->
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../css/style.css?v=43" />
-<link rel="stylesheet" href="admin.css?v=11" />
+<link rel="stylesheet" href="admin.css?v=12" />
 </head>
 <body class="admin-body">
 
@@ -72,6 +72,13 @@
       <button type="button" class="admin-filter" data-filter="CONFIRMADO">Confirmados</button>
       <button type="button" class="admin-filter" data-filter="NO_ASISTE">No asistirán</button>
       <button type="button" class="admin-filter" data-filter="PENDIENTE">Pendientes</button>
+      <!-- Mobile only (hidden on desktop via CSS) — switches the guest
+           cards to a compact name + status list (client request,
+           2026-09-22: "no ver las cajas grandotas"). Lives in the same
+           row as the status filters, with its own background so it
+           reads as a different kind of button (client request,
+           2026-09-22). -->
+      <button type="button" class="admin-view-toggle" id="adminViewToggle" aria-pressed="false">Vista compacta</button>
     </div>
     <div class="admin-search">
       <label for="adminSearch" class="visually-hidden">Buscar por nombre</label>
@@ -86,10 +93,6 @@
         <option value="confirmados">Personas confirmadas</option>
       </select>
     </div>
-    <!-- Mobile only (hidden on desktop via CSS) — switches the guest
-         cards to a compact name + status list (client request,
-         2026-09-22: "no ver las cajas grandotas"). -->
-    <button type="button" class="admin-view-toggle" id="adminViewToggle" aria-pressed="false">Vista compacta</button>
   </section>
 
   <p class="admin-loading" id="adminLoading">Cargando invitados…</p>

@@ -198,6 +198,14 @@
   color: var(--color-terracotta);
 }
 
+/* Sage-tinted, matching the mobile "Vista compacta" toggle (client
+   request, 2026-09-22). */
+.admin-dash__logout {
+  background: rgba(166, 169, 79, 0.2);
+  border-color: rgba(166, 169, 79, 0.4);
+  color: #4d5424;
+}
+
 /* Mobile: title takes the full width, the 4 action buttons wrap into
    a tidy 2x2 grid below it instead of squeezing into the same row
    (client request, 2026-09-22 — "se ve raro"). */
@@ -390,7 +398,6 @@
   white-space: nowrap;
   background: rgba(166, 169, 79, 0.2);
   color: #4d5424;
-  flex-shrink: 0;
 }
 
 .admin-view-toggle:hover {
@@ -401,20 +408,24 @@
 @media (max-width: 720px) {
   .admin-view-toggle {
     display: inline-flex;
+    justify-content: center;
   }
 
-  /* All status filters + the view toggle stay on one horizontally
-     scrollable row on mobile instead of wrapping to multiple lines
-     (client request, 2026-09-22). */
+  /* Not one scrollable row (client correction, 2026-09-22: "se salen
+     de la pantalla") — a fixed 3-column grid so the 4 status filters +
+     the view toggle land in two even rows (3 + 2) on any phone width. */
   .admin-filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
   }
 
-  .admin-filter {
-    flex-shrink: 0;
+  .admin-filter,
+  .admin-filters .admin-view-toggle {
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 12px;
   }
 }
 

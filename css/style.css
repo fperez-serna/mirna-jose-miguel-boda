@@ -1453,12 +1453,11 @@ h1, h2, h3 {
     margin-top: clamp(16px, 3cqw, 30px);
   }
 
-  /* Web: pulled up to the same gap as flowers-to-names, and narrower —
-     shorter than the full date/place line, not matched to it anymore
-     (client request, 2026-09-22). */
+  /* Web: almost touching the date/place, and narrower still (client
+     request, 2026-09-22 — was 44%/same gap as flowers-to-names). */
   .cover__frame {
-    width: 44%;
-    margin-top: clamp(16px, 3cqw, 30px);
+    width: 32%;
+    margin-top: clamp(4px, 0.6cqw, 8px);
   }
 }
 
@@ -1498,10 +1497,10 @@ h1, h2, h3 {
     display: none;
   }
 
-  /* Same gap above the frame as flowers-to-names, so it sits right
-     under the date/place instead of floating further down (client
-     request, 2026-09-22); size unchanged, already right per her. */
+  /* Nearly touching the date/place (client request, 2026-09-22 — was
+     2cqw, same as flowers-to-names); size unchanged, already right
+     per her. */
   .cover__frame {
-    margin-top: 2cqw;
+    margin-top: 0.5cqw;
   }
 }

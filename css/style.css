@@ -1454,9 +1454,12 @@ h1, h2, h3 {
     margin: clamp(22px, 4.2cqw, 40px) auto;
   }
 
-  /* A bit more space between the flowers and the names, web only. */
+  /* Same as .cover__frame's margin-top below, so the whole names +
+     date/place block sits with equal space above and below it —
+     centered as a whole between the flowers and the frame (client
+     request, 2026-09-22, web — was clamp(16,3cqw,30)). */
   .cover__names {
-    margin-top: clamp(16px, 3cqw, 30px);
+    margin-top: 10px;
   }
 
   /* Web: fixed 10px gap and clearly shorter than the date/place line

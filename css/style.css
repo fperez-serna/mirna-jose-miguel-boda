@@ -1460,9 +1460,10 @@ h1, h2, h3 {
   }
 
   /* Web: fixed 10px gap and clearly shorter than the date/place line
-     (client request, 2026-09-22 — was 32%/clamp(4,0.6cqw,8)). */
+     Fixed 400px per client request, 2026-09-22 (was 26%; still well
+     under the ~477px date/place line at typical desktop widths). */
   .cover__frame {
-    width: 26%;
+    width: 400px;
     margin-top: 10px;
   }
 }

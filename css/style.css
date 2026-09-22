@@ -1474,7 +1474,11 @@ h1, h2, h3 {
   .cover__names {
     font-size: 15.4cqw;
     line-height: 1.02;
-    margin-top: 2cqw;
+    /* Same as .cover__frame's margin-top below, so the whole names +
+       date/place block sits with equal space above and below it —
+       "centered" between the flowers and the frame (client request,
+       2026-09-22, was 2cqw). */
+    margin-top: 8px;
   }
 
   .cover__names span {

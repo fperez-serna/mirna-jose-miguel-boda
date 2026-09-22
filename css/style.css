@@ -1436,6 +1436,11 @@ h1, h2, h3 {
   .cover__divider {
     margin: clamp(22px, 4.2cqw, 40px) auto;
   }
+
+  /* A bit more space between the flowers and the names, web only. */
+  .cover__names {
+    margin-top: clamp(16px, 3cqw, 30px);
+  }
 }
 
 /* Phones: names stacked (Mirna Be / & / José Miguel) at a size where

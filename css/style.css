@@ -395,8 +395,11 @@ h1, h2, h3 {
   max-width: min(900px, calc((100svh - 220px) / 0.89));
   container-type: inline-size;
   /* Phones: nudged up so the group reads as centered on screen (the
-     art has empty space on top and the scroll cue sits below). */
-  transform: translateY(clamp(-72px, -8vh, -28px));
+     art has empty space on top and the scroll cue sits below). Eased
+     up less than before (was -8vh) so the names sit at the vertical
+     center of the first screen, not above it (client request,
+     2026-09-22). */
+  transform: translateY(clamp(-36px, -4vh, -14px));
 }
 
 /* Client asked (2026-09-22) for the illustration a bit smaller than its

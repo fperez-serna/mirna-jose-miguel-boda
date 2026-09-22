@@ -1452,6 +1452,14 @@ h1, h2, h3 {
   .cover__names {
     margin-top: clamp(16px, 3cqw, 30px);
   }
+
+  /* Web: pulled up to the same gap as flowers-to-names, and narrower —
+     shorter than the full date/place line, not matched to it anymore
+     (client request, 2026-09-22). */
+  .cover__frame {
+    width: 44%;
+    margin-top: clamp(16px, 3cqw, 30px);
+  }
 }
 
 /* Phones: names stacked (Mirna Be / & / José Miguel) at a size where
@@ -1488,5 +1496,12 @@ h1, h2, h3 {
 
   .cover__dot {
     display: none;
+  }
+
+  /* Same gap above the frame as flowers-to-names, so it sits right
+     under the date/place instead of floating further down (client
+     request, 2026-09-22); size unchanged, already right per her. */
+  .cover__frame {
+    margin-top: 2cqw;
   }
 }

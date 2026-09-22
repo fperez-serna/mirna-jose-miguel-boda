@@ -445,6 +445,17 @@ h1, h2, h3 {
   white-space: nowrap;
 }
 
+/* Leaf sprig under the date/place — sized to roughly match that text's
+   own width (measured against the container, same cqw basis) rather
+   than the date/place element itself, since nowrap text's width isn't
+   something CSS can hand to a sibling directly. */
+.cover__frame {
+  display: block;
+  width: 64%;
+  height: auto;
+  margin: clamp(10px, 2cqw, 20px) auto 0;
+}
+
 .cover__art img {
   display: block;
   width: 100%;

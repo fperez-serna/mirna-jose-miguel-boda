@@ -385,11 +385,12 @@ h1, h2, h3 {
 */
 .cover__art {
   position: relative;
-  width: 100%;
+  /* Half size per client request, 2026-09-22 — was full-width/900px. */
+  width: 50%;
   /* Also capped by viewport height so art + names + date always fit the
-     first screen on short desktop windows (stack is ~0.89x its width — taller art now). */
-  max-width: min(900px, calc((100vh - 220px) / 0.89));
-  max-width: min(900px, calc((100svh - 220px) / 0.89));
+     first screen on short desktop windows (stack is ~0.89x its width). */
+  max-width: min(450px, calc(((100vh - 220px) / 0.89) / 2));
+  max-width: min(450px, calc(((100svh - 220px) / 0.89) / 2));
   container-type: inline-size;
   /* Phones: nudged up so the group reads as centered on screen (the
      art has empty space on top and the scroll cue sits below). */

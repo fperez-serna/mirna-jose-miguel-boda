@@ -1084,6 +1084,11 @@ h1, h2, h3 {
   padding: 0 4px 20px;
   color: rgba(33, 30, 27, 0.62);
   line-height: 1.6;
+  /* #faq .section-inner centers everything by default (client request,
+     2026-09-15); the question stays unaffected since it's a flex row,
+     but the answer body is plain block text and inherited that
+     centering. Left-aligned instead (client request, 2026-09-24). */
+  text-align: left;
 }
 
 .faq__answer p {
